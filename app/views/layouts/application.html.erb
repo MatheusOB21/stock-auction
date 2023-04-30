@@ -8,8 +8,41 @@
 
     <%= stylesheet_link_tag "application" %>
   </head>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand">Leilão de Estoque</a>
+      
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Features</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Pricing</a>
+          </li>
+        </ul>
+      </div>
 
+        <span class = "float-right" id="nav-logout">
+           <% if user_signed_in? %> 
+           <span><%= current_user.name %></span>  
+           <%= button_to "Sair", destroy_user_session_path, method: :delete, :class => "btn btn-warning btn-sm" %>
+           <% end %>
+        </span>
+      
+    </nav>
+
+
+  
   <body>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+  <div>
     <%= yield %>
+  </div>
   </body>
+
+  
 </html>

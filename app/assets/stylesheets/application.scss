@@ -16,3 +16,95 @@
 
  // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
+
+//body
+body{
+  background: #e3eeff;
+}
+//nav-logout
+#nav-logout{
+  display: flex;
+  flex-direction: row;
+  margin-right: 10px;
+  align-content: center;
+}
+
+#nav-logout span{
+  margin: 5px;
+  }
+.navbar-brand{
+  margin: 5px;
+}
+.html body nav.navbar.navbar-expand-lg.navbar-light.bg-light{
+  display: flex;
+  align-items: center
+}
+
+//form-login
+
+#form-login{
+  padding: 30px;
+  background-color: white;
+  border-radius: 10px;
+  -webkit-box-shadow: -1px 4px 17px -2px rgba(0,0,0,0.55);
+  -moz-box-shadow: -1px 4px 17px -2px rgba(0,0,0,0.55);
+  box-shadow: -1px 4px 17px -2px rgba(0,0,0,0.55);
+}
+#form-login .field input{
+  margin: 5px;
+  font-size:15px; 
+  padding:5px; 
+  border-width :0px; 
+  border-bottom-width: 1px;
+  border-color: #000000;
+}
+#form-login .actions input{
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+//form-register
+
+#form-register{
+  padding: 30px;
+  background-color: white;
+  border-radius: 10px;
+  -webkit-box-shadow: -1px 4px 17px -2px rgba(0,0,0,0.55);
+  -moz-box-shadow: -1px 4px 17px -2px rgba(0,0,0,0.55);
+  box-shadow: -1px 4px 17px -2px rgba(0,0,0,0.55);
+}
+#form-register .field input{
+  margin: 5px;
+  font-size:15px; 
+  padding:5px; 
+  border-width :0px; 
+  border-bottom-width: 1px;
+  border-color: #000000;
+}
+#form-register .actions input{
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+//form-password
+
+#form-password{
+  padding: 30px;
+  background-color: white;
+  border-radius: 10px;
+  -webkit-box-shadow: -1px 4px 17px -2px rgba(0,0,0,0.55);
+  -moz-box-shadow: -1px 4px 17px -2px rgba(0,0,0,0.55);
+  box-shadow: -1px 4px 17px -2px rgba(0,0,0,0.55);
+}
+#form-password .field input{
+  margin: 5px;
+  font-size:15px; 
+  padding:5px; 
+  border-width :0px; 
+  border-bottom-width: 1px;
+  border-color: #000000;
+}
+#form-password .actions input{
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
