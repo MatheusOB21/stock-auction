@@ -1,24 +1,57 @@
 # README
+ 
+Sistema de Leilão
+Gerencie os itens de lotes de galpões com um sistema de leilão no qual possui dois usuários: 
+Administradores: Que realizam o cadastro de produtos que estão disponíveis para venda, pela gestão do leilão incluindo a configuração de lotes, datas e lances mínimos e acompanhar os  pedidos recebidos para aprovação.
+Usuários regulares: Podem dar criar uma conta na aplicação, buscar por produtos, ver detalhes de produtos e fazer um lance caso ainda seja possível.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Requisitos Necessários:
+Ruby 3.1.2 ou Superior
+SQL Lite 1.4 ou Superior
+Rails 7.0.4.3 ou Superior
 
-Things you may want to cover:
+Funcionalidades:
+Usuários Administradores - Pendente
+Cadastro de Itens para Leilão - Pendente
+Configuração de Lotes - Pendente
+Visualizar Lotes - Pendente
+Fazendo Lances - Pendente
+Validando Resultados - Pendente
+Verificando Lotes Vencidos - Pendente
+Dúvidas sobre um lote - Pendente
+Bloqueio de CPFs - Pendente
+Lotes Favoritos - Pendente
+Busca de Produtos - Pendente
 
-* Ruby version
+Para executar o projeto:
 
-* System dependencies
+Certifique de possuir instalado em sua máquina:
 
-* Configuration
+git
+  sudo apt install git
+ruby:
+  sudo apt-get update
+  sudo apt install ruby-full
+  ruby -v -> ruby 3.1.2p20
 
-* Database creation
+rails: 
+  gem install rails -v 7.0.4.3
+  rails -v
 
-* Database initialization
+Clone o repositório em sua máquina:
 
-* How to run the test suite
+git clone https://github.com/MatheusOB21/stock-auction
 
-* Services (job queues, cache servers, search engines, etc.)
+Instale as dependências:
 
-* Deployment instructions
+cd stock-auction
+bundle install
 
-* ...
+Configure o Banco de Dados:
+
+rails db:create
+rails db:migrate
+
+Execute aplicação: 
+
+rails server
