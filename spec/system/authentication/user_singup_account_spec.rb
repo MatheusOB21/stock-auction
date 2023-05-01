@@ -6,6 +6,7 @@ describe 'Usuário registra nova conta' do
 
     #Act
       visit root_path
+      click_on 'Login'
       click_on 'Criar conta'
     #Assert
       expect(current_path).to eq new_user_registration_path
@@ -22,6 +23,7 @@ describe 'Usuário registra nova conta' do
 
       #Act
         visit root_path
+        click_on 'Login'
         click_on 'Criar conta'
         fill_in 'Nome', with: 'José'
         fill_in 'CPF', with: '39588266017'
@@ -42,6 +44,7 @@ describe 'Usuário registra nova conta' do
 
       #Act
       visit root_path
+      click_on 'Login'
       click_on 'Criar conta'
       fill_in 'Nome', with: 'Maria'
       fill_in 'CPF', with: '123456789102'
@@ -60,6 +63,7 @@ describe 'Usuário registra nova conta' do
 
       #Act
       visit root_path
+      click_on 'Login'
       click_on 'Criar conta'
       fill_in 'Nome', with: 'Julia'
       fill_in 'CPF', with: '11665475315'
