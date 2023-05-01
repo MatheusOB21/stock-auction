@@ -26,7 +26,12 @@
       </div>
 
         <span class = "float-right" id="nav-logout">
-           <% if user_signed_in? %> 
+           <% if user_signed_in? %>
+            <% if current_user.is_admin %>
+              <span>Admin:</span> 
+            <% else %>
+              <span>Usuário:</span> 
+            <% end %>
            <span><%= current_user.name %></span>  
            <%= button_to "Sair", destroy_user_session_path, method: :delete, :class => "btn btn-warning btn-sm" %>
            <% end %>
@@ -37,11 +42,14 @@
 
   
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
   <div>
     <%= yield %>
+    <div class="d-flex justify-content-center">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+    </div>
   </div>
+
   </body>
 
   

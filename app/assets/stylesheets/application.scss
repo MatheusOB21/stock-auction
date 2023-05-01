@@ -43,6 +43,7 @@ body{
 //form-login
 
 #form-login{
+  margin-top: 50px;
   padding: 30px;
   background-color: white;
   border-radius: 10px;
@@ -66,6 +67,7 @@ body{
 //form-register
 
 #form-register{
+  margin-top: 50px;
   padding: 30px;
   background-color: white;
   border-radius: 10px;
@@ -85,9 +87,30 @@ body{
   margin-top: 5px;
   margin-bottom: 5px;
 }
+
+html body div section.d-flex.justify-content-center div#form-register form#new_user.new_user{
+  display: flex;
+  flex-direction: column;
+  align-items: center
+}
+
+#error_explanation h3{
+  font-size: 20px;
+}
+
+.field .field_with_errors{
+  float: left;
+}
+.field .field_with_errors input {
+  border-width :0px; 
+  border-bottom-width: 5px;
+  border-color: #ff0000;
+  background-color: #ffb6b6;
+}
 //form-password
 
 #form-password{
+  margin-top: 50px;
   padding: 30px;
   background-color: white;
   border-radius: 10px;
