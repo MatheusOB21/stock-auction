@@ -48,6 +48,7 @@ describe 'Usuário consegue' do
         click_on 'Login'
       end
     #Assert
+      expect(current_path).to eq new_user_session_path
       expect(page).to have_content 'E-mail ou senha inválidos.'
   end
 end
