@@ -13,6 +13,9 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     if @item.save
       redirect_to @item, notice: 'Item cadastrado com sucesso'
+    else
+      flash.now[:notice] = 'Item não cadastrado'
+      render 'new'
     end
   end
 

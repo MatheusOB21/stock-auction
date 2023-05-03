@@ -131,7 +131,18 @@ html body div section.d-flex.justify-content-center div#form-register form#new_u
   margin-bottom: 5px;
 }
 
+//item-new
+
+section#form-new-item div div.field_with_errors input{
+  border-color: #ff2d2d;
+}
+
 //item-show
+
+section#item-details div{
+  display: flex;
+  flex-direction: column;
+}
 
 section#item-details div div img.item-image{
   width: 200px;

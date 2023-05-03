@@ -1,44 +1,95 @@
-<section id="form-new-item">
+<section id="form-new-item" class="d-flex justify-content-center">
   <div>
-    <%= form_with(model: @item ) do |f| %>
-      <div>
-        <%=f.label :name %>
-        <%=f.text_field :name %>
-      </div>
-      <div>
-        <%=f.label :description %>
-        <%=f.text_field :description %>
-      </div>
-      <div>
-        <%=f.label :weight %>
-        <%=f.number_field :weight %>
-      </div>
-      <div>
-        <%=f.label :depth %>
-        <%=f.number_field :depth%>
-      </div>
-      <div>
-        <%=f.label :height %>
-        <%=f.number_field :height %>
-      </div>
-      <div>
-        <%=f.label :width %>
-        <%=f.number_field :width %>
-      </div>
-      <div>
-        <%=f.label :product_category %>
-        <%=f.text_field :product_category%>
+    <div id= "form">
+      <%= form_with(model: @item ) do |f| %>
+        
         <div>
-            <span>Adicionar categoria<span>
+          <div>
+            <%=f.label :name %>
+          </div>
+          <div>
+            <%=f.text_field :name %>
+          </div>
         </div>
-      </div>
-      <div>
-        <%=f.label :image %>
-        <%=f.file_field :image %>
-      </div>
-      <div>
-        <%=f.submit 'Enviar' %>
-      </div>
-    <% end %>
+        
+        <div>
+          <div >
+            <%=f.label :description %>
+          </div> 
+          <div >
+            <%=f.text_field :description %>
+          </div>
+        </div> 
+        
+        <div>
+          <div>
+              <%=f.label :weight %>
+          </div>    
+          <div>
+              <%=f.number_field :weight %>
+          </div>
+        </div>
+        
+        <div>
+          <div>
+            <%=f.label :depth %>
+          </div>  
+          <div>
+            <%=f.number_field :depth%>
+          </div>
+        </div>
+
+        <div>
+          <div>
+            <%=f.label :height %>
+          </div>
+          <div> 
+            <%=f.number_field :height %>
+          </div>
+        </div>
+        
+        <div>
+          <div>
+            <%=f.label :width %>
+          </div>
+          <div>
+            <%=f.number_field :width %>
+          </div> 
+        </div>
+        
+        <div>
+          <div>
+            <%=f.label :product_category %>
+          </div>
+          <div>
+            <%=f.text_field :product_category%>
+          </div>
+        </div>
+        
+        <div>
+          <div>
+            <%=f.label :image %>
+          </div>
+          <div>
+            <%=f.file_field :image %>
+          </div>
+        </div>
+
+        <div>
+          <%=f.submit 'Enviar' %>
+        </div>
+
+      <% end %>
+    </div>
+
+    <div id="item-errors-message">
+      <% if @item.errors.any? %>
+      <ul class="list-group">
+        <% @item.errors.full_messages.each do |msg|%>
+        <li > <%= msg %> </li>
+        <% end %>
+      </ul>  
+      <% end %>
+    </div>
   </div>
 </section>
