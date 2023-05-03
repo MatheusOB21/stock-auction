@@ -21,9 +21,10 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 #Login authentication
 gem "devise"
 
-#Front-end frameworks - bootstrap and jquery.
+#Front-end frameworks - bootstrap, jquery, popper_js.
 gem 'bootstrap', '~> 5.2', '>= 5.2.3'
 gem 'jquery-rails'
+gem 'popper_js', '~> 2.11.7'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

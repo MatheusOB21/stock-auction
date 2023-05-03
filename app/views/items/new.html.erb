@@ -1,0 +1,44 @@
+<section id="form-new-item">
+  <div>
+    <%= form_with(model: @item ) do |f| %>
+      <div>
+        <%=f.label :name %>
+        <%=f.text_field :name %>
+      </div>
+      <div>
+        <%=f.label :description %>
+        <%=f.text_field :description %>
+      </div>
+      <div>
+        <%=f.label :weight %>
+        <%=f.number_field :weight %>
+      </div>
+      <div>
+        <%=f.label :depth %>
+        <%=f.number_field :depth%>
+      </div>
+      <div>
+        <%=f.label :height %>
+        <%=f.number_field :height %>
+      </div>
+      <div>
+        <%=f.label :width %>
+        <%=f.number_field :width %>
+      </div>
+      <div>
+        <%=f.label :product_category_id %>
+        <%=f.collection_select :product_category_id, @product_category, :id, :name %>
+        <div>
+            <span>Adicionar categoria<span>
+        </div>
+      </div>
+      <div>
+        <%=f.label :image %>
+        <%=f.file_field :image %>
+      </div>
+      <div>
+        <%=f.submit 'Enviar' %>
+      </div>
+    <% end %>
+  </div>
+</section>
