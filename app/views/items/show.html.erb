@@ -1,0 +1,25 @@
+<section id="item-details">
+  <div>
+  <div>
+    <%= Item.human_attribute_name(:name)%>: <%= @item.name %>
+  </div>
+  <div>
+    <%= Item.human_attribute_name(:description)%>: <%= @item.description %>
+  </div>
+  <div> 
+    <%= Item.human_attribute_name(:weight)%>: <%= "#{@item.weight}g" %>
+  </div>  
+  <div>
+    <%= Item.human_attribute_name(:item_dimensions)%>: <%= @item.item_dimensions %>
+  </div>
+  <div>
+    <%= Item.human_attribute_name(:product_category)%>: <%= @item.product_category %>
+  </div>
+  <div>
+    <%= Item.human_attribute_name(:image)%>: 
+  </div>
+  <div>
+    <%= image_tag @item.image , :class => "item-image" %> 
+  </div>
+  </div>
+</section>

@@ -26,8 +26,8 @@
         <%=f.number_field :width %>
       </div>
       <div>
-        <%=f.label :product_category_id %>
-        <%=f.collection_select :product_category_id, @product_category, :id, :name %>
+        <%=f.label :product_category %>
+        <%=f.text_field :product_category%>
         <div>
             <span>Adicionar categoria<span>
         </div>

@@ -14,4 +14,5 @@ pt-BR:
         width: "Largura"
         code: "Código"
         image: "Imagem"
-        product_category_id: "Categoria do Produto"
+        product_category: "Categoria do Produto"
+        item_dimensions: "Dimensões"
