@@ -1,0 +1,57 @@
+<section id="form-new-lot" class="d-flex justify-content-center">
+  <div>
+    <h3>Cadastrar novo lote</h3>
+    <div id= "form">
+      <%= form_with(model: @lot ) do |f| %>
+        
+        <div>
+          <div>
+            <%=f.label :code %>
+          </div>
+          <div>
+            <%=f.text_field :code %>
+          </div>
+        </div>
+        
+        <div>
+          <div >
+            <%=f.label :start_date %>
+          </div> 
+          <div >
+            <%=f.date_field :start_date %>
+          </div>
+        </div> 
+        
+        <div>
+          <div>
+              <%=f.label :limit_date %>
+          </div>    
+          <div>
+              <%=f.date_field :limit_date %>
+          </div>
+        </div>
+        
+        <div>
+          <div>
+            <%=f.label :minimal_val %>
+          </div>  
+          <div>
+            <%=f.number_field :minimal_val %>
+          </div>
+        </div>
+        
+        <div>
+          <div>
+            <%=f.label :minimal_difference %>
+          </div>  
+          <div>
+            <%=f.number_field :minimal_difference %>
+          </div>
+        </div>
+
+        <div>
+          <%=f.submit I18n.t(:submit) %>
+        </div>
+
+      <% end %>
+    </div>

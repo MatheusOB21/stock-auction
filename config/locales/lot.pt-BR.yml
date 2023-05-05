@@ -1,0 +1,15 @@
+pt-BR:
+  activerecord:
+    models:
+      lot:
+        one: 'Lotes'
+        other: 'Lotes'
+    attributes:
+      lot:
+        code: 'Código'
+        start_date: 'Data início'
+        limit_date: 'Data limite'
+        minimal_difference: 'Diferença mínima de lance'
+        minimal_val: 'Valor mínimo de lance'
+        pending: 'Pendente de aprovação'
+        aprovated: 'Lote aprovado'

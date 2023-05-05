@@ -2,6 +2,10 @@
 body{
   background: #e3eeff;
 }
+.position-absolute.bottom-0.end-0{
+  margin-right: 10px;
+}
+
 /* //nav-logout */
 #nav-logout{
   display: flex;

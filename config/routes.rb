@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   root to: "home#index"
   #Rotas
   resources :items, only:[:show,:new, :create]
-  resources :lot, only:[:new, :create]
+  resources :lots, only:[:new, :create, :show]
 end
