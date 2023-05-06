@@ -50,5 +50,36 @@ RSpec.describe Lot, type: :model do
         expect(result3).to eq false
         expect(result4).to eq true
     end
+    it 'precisa estar no tamanho correto (9)' do
+      #Arrange
+        user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
+        
+        lot1 = Lot.new(code: "FLA123456789", start_date: "28/05/2023", limit_date: "28/06/2023", minimal_val: 50, minimal_difference: 10, user: user_admin)
+        lot2 = Lot.new(code: "FLA123456", start_date: "28/05/2023", limit_date: "28/06/2023", minimal_val: 50, minimal_difference: 10, user: user_admin)
+      #Act
+        result1 = lot1.valid?
+        result2 = lot2.valid?
+      #Assert
+        expect(result1).to eq false
+        expect(result2).to eq true
+    end
+    it 'é único' do
+      #Arrange
+        user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
+        
+        lot1 = Lot.new(code: "FLA123456", start_date: "28/05/2023", limit_date: "28/06/2023", minimal_val: 50, minimal_difference: 10, user: user_admin)
+        
+        lot2 = Lot.new(code: "FLA123456", start_date: "29/05/2023", limit_date: "30/06/2023", minimal_val: 50, minimal_difference: 10, user: user_admin)
+        lot3 = Lot.new(code: "FLA456789", start_date: "30/05/2023", limit_date: "15/06/2023", minimal_val: 50, minimal_difference: 10, user: user_admin)
+      #Act
+        result1 = lot1.save!
+
+        result2 = lot2.valid?
+        result3 = lot3.valid?
+      #Assert
+        expect(result1).to eq true
+        expect(result2).to eq false
+        expect(result3).to eq true
+    end
   end
 end
