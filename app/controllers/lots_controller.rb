@@ -27,7 +27,9 @@ class LotsController < ApplicationController
 
   def aprovated
     @lot = Lot.find(params[:id])
+
     if current_user.id != @lot.user_id
+      @lot.user_aprovated = UserAprovated.create!(user: current_user, date_aprovated: Date.today)
       @lot.aprovated!
       redirect_to @lot, notice: "Lote aprovado com sucesso"
     else
