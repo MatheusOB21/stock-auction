@@ -71,5 +71,23 @@ describe 'Usário cadastra um novo lote:' do
         expect(page).to have_content "Valor mínimo de lance: 60"
         expect(page).to have_content "Diferença mínima de lance: 10"
       end
+      it 'cadastra faltando campos' do
+      #Arrange
+        user = User.create!(name: "Ribamar", email: "ribamar@leilaodogalpao.com.br", password: "ribamar_do_leilão", cpf:"50417550006")
+      #Act
+        login_as(user)
+        visit root_path
+        click_on "Cadastrar lote"     
+        fill_in "Código", with:  "FRA456345"      
+        fill_in "Data início", with: ""       
+        fill_in "Data limite", with: "25/06/2023"       
+        fill_in "Valor mínimo de lance", with: ""       
+        fill_in "Diferença mínima de lance", with: "10"        
+        click_on "Enviar"
+      #Assert
+        expect(page).to have_content "Lote não cadastrado"
+        expect(page).to have_content "Data início não pode ficar em branco"
+        expect(page).to have_content "Valor mínimo de lance não pode ficar em branco"
+      end
   end
 end

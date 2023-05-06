@@ -54,4 +54,15 @@
         </div>
 
       <% end %>
-    </div>
+  </div>
+
+  <div id = "errors-messages">
+    <% if @lot.errors.any? %>
+      <ul>
+      <% @lot.errors.full_messages.each do |msg|%>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    <% end %>
+  </div>
+</section>    

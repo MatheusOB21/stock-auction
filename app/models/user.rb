@@ -26,7 +26,6 @@ class User < ApplicationRecord
   private
   def cpf_is_valid
     if self.cpf_check
-      
     else
       self.errors.add(:cpf, 'é inválido')
     end

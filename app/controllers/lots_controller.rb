@@ -13,6 +13,9 @@ class LotsController < ApplicationController
 
     if @lot.save 
       redirect_to @lot, notice: "Lote cadastrado com sucesso"
+    else
+      flash.now[:notice] = "Lote não cadastrado"
+      render 'new'
     end
   end
 
