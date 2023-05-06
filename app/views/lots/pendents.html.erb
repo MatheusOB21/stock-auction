@@ -1,6 +1,6 @@
 <section id="lot-pendents">
   <div><h2>Lotes pendentes de aprovação<h2><div>
-
+  <% if @lots.any? %>
   </div>
   <% @lots.each do |lot|%>
     <table class="table table-bordered table-striped">
@@ -21,4 +21,7 @@
     </table>
     <% end %>
   </div>
+  <% else %>
+    <h3>Nenhun lote pendente de aprovação</h3>
+  <% end %>
 </section>

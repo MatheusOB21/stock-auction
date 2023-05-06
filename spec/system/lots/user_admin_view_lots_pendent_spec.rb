@@ -44,8 +44,6 @@ describe 'Usuário admin vê os lotes pendentes' do
         visit root_path
         click_on "Lotes pendentes"
       #Assert
-        expect(current_path).to eq lot_path(lot.id)
-        expect(page).to have_content "Não existe nenhum lote pendente"      
-    
+        expect(page).to have_content "Nenhun lote pendente de aprovação"      
     end
 end

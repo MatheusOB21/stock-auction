@@ -31,7 +31,7 @@ class LotsController < ApplicationController
       @lot.aprovated!
       redirect_to @lot, notice: "Lote aprovado com sucesso"
     else
-      redirect_to @lot, notice: "Você não pode aprovar esse lote"
+      redirect_to @lot, notice: "Você não pode aprovar lotes criados pelo seu usuário"
     end
   end
 
