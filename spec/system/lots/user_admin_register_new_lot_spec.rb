@@ -62,6 +62,7 @@ describe 'Usário cadastra um novo lote:' do
         click_on "Enviar"
       #Assert
         expect(current_path).to eq lot_path(Lot.last.id)
+        expect(Lot.last.user_id).to eq user.id
         expect(page).to have_content "Lote cadastrado com sucesso"
         expect(page).to have_content "Detalhes do lote"
         expect(page).to have_content "Código FRA456345 "
