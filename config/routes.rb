@@ -6,5 +6,9 @@ Rails.application.routes.draw do
   root to: "home#index"
   #Rotas
   resources :items, only:[:show,:new, :create]
-  resources :lots, only:[:new, :create, :show]
+
+  resources :lots, only:[:new, :create, :show, :pendents] do
+    post 'aprovated', on: :member
+    get 'pendents', on: :collection
+  end
 end

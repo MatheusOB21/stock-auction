@@ -1,6 +1,6 @@
 class LotsController < ApplicationController
-  before_action :authenticate_user!, only:[:new, :create, :show]
-  before_action :admin_page, only:[:new, :create, :show]
+  before_action :authenticate_user!, only:[:new, :create, :show, :pendentes]
+  before_action :admin_page, only:[:new, :create, :show, :pendentes]
 
   def new 
     @lot = Lot.new
@@ -20,6 +20,21 @@ class LotsController < ApplicationController
     lot_id = params[:id]
     @lot = Lot.find(lot_id)
   end
+
+  def pendents
+    @lots = Lot.where(status: "pending")
+  end
+
+  def aprovated
+    @lot = Lot.find(params[:id])
+    if current_user.id != @lot.user_id
+      @lot.aprovated!
+      redirect_to @lot, notice: "Lote aprovado com sucesso"
+    else
+      redirect_to @lot, notice: "Você não pode aprovar esse lote"
+    end
+  end
+
   private
 
   def admin_page 
