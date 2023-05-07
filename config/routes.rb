@@ -10,5 +10,7 @@ Rails.application.routes.draw do
   resources :lots, only:[:new, :create, :show, :pendents] do
     post 'aprovated', on: :member
     get 'pendents', on: :collection
+
+    resources :lot_items, only:[:new, :create]
   end
 end

@@ -5,8 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :lots
-
   has_many :user_aprovateds
+  has_many :lots, through: :user_aprovateds 
 
   #Validaçoes
   validates :cpf, presence: true

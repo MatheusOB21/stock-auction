@@ -1,6 +1,9 @@
 class Lot < ApplicationRecord
   belongs_to :user
-  belongs_to :user_aprovated, optional: true
+  has_one :user_aprovated
+  
+  has_many :lot_items
+  has_many :items, through: :lot_items
 
   enum :status, pending: 1, aprovated: 3
 

@@ -20,7 +20,7 @@ RSpec.describe Lot, type: :model do
       user_admin_2 = User.create!(name: "José", email: "jose@leilaodogalpao.com.br", password: "jose_do_leilão", cpf:"50417550006")
 
       lot = Lot.new(code: "FRA456345", start_date: "28/05/2023", limit_date: "28/06/2023", minimal_val: 50, minimal_difference: 10, user: user_admin)
-      lot.user_aprovated = UserAprovated.create!(user: user_admin_2, date_aprovated: Date.today)
+      lot.user_aprovated = UserAprovated.create!(user: user_admin_2, lot: lot, date_aprovated: Date.today)
     #Act
       lot.save!
     #Assert

@@ -1,0 +1,17 @@
+<section>
+  <div>
+    <%= form_with(model:[@lot, @lot_item]) do |f| %>
+    <div>
+      <div>
+        <%= f.label :item_id, "Itens" %>
+      </div>
+      <div>
+        <%= f.collection_select :item_id, @items, :id, :name %>
+      </div>
+      <div>
+        <%= f.submit 'Adicionar' %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</section>

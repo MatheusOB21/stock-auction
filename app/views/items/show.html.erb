@@ -18,8 +18,12 @@
     <div>
       <%= Item.human_attribute_name(:image)%>: 
     </div>
+    <% if @item.image.present? %>
     <div>
       <%= image_tag @item.image , :class => "item-image" %> 
     </div>
+    <%else%>
+    <span>Nenhuma imagem cadastrada</span>
+    <% end %>
   </div>
 </section>

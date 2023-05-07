@@ -1,4 +1,4 @@
-<section id="lot-details">
+<section id="lot-details" style="margin: 10px;">
   <div><h2>Detalhes do lote<h2><div>
   </div>
     <table class="table">
@@ -27,7 +27,37 @@
     </table>
   </div>
 
-  <div>
+  <div style="margin: 10px;">
+    <h2>Items do lote:</h2>
+    <% @lot.items.each do |item| %>
+    <div class="card mb-3" style="max-width: 540px;">
+      <div class="row g-0">
+        <div class="col-md-4">
+        <% if item.image.present? %>
+        <div>
+          <%= image_tag item.image , class: "img-fluid rounded-start" %> 
+        </div>
+        <%else%>
+        <span>Nenhuma imagem cadastrada</span>
+        <% end %>
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title"><%= item.name %></h5>
+            <p class="card-text"><%= item.description %></p>
+            <p class="card-text"><small class="text-body-secondary">Dimensões: <%= item.item_dimensions %></small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+  <%if @lot.pending? %>
+  <div style="margin: 10px;">
     <%= button_to "Aprovar lote", aprovated_lot_path(@lot.id), class: "btn btn-secondary" %>
   </div>
+  <div style="margin: 10px;">
+    <%= link_to "Adicionar item", new_lot_lot_item_path(@lot), class: "btn btn-primary" %>
+  </div>
+  <% end %>
 </section>
