@@ -1,6 +1,6 @@
 class LotsController < ApplicationController
-  before_action :authenticate_user!, only:[:new, :create, :show, :pendents, :aprovated]
-  before_action :admin_page, only:[:new, :create, :show, :pendents]
+  before_action :authenticate_user!, only:[:new, :create, :pendents, :aprovated]
+  before_action :admin_page, only:[:new, :create, :pendents]
 
   def new 
     @lot = Lot.new
@@ -22,6 +22,15 @@ class LotsController < ApplicationController
   def show
     lot_id = params[:id]
     @lot = Lot.find(lot_id)
+    if @lot.aprovated?
+    elsif user_signed_in?
+      if current_user.is_admin
+      else
+      redirect_to root_path, notice: "Você não tem acesso a essa página"
+      end
+    else 
+      redirect_to root_path, notice: "Você não tem acesso a essa página" 
+    end  
   end
 
   def pendents
@@ -38,5 +47,11 @@ class LotsController < ApplicationController
     else
       redirect_to @lot, notice: "Você não pode aprovar lotes criados pelo seu usuário"
     end
+    
+  end
+
+  def details
+    lot_id = params[:id]
+    @lot = Lot.find(lot_id)
   end
 end

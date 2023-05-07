@@ -1,0 +1,45 @@
+<div class="container text-center" style="margin-top: 5px;">
+<h1>Bem vindo ao Leilão do Galpão</h1>
+</div>
+
+<div>
+</div>
+
+<div class="container text-center">
+  <div class="row justify-content-between">
+    <div class="col-4">
+      <h2>Lotes em andamentos<h2>
+      <table class="table">
+        <tbody>
+          <% @lots_in_progress.each do |lot| %>
+          <tr>
+            <th scope="row"><%= Lot.human_attribute_name(:code) %></th>
+            <th scope="row"><%= Lot.human_attribute_name(:limit_date) %></th>
+            </tr>
+            <tr>
+              <td><%= link_to lot.code, lot_path(lot) %></td>
+              <td><%= I18n.localize(lot.limit_date) %></td>
+            </tr>
+          <% end %>  
+        </tbody>
+      </table>
+    </div>
+    <div class="col-4">
+      <h2>Lotes futuros<h2>
+      <table class="table">
+        <tbody>
+          <% @lots_future.each do |lot| %>
+            <tr>
+              <th scope="row"><%= Lot.human_attribute_name(:code) %></th>
+              <th scope="row"><%= Lot.human_attribute_name(:start_date) %></th>
+            </tr>
+            <tr>
+              <td><%= link_to lot.code, lot_path(lot) %></td>
+              <td><%= I18n.localize(lot.start_date) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

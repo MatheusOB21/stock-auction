@@ -46,8 +46,10 @@
             <h5 class="card-title"><%= item.name %></h5>
             <p class="card-text"><%= item.description %></p>
             <p class="card-text"><small class="text-body-secondary">Dimensões: <%= item.item_dimensions %></small></p>
-             <%if @lot.pending? %>
-              <p class="card-text"><div style="margin: 10px;" class= "position-absolute bottom-0 end-0"><%= button_to "Remover item", lot_lot_item_path(item.lot, id: item.lot_item), method: :delete, class: "btn btn-danger" %></div></p>
+             <% if user_signed_in? %>
+              <%if @lot.pending? && current_user.is_admin %>
+                <p class="card-text"><div style="margin: 10px;" class= "position-absolute bottom-0 end-0"><%= button_to "Remover item", lot_lot_item_path(item.lot, id: item.lot_item), method: :delete, class: "btn btn-danger" %></div></p>
+              <% end %>
             <% end %>
           </div>
         </div>
@@ -55,12 +57,15 @@
     </div>
     <% end %>
   </div>
-  <%if @lot.pending? %>
-  <div style="margin: 10px;">
-    <%= button_to "Aprovar lote", aprovated_lot_path(@lot.id), class: "btn btn-secondary" %>
-  </div>
-  <div style="margin: 10px;">
-    <%= link_to "Adicionar item", new_lot_lot_item_path(@lot), class: "btn btn-primary" %>
-  </div>
+  
+  <% if user_signed_in? %>
+    <%if @lot.pending? && current_user.is_admin %>
+      <div style="margin: 10px;">
+        <%= button_to "Aprovar lote", aprovated_lot_path(@lot.id), class: "btn btn-secondary" %>
+      </div>
+      <div style="margin: 10px;">
+        <%= link_to "Adicionar item", new_lot_lot_item_path(@lot), class: "btn btn-primary" %>
+      </div>
+    <% end %>
   <% end %>
 </section>
