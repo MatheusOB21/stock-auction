@@ -1,17 +1,22 @@
 <section>
   <div>
-    <%= form_with(model:[@lot, @lot_item]) do |f| %>
-    <div>
+    <% if @items.present? %>
+      <%= form_with(model:[@lot, @lot_item]) do |f| %>
       <div>
-        <%= f.label :item_id, "Itens" %>
+        <div>
+          <%= f.label :item_id, "Itens" %>
+        </div>
+        <div>
+          <%= f.collection_select :item_id, @items, :id, :name %>
+        </div>
+        <div>
+          <%= f.submit 'Adicionar' %>
+        </div>
       </div>
-      <div>
-        <%= f.collection_select :item_id, @items, :id, :name %>
-      </div>
-      <div>
-        <%= f.submit 'Adicionar' %>
-      </div>
-    </div>
+      <% end %>
+    <%else%>
+      <h2>Não existem items disponíveis para adicionar ao lote! Por favor cadastre novos itens.</h2>
     <% end %>
+
   </div>
 </section>

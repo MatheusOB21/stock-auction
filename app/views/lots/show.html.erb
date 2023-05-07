@@ -46,7 +46,9 @@
             <h5 class="card-title"><%= item.name %></h5>
             <p class="card-text"><%= item.description %></p>
             <p class="card-text"><small class="text-body-secondary">Dimensões: <%= item.item_dimensions %></small></p>
-            <p class="card-text">  <div style="margin: 10px;" class= "position-absolute bottom-0 end-0"><%= button_to "Remover item", lot_lot_item_path(item.lot, id: item.lot_item), method: :delete, class: "btn btn-danger" %></div></p>
+             <%if @lot.pending? %>
+              <p class="card-text"><div style="margin: 10px;" class= "position-absolute bottom-0 end-0"><%= button_to "Remover item", lot_lot_item_path(item.lot, id: item.lot_item), method: :delete, class: "btn btn-danger" %></div></p>
+            <% end %>
           </div>
         </div>
       </div>
