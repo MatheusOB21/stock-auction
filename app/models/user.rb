@@ -62,6 +62,7 @@ class User < ApplicationRecord
       result2 = cpf[10].to_i == (11 - (check2.sum%11))
     end
 
+    
     if result1 && result2 == true
       true
     else

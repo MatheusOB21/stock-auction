@@ -12,6 +12,8 @@ class Lot < ApplicationRecord
   validates :code, uniqueness: true
   validates :code, length: {is: 9}
   validate :code_format
+  
+  validates :limit_date, comparison: { greater_than: :start_date }
 
   private
 
@@ -21,5 +23,5 @@ class Lot < ApplicationRecord
       errors.add(:code, "não está no formato esperado: 3 letras + 6 números")
     end
   end
-
+  
 end

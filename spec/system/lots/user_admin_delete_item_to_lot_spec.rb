@@ -14,6 +14,7 @@ describe 'Usuário admin deleta item' do
       click_on 'FRA456345'
       click_on 'Remover item'
     #Assert
+      expect(current_path).to eq lot_path(lot.id)   
       expect(page).to have_content "Item removido com sucesso"    
       expect(page).not_to have_content "Ninja 2000"    
       expect(page).not_to have_content "Uma moto verde, veloz e em ótimo estado"    

@@ -3,29 +3,29 @@ require 'rails_helper'
 RSpec.describe Lot, type: :model do
   describe 'Lote tem a informação' do
     it 'do usuário que o criou' do
-    #Arrange
-      user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
-      user_admin_2 = User.create!(name: "José", email: "jose@leilaodogalpao.com.br", password: "jose_do_leilão", cpf:"50417550006")
+      #Arrange
+        user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
+        user_admin_2 = User.create!(name: "José", email: "jose@leilaodogalpao.com.br", password: "jose_do_leilão", cpf:"50417550006")
 
-      lot = Lot.new(code: "FRA456345", start_date: "28/05/2023", limit_date: "28/06/2023", minimal_val: 50, minimal_difference: 10, user: user_admin)
-    #Act
-      lot.save!
-    #Assert
-      expect(lot.user_id).to eq user_admin.id
-      expect(lot.user_id).not_to eq user_admin_2.id
-    end
-    it 'do usuário que o aprovou' do
-    #Arrange
-      user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
-      user_admin_2 = User.create!(name: "José", email: "jose@leilaodogalpao.com.br", password: "jose_do_leilão", cpf:"50417550006")
+        lot = Lot.new(code: "FRA456345", start_date: "28/05/2023", limit_date: "28/06/2023", minimal_val: 50, minimal_difference: 10, user: user_admin)
+      #Act
+        lot.save!
+      #Assert
+        expect(lot.user_id).to eq user_admin.id
+        expect(lot.user_id).not_to eq user_admin_2.id
+      end
+      it 'do usuário que o aprovou' do
+      #Arrange
+        user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
+        user_admin_2 = User.create!(name: "José", email: "jose@leilaodogalpao.com.br", password: "jose_do_leilão", cpf:"50417550006")
 
-      lot = Lot.new(code: "FRA456345", start_date: "28/05/2023", limit_date: "28/06/2023", minimal_val: 50, minimal_difference: 10, user: user_admin)
-      lot.user_aprovated = UserAprovated.create!(user: user_admin_2, lot: lot, date_aprovated: Date.today)
-    #Act
-      lot.save!
-    #Assert
-      expect(lot.user_aprovated.user_id).to eq user_admin_2.id
-      expect(lot.user_aprovated.user_id).not_to eq user_admin.id
+        lot = Lot.new(code: "FRA456345", start_date: "28/05/2023", limit_date: "28/06/2023", minimal_val: 50, minimal_difference: 10, user: user_admin)
+        lot.user_aprovated = UserAprovated.create!(user: user_admin_2, lot: lot, date_aprovated: Date.today)
+      #Act
+        lot.save!
+      #Assert
+        expect(lot.user_aprovated.user_id).to eq user_admin_2.id
+        expect(lot.user_aprovated.user_id).not_to eq user_admin.id
     end
   end
 
@@ -80,6 +80,21 @@ RSpec.describe Lot, type: :model do
         expect(result1).to eq true
         expect(result2).to eq false
         expect(result3).to eq true
+    end
+  end
+
+  describe 'Data limite' do
+    it 'precisa ser maior que a data de início' do
+      #Arrange
+      user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
+      lot1 = Lot.new(code: "ZTE456345", start_date: "28/05/2023", limit_date: "28/06/2023", minimal_val: 50, minimal_difference: 10, user: user_admin)
+      lot2 = Lot.new(code: "FRA456345", start_date: "28/07/2023", limit_date: "28/06/2023", minimal_val: 50, minimal_difference: 10, user: user_admin)
+    #Act
+      result1 = lot1.valid?
+      result2 = lot2.valid?
+    #Assert
+      expect(result1).to eq true
+      expect(result2).to eq false
     end
   end
 end
