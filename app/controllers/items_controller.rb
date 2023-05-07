@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only:[:new]
-  before_action :admin_page, only:[:new]
+  before_action :admin_page, only:[:new, :create, :show]
   
   def new   
     @item = Item.new
@@ -20,14 +20,4 @@ class ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
   end
-
-  private
-
-  def admin_page 
-    if current_user.is_admin 
-    else
-      redirect_to root_path, notice:  "Você não tem acesso a essa página"
-    end
-  end
-
 end
