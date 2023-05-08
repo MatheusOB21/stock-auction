@@ -1,0 +1,2 @@
+class UserBidLotController < ApplicationController
+end

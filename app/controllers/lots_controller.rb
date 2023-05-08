@@ -49,4 +49,19 @@ class LotsController < ApplicationController
     end
     
   end
+
+  def bid
+    @lot = Lot.find(params[:id])
+    val = params[:query]
+    @user_bid_lot = UserBidLot.new(user: current_user, lot: @lot, bid_amount: val)
+
+    if @user_bid_lot.valid?
+      @user_bid_lot.save!
+        redirect_to lot, notice: 'Lance computado!'
+    else
+        flash.now[:notice] = 'Lance não computado!'  
+        render 'show'
+    end  
+  end
+
 end

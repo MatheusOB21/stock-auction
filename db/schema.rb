@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_06_202454) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_08_135240) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -93,6 +93,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_06_202454) do
     t.index ["user_id"], name: "index_user_aprovateds_on_user_id"
   end
 
+  create_table "user_bid_lots", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "lot_id", null: false
+    t.integer "bid_amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lot_id"], name: "index_user_bid_lots_on_lot_id"
+    t.index ["user_id"], name: "index_user_bid_lots_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -115,4 +125,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_06_202454) do
   add_foreign_key "product_categories", "items", column: "items_id"
   add_foreign_key "user_aprovateds", "lots"
   add_foreign_key "user_aprovateds", "users"
+  add_foreign_key "user_bid_lots", "lots"
+  add_foreign_key "user_bid_lots", "users"
 end

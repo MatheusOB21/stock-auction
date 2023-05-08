@@ -5,6 +5,8 @@ class Lot < ApplicationRecord
   has_many :lot_items
   has_many :items, through: :lot_items
 
+  has_many :user_bid_lots
+
   enum :status, pending: 1, aprovated: 3
 
   validates :code, :start_date, :limit_date, :minimal_difference, :minimal_val, presence: true

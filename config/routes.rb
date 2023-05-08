@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     post 'aprovated', on: :member
     get 'pendents', on: :collection
 
+    post 'bid', on: :member
+
     resources :lot_items, only:[:new, :create, :destroy]
   end
 end

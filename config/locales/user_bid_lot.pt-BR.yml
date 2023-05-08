@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      user_bid_lot:
+        one: 'Usuário da lance'
+        other: 'Usuário da lances'
+    attributes:
+      user_bid_lot:
+        bid_amount: 'Valor do lance'
