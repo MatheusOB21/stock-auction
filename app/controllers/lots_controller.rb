@@ -49,9 +49,4 @@ class LotsController < ApplicationController
     end
     
   end
-
-  def details
-    lot_id = params[:id]
-    @lot = Lot.find(lot_id)
-  end
 end

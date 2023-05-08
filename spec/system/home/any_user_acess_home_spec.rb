@@ -88,7 +88,7 @@ describe 'Usuario acessa a home page' do
   end
   
   
-  context 'com autenticação' do
+  context 'com autenticação regular' do
     it 'acessa a pagina inicial' do
       #Arrange
         user = User.create!(name: 'Luke', email: 'luke@gmail.com', cpf:'08522429057', password: 'luke@12345')
