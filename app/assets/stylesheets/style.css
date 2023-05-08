@@ -134,3 +134,9 @@ section#item-details div div img.item-image{
   height: 200px;
 }
 
+/* lots-items */
+
+body div section#lot-details div#items{
+  display: flex;
+  flex-wrap: wrap;
+}
