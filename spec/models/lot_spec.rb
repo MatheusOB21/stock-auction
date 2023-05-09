@@ -7,7 +7,7 @@ RSpec.describe Lot, type: :model do
         user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
         user_admin_2 = User.create!(name: "José", email: "jose@leilaodogalpao.com.br", password: "jose_do_leilão", cpf:"50417550006")
 
-        lot = Lot.new(code: "FRA456345", start_date: "28/05/2023", limit_date: "28/06/2023", minimal_val: 50, minimal_difference: 10, user: user_admin)
+        lot = Lot.new(code: "FRA456345", start_date: 5.day.ago, limit_date: 5.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin)
       #Act
         lot.save!
       #Assert
@@ -19,7 +19,7 @@ RSpec.describe Lot, type: :model do
         user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
         user_admin_2 = User.create!(name: "José", email: "jose@leilaodogalpao.com.br", password: "jose_do_leilão", cpf:"50417550006")
 
-        lot = Lot.new(code: "FRA456345", start_date: "28/05/2023", limit_date: "28/06/2023", minimal_val: 50, minimal_difference: 10, user: user_admin)
+        lot = Lot.new(code: "FRA456345", start_date: 5.day.ago, limit_date: 5.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin)
         lot.user_aprovated = UserAprovated.create!(user: user_admin_2, lot: lot, date_aprovated: Date.today)
       #Act
         lot.save!

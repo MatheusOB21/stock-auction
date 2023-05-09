@@ -38,15 +38,21 @@
     <% end %>
   <% end %>
 
-  
+  <% if @lot.available %>
   <div>
     <h3>Lances</h3>
-    <p>Ultimo lance:<p><%=%>
+    <% if @lot.user_bid_lots.empty? %> 
+      <p>Ainda não foram dados lances para esse lote</p>
+    <% else %>
+    <p>Ultimo lance <%= @lot.last_bid %> <p>
+    <% end %>
+      
       <%= form_with(url: bid_lot_path(@lot.id), method: :post) do |f| %>
         <%= f.label :query, 'Valor do lance' %>
         <%= f.number_field  :query %>
         <%= f.submit 'Dar lance' %>
      <% end %>
+
     <% if !@user_bid_lot.nil? %>
       <% if @user_bid_lot.errors.messages %>
         <% @user_bid_lot.errors.full_messages.each do |msg| %>
@@ -54,8 +60,9 @@
         <% end %>
       <% end %>
     <% end %>
+
   </div>
-  
+  <% end %>
   
   <h2 style="margin: 5px">Items do lote: <%= "Esse lote ainda não possui itens." if @lot.items.empty? %></h2>
   <div id="items">

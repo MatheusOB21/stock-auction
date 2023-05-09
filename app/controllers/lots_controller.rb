@@ -1,5 +1,5 @@
 class LotsController < ApplicationController
-  before_action :authenticate_user!, only:[:new, :create, :pendents, :aprovated]
+  before_action :authenticate_user!, only:[:new, :create, :pendents, :aprovated, :bid]
   before_action :admin_page, only:[:new, :create, :pendents]
 
   def new 
@@ -57,7 +57,7 @@ class LotsController < ApplicationController
 
     if @user_bid_lot.valid?
       @user_bid_lot.save!
-        redirect_to lot, notice: 'Lance computado!'
+        redirect_to @lot, notice: 'Lance computado!'
     else
         flash.now[:notice] = 'Lance não computado!'  
         render 'show'

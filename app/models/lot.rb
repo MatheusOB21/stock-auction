@@ -17,6 +17,18 @@ class Lot < ApplicationRecord
   
   validates :limit_date, comparison: { greater_than: :start_date }
 
+  def available
+    if self.limit_date > Date.today  && self.start_date <= Date.today && self.status == 'aprovated'
+      true
+    else
+      false
+    end
+  end
+
+  def last_bid
+    self.user_bid_lots.order(:bid_amount).last.bid_amount
+  end
+
   private
 
   def code_format
