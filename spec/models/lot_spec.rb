@@ -97,4 +97,22 @@ RSpec.describe Lot, type: :model do
       expect(result2).to eq false
     end
   end
+
+  describe '#availabe ' do
+    it 'Lote disponivel para dar lance' do
+    #Arrange
+      user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
+      user_regular = User.create!(name: "Katarina", email: "katarina@gmail.com.br", password: "katarina12345", cpf:"09036567017")
+
+      lot1 = Lot.create!(code: "FRA456345", start_date: 5.day.ago, limit_date: 5.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin, status: 'aprovated')
+      lot2 = Lot.create!(code: "ZTE456345", start_date: 5.day.ago, limit_date: 5.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin, status: 'pending')
+    #Act
+      result1 = lot1.available
+      result2 = lot2.available
+    #Assert
+      expect(result1).to eq true
+      expect(result2).to eq false       
+    end
+  end
+
 end
