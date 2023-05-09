@@ -10,13 +10,13 @@ class Lot < ApplicationRecord
   enum :status, pending: 1, aprovated: 3
 
   validates :code, :start_date, :limit_date, :minimal_difference, :minimal_val, presence: true
-  
   validates :code, uniqueness: true
   validates :code, length: {is: 9}
+
+  validates :limit_date, comparison: { greater_than: :start_date }
+  
   validate :code_format
   
-  validates :limit_date, comparison: { greater_than: :start_date }
-
   def available
     if self.limit_date > Date.today  && self.start_date <= Date.today && self.status == 'aprovated'
       true
@@ -29,6 +29,7 @@ class Lot < ApplicationRecord
     self.user_bid_lots.order(:bid_amount).last.bid_amount
   end
 
+  
   private
 
   def code_format

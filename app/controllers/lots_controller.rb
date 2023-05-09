@@ -52,7 +52,7 @@ class LotsController < ApplicationController
 
   def bid
     @lot = Lot.find(params[:id])
-    val = params[:query]
+    val = params[:val]
     @user_bid_lot = UserBidLot.new(user: current_user, lot: @lot, bid_amount: val)
 
     if @user_bid_lot.valid?
