@@ -2,7 +2,6 @@ class Item < ApplicationRecord
   has_one :lot_item
   has_one :lot, through: :lot_item
 
-
   before_validation :generate_code
   
   validates :code, uniqueness: true

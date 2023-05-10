@@ -43,9 +43,13 @@ class LotsController < ApplicationController
     @lot = Lot.find(params[:id])
 
     if current_user.id != @lot.user_id
-      UserAprovated.create!(user: current_user, lot: @lot, date_aprovated: Date.today)
-      @lot.aprovated!
-      redirect_to @lot, notice: "Lote aprovado com sucesso"
+      if @lot.lot_items.present?
+        UserAprovated.create!(user: current_user, lot: @lot, date_aprovated: Date.today)
+        @lot.aprovated!
+        redirect_to @lot, notice: "Lote aprovado com sucesso"
+      else
+        redirect_to @lot, notice: "Não é possível aprovar lotes sem itens adicionados"
+      end
     else
       redirect_to @lot, notice: "Você não pode aprovar lotes criados pelo seu usuário"
     end

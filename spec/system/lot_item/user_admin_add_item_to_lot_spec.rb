@@ -5,7 +5,9 @@ describe 'Usuário admin adiciona item' do
     #Arrange
       user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
       lot = Lot.create!(code: "FRA456345", start_date: "28/05/2023", limit_date: "28/06/2023", minimal_val: 50, minimal_difference: 10, user: user_admin)
+      allow(SecureRandom).to receive(:alphanumeric).with(10).and_return("NINJA12345")
       item = Item.create!(name: 'Ninja 2000', description: 'Uma moto verde, veloz e em ótimo estado', weight: 2000, depth: 1000, height: 1500, width: 300, product_category: 'Motocicleta')
+    
     #Act
       login_as(user_admin)
       visit root_path
@@ -15,6 +17,7 @@ describe 'Usuário admin adiciona item' do
       select 'Ninja 2000', from: 'Itens'
       click_on 'Adicionar'
     #Assert
+      expect(item.code).to eq "NINJA12345"
       expect(current_path).to eq lot_path(lot.id)
       expect(page).to have_content "Item adicionado com sucesso"    
       expect(page).to have_content "Items do lote:"    
@@ -44,12 +47,14 @@ describe 'Usuário admin adiciona item' do
       expect(page).not_to have_content "Ninja 2000"    
       expect(page).not_to have_content "Ninja 1500"    
   end
+  
   it 'apenas a lotes pendentes' do
     #Arrange
       user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
       user_admin_2 = User.create!(name: "Mario", email: "mario@leilaodogalpao.com.br", password: "mario_do_leilão", cpf:"74574823003")
       lot = Lot.create!(code: "FRA456345", start_date: "28/05/2023", limit_date: "28/06/2023", minimal_val: 50, minimal_difference: 10, user: user_admin)
       item = Item.create!(name: 'Ninja 2000', description: 'Uma moto verde, veloz e em ótimo estado', weight: 2000, depth: 1000, height: 1500, width: 300, product_category: 'Motocicleta')
+      LotItem.create!(lot: lot, item: item)
     #Act
       login_as(user_admin_2)
       visit root_path
@@ -57,7 +62,7 @@ describe 'Usuário admin adiciona item' do
       click_on 'FRA456345'
       click_on 'Aprovar lote'
     #Assert  
-      expect(page).not_to have_content "Adicionar item"    
-      expect(page).not_to have_content "Remover item"    
+      expect(page).not_to have_button "Adicionar item"    
+      expect(page).not_to have_button "Remover item"    
   end
 end
