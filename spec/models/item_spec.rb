@@ -22,6 +22,7 @@ RSpec.describe Item, type: :model do
           expect(item_1.code).not_to eq(item_2.code)
       end
     end
+    
     describe 'Ao criar um item, o campo' do
       it 'nome não pode ficar em branco' do
         #Arrange
@@ -66,6 +67,14 @@ RSpec.describe Item, type: :model do
       it 'largura não pode ficar em branco' do
         #Arrange
           item = Item.new(name: 'Ninja 2000', description: 'Uma moto verde, veloz e em ótimo estado', weight: 0, depth: 1000, height: 1500, width: '', product_category: 'Motocicleta')
+        #Act
+          result = item.valid?
+        #Assert
+          expect(result).to eq false
+      end
+      it 'modelo do produto não pode ficar em branco' do
+        #Arrange
+          item = Item.new(name: 'Ninja 2000', description: 'Uma moto verde, veloz e em ótimo estado', weight: 0, depth: 1000, height: 1500, width: 200, product_category: '')
         #Act
           result = item.valid?
         #Assert

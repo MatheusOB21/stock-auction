@@ -86,32 +86,32 @@ RSpec.describe Lot, type: :model do
   describe 'Data limite' do
     it 'precisa ser maior que a data de início' do
       #Arrange
-      user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
-      lot1 = Lot.new(code: "ZTE456345", start_date: "28/05/2023", limit_date: "28/06/2023", minimal_val: 50, minimal_difference: 10, user: user_admin)
-      lot2 = Lot.new(code: "FRA456345", start_date: "28/07/2023", limit_date: "28/06/2023", minimal_val: 50, minimal_difference: 10, user: user_admin)
-    #Act
-      result1 = lot1.valid?
-      result2 = lot2.valid?
-    #Assert
-      expect(result1).to eq true
-      expect(result2).to eq false
+        user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
+        lot1 = Lot.new(code: "ZTE456345", start_date: "28/05/2023", limit_date: "28/06/2023", minimal_val: 50, minimal_difference: 10, user: user_admin)
+        lot2 = Lot.new(code: "FRA456345", start_date: "28/07/2023", limit_date: "28/06/2023", minimal_val: 50, minimal_difference: 10, user: user_admin)
+      #Act
+        result1 = lot1.valid?
+        result2 = lot2.valid?
+      #Assert
+        expect(result1).to eq true
+        expect(result2).to eq false
     end
   end
 
   describe '#availabe ' do
     it 'Lote disponivel para dar lance' do
-    #Arrange
-      user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
-      user_regular = User.create!(name: "Katarina", email: "katarina@gmail.com.br", password: "katarina12345", cpf:"09036567017")
+      #Arrange
+        user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
+        user_regular = User.create!(name: "Katarina", email: "katarina@gmail.com.br", password: "katarina12345", cpf:"09036567017")
 
-      lot1 = Lot.create!(code: "FRA456345", start_date: 5.day.ago, limit_date: 5.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin, status: 'aprovated')
-      lot2 = Lot.create!(code: "ZTE456345", start_date: 5.day.ago, limit_date: 5.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin, status: 'pending')
-    #Act
-      result1 = lot1.available
-      result2 = lot2.available
-    #Assert
-      expect(result1).to eq true
-      expect(result2).to eq false       
+        lot1 = Lot.create!(code: "FRA456345", start_date: 5.day.ago, limit_date: 5.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin, status: 'aprovated')
+        lot2 = Lot.create!(code: "ZTE456345", start_date: 5.day.ago, limit_date: 5.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin, status: 'pending')
+      #Act
+        result1 = lot1.available
+        result2 = lot2.available
+      #Assert
+        expect(result1).to eq true
+        expect(result2).to eq false       
     end
   end
 
