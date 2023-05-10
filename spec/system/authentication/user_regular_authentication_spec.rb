@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Usuário regular ao crair a conta' do
+describe 'Usuário regular ao criar a conta' do
   it 'não pode usar o mesmo CPF de um usuário admin' do
     #Arrange
       User.create!(name: "Lívia", email: "lívia@leilaodogalpao.com.br", password: "lívia1234", cpf: "14272954091")

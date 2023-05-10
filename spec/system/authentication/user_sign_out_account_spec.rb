@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Usuário realizar log out' do
+describe 'Usuário realiza log out' do
   it 'com sucesso' do
     #Arrange
       user = User.create!(name: 'Asta', email:'asta@usuario.com', cpf: '79221772080', password: 'senha12345')
