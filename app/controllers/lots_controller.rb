@@ -36,7 +36,11 @@ class LotsController < ApplicationController
   end
 
   def pendents
-    @lots = Lot.where(status: "pending")
+    @lots_pendents = Lot.where(status: "pending")
+  end
+
+  def finalized
+    @lots_finalized = Lot.where(["limit_date < ?", Date.today])
   end
 
   def aprovated

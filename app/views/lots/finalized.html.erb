@@ -1,8 +1,8 @@
 <section id="lot-pendents">
-  <div><h2>Lotes pendentes de aprovação<h2><div>
-  <% if @lots_pendents.any? %>
+  <div><h2>Lotes finalizados<h2><div>
+  <% if @lots_finalized.any? %>
   </div>
-  <% @lots_pendents.each do |lot|%>
+  <% @lots_finalized.each do |lot|%>
     <table class="table table-bordered table-striped">
       <thead>
         <tr>
@@ -22,6 +22,6 @@
     <% end %>
   </div>
   <% else %>
-    <h3>Nenhum lote pendente de aprovação</h3>
+    <h3>Nenhum lote foi finalizado ainda</h3>
   <% end %>
 </section>

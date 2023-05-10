@@ -21,7 +21,7 @@
             <a class="nav-link" href="#">Lotes vencendores</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
+            <a class="nav-link" href="#">Lotes favoritos</a>
           </li>
         </ul>
       </div>
@@ -46,6 +46,7 @@
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                     <li><%= link_to "Cadastrar lote", new_lot_path, class: "dropdown-item" %></li>
                     <li><%= link_to "Lotes pendentes", pendents_lots_path, class: "dropdown-item" %></li>
+                    <li><%= link_to "Lotes finalizados", finalized_lots_path, class: "dropdown-item" %></li>
                   </ul>
                 </div>
                   <span>Admin:</span> 

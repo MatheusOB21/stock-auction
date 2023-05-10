@@ -8,9 +8,10 @@ Rails.application.routes.draw do
   resources :items, only:[:show,:new, :create]
 
   resources :lots, only:[:new, :create, :show, :pendents] do
-    post 'aprovated', on: :member
     get 'pendents', on: :collection
-
+    get 'finalized', on: :collection
+    
+    post 'aprovated', on: :member
     post 'bid', on: :member
 
     resources :lot_items, only:[:new, :create, :destroy]
