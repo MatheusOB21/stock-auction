@@ -11,7 +11,7 @@ class UserBidLot < ApplicationRecord
 
   def val_minimal_of_lot
     if !self.bid_amount.nil? && self.bid_amount <= self.lot.minimal_val
-      self.errors.add(:bid_amount, "precisa ser maior que o valor mínimo de lance")
+      self.errors.add(:bid_amount, "precisa ser maior que o valor mínimo do lote")
     end
   end
 

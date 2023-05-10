@@ -76,7 +76,7 @@ describe 'Usuário regular' do
         click_on 'Dar lance'
       #Assert
         expect(page).to have_content 'Lance não computado'
-        expect(page).to have_content 'Valor do lance precisa ser maior que o valor mínimo de lance'
+        expect(page).to have_content 'Valor do lance precisa ser maior que o valor mínimo do lote'
 
     end
     

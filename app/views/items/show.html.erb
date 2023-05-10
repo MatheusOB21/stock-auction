@@ -18,7 +18,7 @@
     <div>
       <%= Item.human_attribute_name(:image)%>: 
     </div>
-    <% if @item.image.present? %>
+    <% if @item.image.attached? %>
     <div>
       <%= image_tag @item.image , :class => "item-image" %> 
     </div>

@@ -25,6 +25,7 @@ gem "devise"
 gem 'bootstrap', '~> 5.2', '>= 5.2.3'
 gem 'jquery-rails'
 gem 'popper_js', '~> 2.11.7'
+gem "importmap-rails", "~> 1.1"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -38,4 +39,4 @@ group :development do
   # gem "spring"
 end
 
-gem "importmap-rails", "~> 1.1"
+

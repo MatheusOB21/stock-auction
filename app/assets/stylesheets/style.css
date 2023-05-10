@@ -134,6 +134,21 @@ section#item-details div div img.item-image{
   height: 200px;
 }
 
+/* show-bids */
+div#bids{
+  list-style-type: none;
+  font-size: 20px;
+  display: flex;
+  float: right;
+  margin: 5px;
+}
+
+div#bids form{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
 /* lots-items */
 
 body div section#lot-details div#items{

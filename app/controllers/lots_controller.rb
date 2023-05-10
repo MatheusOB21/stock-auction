@@ -11,6 +11,8 @@ class LotsController < ApplicationController
     @lot = Lot.new(lot_params)
     @lot.user = current_user
 
+    @lot.code = @lot.code.upcase 
+
     if @lot.save 
       redirect_to @lot, notice: "Lote cadastrado com sucesso"
     else
@@ -55,7 +57,7 @@ class LotsController < ApplicationController
     val = params[:val]
     @user_bid_lot = UserBidLot.new(user: current_user, lot: @lot, bid_amount: val)
 
-    if @user_bid_lot.valid?
+    if @user_bid_lot.valid? && @lot.available
       @user_bid_lot.save!
         redirect_to @lot, notice: 'Lance computado!'
     else

@@ -7,8 +7,9 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application" %>
-    <%= javascript_include_tag "application" %>
+    <%= javascript_importmap_tags %>
   </head>
+  <div class="container-fluid">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <%= link_to "LEILÃO DE ESTOQUE", root_path,  class:"navbar-brand" %>
       
@@ -58,19 +59,21 @@
           <% end %>
         </span>
     </nav>
+  <div>
+  
   <body>
-    <div>
+    <div class="container-fluid">
       <%= yield %>
     </div>
   </body>
-  <footer>
+  <footer class="fixed-bottom">
    <div class="position-absolute bottom-0 end-0">
       <% if flash[:notice] %>  
-        <div class="alert alert-info"><%= notice %></div>
+        <div class="alert alert-danger"><%= notice %></div>
       <% end %>  
         
       <% if flash[:alert] %> 
-        <div class="alert alert-info"><%= alert %></div>
+        <div class="alert alert-danger"><%= alert %></div>
       <% end %>
   </div>
   </footer>
