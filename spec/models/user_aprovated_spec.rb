@@ -6,15 +6,15 @@ RSpec.describe UserAprovated, type: :model do
       #Arrange
 
       #Act
-        result = LotItem.reflect_on_association(:lot).macro
+        result = UserAprovated.reflect_on_association(:lot).macro
       #Assert
         expect(result).to eq :belongs_to
     end
-    it 'item' do
+    it 'usuário' do
       #Arrange
 
       #Act
-        result = LotItem.reflect_on_association(:item).macro
+        result = UserAprovated.reflect_on_association(:user).macro
       #Assert
         expect(result).to eq :belongs_to
     end

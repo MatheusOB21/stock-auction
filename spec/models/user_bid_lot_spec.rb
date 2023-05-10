@@ -1,6 +1,24 @@
 require 'rails_helper'
 
 RSpec.describe UserBidLot, type: :model do
+  describe 'tem referencia a' do
+    it 'lote' do
+      #Arrange
+
+      #Act
+        result = UserBidLot.reflect_on_association(:lot).macro
+      #Assert
+        expect(result).to eq :belongs_to
+    end
+    it 'usuário' do
+      #Arrange
+
+      #Act
+        result = UserBidLot.reflect_on_association(:user).macro
+      #Assert
+        expect(result).to eq :belongs_to
+    end
+  end
   describe '#val_minimal_of_lot' do
     it 'O valor minimo para um lance precisa ser maior que o valor minimo do lote' do
       #Arrange
