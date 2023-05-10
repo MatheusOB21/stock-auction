@@ -44,7 +44,8 @@ describe 'Usuario cadastra um item:' do
         
       it 'consegue cadastrar novo item com sucesso' do
       #Arrange
-      user = User.create!(name: 'Maria', email: 'maria@leilaodogalpao.com.br', password: 'maria1234', cpf:'94225136000')
+        user = User.create!(name: 'Maria', email: 'maria@leilaodogalpao.com.br', password: 'maria1234', cpf:'94225136000')
+        allow(SecureRandom).to receive(:alphanumeric).with(10).and_return("IPHNE13MAX")
       #Act
         login_as(user)
         visit root_path
@@ -65,6 +66,7 @@ describe 'Usuario cadastra um item:' do
         expect(page).to have_content 'Descrição: Celular top de linha da Apple'
         expect(page).to have_content 'Peso: 50g'
         expect(page).to have_content 'Dimensões: 10 x 30 x 10 cm'
+        expect(page).to have_content 'Código: IPHNE13MAX'
         expect(page).to have_content 'Categoria do Produto: Celular'
         expect(page).to have_content 'Imagem'
         expect(page).to have_css('img')

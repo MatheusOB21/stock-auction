@@ -1,7 +1,10 @@
 <section id="item-details">
   <div>
     <div>
-      <h2><%= Item.human_attribute_name(:name)%>: <%= @item.name %></h2>
+      <h2><%= Item.human_attribute_name(:code)%>: <%= @item.code %></h2>
+    </div>
+    <div>
+      <h3><%= Item.human_attribute_name(:name)%>: <%= @item.name %></h3>
     </div>
     <div>
       <h4><%= Item.human_attribute_name(:description)%>: <%= @item.description %></h4>
