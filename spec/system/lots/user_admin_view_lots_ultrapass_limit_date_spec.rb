@@ -30,12 +30,38 @@ end
         visit root_path
         click_on "Lotes finalizados"
       #Assert
-        expect(current_path).to eq finalized_lots_path
+        expect(current_path).to eq finished_lots_path
         expect(page).to have_content "TRA456345"      
         expect(page).to have_content "GHZ123789"               
         
         expect(page).not_to have_content "FRA456345"      
         expect(page).not_to have_content "ZFA123456"      
+  end
+  
+  it 'e os detalhes' do
+      #Arrange
+        user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
+        lot1 = Lot.create!(code: "FRA456345", start_date: "28/05/2023", limit_date: "28/06/2023", minimal_val: 50, minimal_difference: 10, user: user_admin)
+        lot2 = Lot.create!(code: "ZFA123456", start_date: "24/07/2023", limit_date: "15/09/2023", minimal_val: 50, minimal_difference: 10, user: user_admin)
+        
+        lot3 = Lot.create!(code: "TRA456345", start_date: 10.day.ago, limit_date: 5.day.ago, minimal_val: 50, minimal_difference: 10, user: user_admin, status: 'aprovated')
+      #Act
+        login_as(user_admin)
+        visit root_path
+        click_on "Lotes finalizados"
+        click_on "TRA456345"
+      #Assert
+        expect(current_path).to eq finished_details_lot_path(lot3.id)
+        expect(page).to have_content "Código"
+        expect(page).to have_content "TRA456345"   
+        expect(page).to have_content "Data início"   
+        expect(page).to have_content "#{I18n.l(lot3.start_date)}"
+        expect(page).to have_content "Data limite"      
+        expect(page).to have_content "#{I18n.l(lot3.limit_date)}"  
+        expect(page).to have_content "Valor mínimo de lance"    
+        expect(page).to have_content "50"
+        expect(page).to have_content "Diferença mínima de lance"      
+        expect(page).to have_content "10"     
   end
   
   it 'e encerra um lote' do
@@ -50,7 +76,7 @@ end
         lot3 = Lot.create!(code: "TRA456345", start_date: 10.day.ago, limit_date: 5.day.ago, minimal_val: 50, minimal_difference: 10, user: user_admin, status: 'aprovated')
         item = Item.create!(name: 'Ninja 2000', description: 'Uma moto verde, veloz e em ótimo estado', weight: 2000, depth: 1000, height: 1500, width: 300, product_category: 'Motocicleta')
         lot_item = LotItem.create!(lot: lot3, item: item)
-        UserBidLot.create!(lot: lot3, user: user_regular, bid_amount: 100)
+        user_bid_lot =UserBidLot.create!(lot: lot3, user: user_regular, bid_amount: 100)
       #Act
         login_as(user_admin2)
         visit root_path
@@ -59,7 +85,9 @@ end
         click_on "Encerrar lote"
       #Assert
         expect(lot3.status).to eq "validated"   
+        expect(user_bid_lot.status).to eq "win"   
   end
+  
   # it 'e cancela um lote' do
   #     #Arrange
   #       user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")

@@ -39,10 +39,19 @@ class LotsController < ApplicationController
     @lots_pendents = Lot.where(status: "pending")
   end
 
-  def finalized
-    @lots_finalized = Lot.where(["limit_date < ?", Date.today])
+  
+  def finished
+    @lots_finished = Lot.where(["limit_date < ?", Date.today])
   end
 
+  def finished_details
+    lot_id = params[:id]
+    @lot = Lot.find(lot_id)
+  end
+
+  
+  
+  
   def aprovated
     @lot = Lot.find(params[:id])
 
@@ -65,7 +74,7 @@ class LotsController < ApplicationController
     val = params[:val]
     @user_bid_lot = UserBidLot.new(user: current_user, lot: @lot, bid_amount: val)
 
-    if @user_bid_lot.valid? && @lot.available
+    if @user_bid_lot.valid? && @lot.available_for_bid
       @user_bid_lot.save!
         redirect_to @lot, notice: 'Lance computado!'
     else

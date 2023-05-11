@@ -9,7 +9,9 @@ Rails.application.routes.draw do
 
   resources :lots, only:[:new, :create, :show, :pendents] do
     get 'pendents', on: :collection
-    get 'finalized', on: :collection
+    
+    get 'finished', on: :collection 
+      get 'finished-details', on: :member
     
     post 'aprovated', on: :member
     post 'bid', on: :member

@@ -7,7 +7,7 @@ class Lot < ApplicationRecord
 
   has_many :user_bid_lots
 
-  enum :status, pending: 1, aprovated: 3
+  enum :status, pending: 1, aprovated: 3, closed: 5, canceled: 7
 
   validates :code, :start_date, :limit_date, :minimal_difference, :minimal_val, presence: true
   validates :code, uniqueness: true
@@ -17,19 +17,18 @@ class Lot < ApplicationRecord
   
   validate :code_format
   
-  def available
-    if self.limit_date > Date.today  && self.start_date <= Date.today && self.status == 'aprovated'
-      true
-    else
-      false
-    end
+  def available_for_bid
+    self.start_date <= Date.today && self.limit_date >= Date.today && self.status == 'aprovated' ? true : false
+  end
+
+  def finished_bids
+    self.limit_date < Date.today ? true : false
   end
 
   def last_bid
     self.user_bid_lots.order(:bid_amount).last.bid_amount
   end
 
-  
   private
 
   def code_format

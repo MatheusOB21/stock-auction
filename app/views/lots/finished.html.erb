@@ -1,8 +1,8 @@
 <section id="lot-pendents">
   <div><h2>Lotes finalizados<h2><div>
-  <% if @lots_finalized.any? %>
+  <% if @lots_finished.any? %>
   </div>
-  <% @lots_finalized.each do |lot|%>
+  <% @lots_finished.each do |lot|%>
     <table class="table table-bordered table-striped">
       <thead>
         <tr>
@@ -13,7 +13,7 @@
       </thead>
       <tbody>
         <tr>
-          <th scope="row"><%= link_to lot.code, lot_path(lot.id), class: "link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" %></th>
+          <th scope="row"><%= link_to lot.code, finished_details_lot_path(lot.id), class: "link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" %></th>
           <td><%= I18n.localize(lot.start_date) %></td>
           <td><%= I18n.localize(lot.limit_date) %></td>
         </tr>

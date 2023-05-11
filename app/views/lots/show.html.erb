@@ -1,79 +1,70 @@
 <section id="lot-details">
-<div class="container-fluid">
-  <div><h1>Detalhes do lote<h1><div>
-  </div>
-    <table class="table">
-      <tbody>
-        <tr>
-          <th scope="row"><%= Lot.human_attribute_name(:code) %></th>
-          <td><%= @lot.code %></td>
-        </tr>
-        <tr>
-          <th scope="row"><%= Lot.human_attribute_name(:start_date) %></th>
-          <td><%= I18n.localize(@lot.start_date) %></td>
-        </tr>
-        <tr>
-          <th scope="row"><%= Lot.human_attribute_name(:limit_date) %></th>
-          <td><%= I18n.localize(@lot.limit_date) %></td>
-        </tr>
-        <tr>
-          <th scope="row"><%= Lot.human_attribute_name(:minimal_val) %>:</th>
-          <td><%= @lot.minimal_val.round %></td>
-        </tr>
-        <tr>
-          <th scope="row"><%= Lot.human_attribute_name(:minimal_difference) %>:</th>
-          <td><%= @lot.minimal_difference.round %></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-    
+  <div class="container-fluid">
+    <div><h1>Detalhes do lote<h1><div>
+    <%= render 'table' %>
+      
     <% if user_signed_in? %>
-      <%if @lot.pending? && current_user.is_admin %>
+      <% if @lot.pending? && current_user.is_admin %>
         <div style="margin: 10px;">
           <%= button_to "Aprovar lote", aprovated_lot_path(@lot.id), class: "btn btn-secondary" %>
         </div>
         <div style="margin: 10px;">
           <%= link_to "Adicionar item", new_lot_lot_item_path(@lot), class: "btn btn-primary" %>
         </div>
+      <% elsif @lot.finished_bids && current_user.is_admin %> 
+        <div style="margin: 10px;">
+          <%= button_to "Encerrar lote", aprovated_lot_path(@lot.id), class: "btn btn-secondary" %>
+        </div>
       <% end %>
     <% end %>
-</div>  
+    
+  </div>  
 
   <div class="container-fluid">
     <div id="bids" class="shadow p-3 mb-5 bg-body-tertiary rounded">
-      <% if @lot.available %>
-      <div>
-        <h3 class="fw-bold">Lances</h3>
+      <% if @lot.available_for_bid %>
         <div>
-        <% if @lot.user_bid_lots.empty? %> 
-          <p>Seja o primeiro a dar um lance</p>
-        <% else %>
-          <p>Ultimo lance: R$<%= @lot.last_bid %><p>
-        <% end %>
-        </div>
+          <h3 class="fw-bold">Lances</h3>
           
-          <%= form_with(url: bid_lot_path(@lot.id), method: :post) do |f| %>
-            <%= f.label :val, 'Valor do lance' %>
-            <%= f.number_field  :val %>
-            <%= f.submit 'Dar lance', class: "btn btn-success" %>
-        <% end %>
+          <div>
+          <% if @lot.user_bid_lots.empty? %> 
+            <p>Seja o primeiro a dar um lance</p>
+          <% else %>
+            <p>Ultimo lance: R$<%= @lot.last_bid %><p>
+          <% end %>
+          </div>
+            
+            <%= form_with(url: bid_lot_path(@lot.id), method: :post) do |f| %>
+              <%= f.label :val, 'Valor do lance' %>
+              <%= f.number_field  :val %>
+              <%= f.submit 'Dar lance', class: "btn btn-success" %>
+            <% end %>
 
-        <% if !@user_bid_lot.nil? %>
-          <% if @user_bid_lot.errors.messages %>
-            <% @user_bid_lot.errors.full_messages.each do |msg| %>
-            <li class="badge text-bg-warning"> <%= msg %> <li>
+          <% if !@user_bid_lot.nil? %>
+            <% if @user_bid_lot.errors.messages %>
+              <% @user_bid_lot.errors.full_messages.each do |msg| %>
+              <li class="badge text-bg-warning"> <%= msg %> <li>
+              <% end %>
             <% end %>
           <% end %>
-        <% end %>
 
-      </div>
+        </div>
       <% end %>
+
+      <% if @lot.finished_bids %>
+        <% if @lot.user_bid_lots.any?%>
+         <h3>Lances encerrados para esse lote</h3>
+         <p>Lance vencendor: R$<%= @lot.last_bid %><p>
+        <% else %>
+        <h3>Lote não teve lances computado<h3>
+        <% end %>
+      <% end %>
+
     </div>
   </div>
 
-  <div>
-    <h2 style="margin: 5px">Items do lote: <%= "Esse lote ainda não possui itens." if @lot.items.empty? %></h2>
+  <div id = "cards">
+    <h2>Items do lote: <%= "Esse lote ainda não possui itens." if @lot.items.empty? %></h2>
     <div id="items">
       <% @lot.items.each do |item| %>
     <div id="item" style="margin: 5px;" class="shadow-sm p-3 mb-5 bg-body-tertiary rounded">  
@@ -108,6 +99,5 @@
       <% end %>
     </div>
   </div> 
-  
 
 </section>

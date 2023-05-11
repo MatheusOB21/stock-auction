@@ -7,7 +7,6 @@ class User < ApplicationRecord
   has_many :lots
   
   has_many :user_aprovateds
-  has_many :lots, through: :user_aprovateds 
 
   has_many :user_bid_lots
 

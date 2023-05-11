@@ -1,0 +1,26 @@
+</div>
+  <table class="table">
+    <tbody>
+      <tr>
+        <th scope="row"><%= Lot.human_attribute_name(:code) %></th>
+        <td><%= @lot.code %></td>
+      </tr>
+      <tr>
+        <th scope="row"><%= Lot.human_attribute_name(:start_date) %></th>
+        <td><%= I18n.localize(@lot.start_date) %></td>
+      </tr>
+      <tr>
+        <th scope="row"><%= Lot.human_attribute_name(:limit_date) %></th>
+        <td><%= I18n.localize(@lot.limit_date) %></td>
+      </tr>
+      <tr>
+        <th scope="row"><%= Lot.human_attribute_name(:minimal_val) %>:</th>
+        <td><%= @lot.minimal_val.round %></td>
+      </tr>
+      <tr>
+        <th scope="row"><%= Lot.human_attribute_name(:minimal_difference) %>:</th>
+        <td><%= @lot.minimal_difference.round %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

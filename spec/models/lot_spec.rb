@@ -107,8 +107,8 @@ RSpec.describe Lot, type: :model do
         lot1 = Lot.create!(code: "FRA456345", start_date: 5.day.ago, limit_date: 5.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin, status: 'aprovated')
         lot2 = Lot.create!(code: "ZTE456345", start_date: 5.day.ago, limit_date: 5.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin, status: 'pending')
       #Act
-        result1 = lot1.available
-        result2 = lot2.available
+        result1 = lot1.available_for_bid
+        result2 = lot2.available_for_bid
       #Assert
         expect(result1).to eq true
         expect(result2).to eq false       
