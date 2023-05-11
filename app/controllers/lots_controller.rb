@@ -59,6 +59,8 @@ class LotsController < ApplicationController
   def canceled
     @lot = Lot.find(params[:id])
     @lot.canceled!
+    @lot_items = @lot.lot_items
+    @lot_items.destroy_all
     redirect_to @lot, notice: "Lote cancelado com sucesso"
   end
   
@@ -85,8 +87,12 @@ class LotsController < ApplicationController
     @user_bid_lot = UserBidLot.new(user: current_user, lot: @lot, bid_amount: val)
 
     if @user_bid_lot.valid? && @lot.available_for_bid
-      @user_bid_lot.save!
+      if current_user.is_admin
+        redirect_to @lot, notice: 'Administradores não podem dar lance!'
+      else
+        @user_bid_lot.save!
         redirect_to @lot, notice: 'Lance computado!'
+      end
     else
         flash.now[:notice] = 'Lance não computado!'  
         render 'show'
