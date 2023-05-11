@@ -163,12 +163,14 @@ describe 'Usuário regular' do
         item = Item.create!(name: 'Ninja 2000', description: 'Uma moto verde, veloz e em ótimo estado', weight: 2000, depth: 1000, height: 1500, width: 300, product_category: 'Motocicleta')
 
         lot = Lot.create!(code: "GTX166077", start_date: 10.day.ago, limit_date: 1.day.ago, minimal_val: 50, minimal_difference: 10, user: user_admin, status: 'aprovated')
+        lot = Lot.create!(code: "RTX409077", start_date: 10.day.ago, limit_date: 1.day.ago, minimal_val: 200, minimal_difference: 100, user: user_admin, status: 'aprovated')
         
         lot_item = LotItem.create!(lot: lot, item: item)
       #Act
         visit root_path
       #Assert
         expect(page).not_to have_link "GTX166077"
+        expect(page).not_to have_link "RTX409077"
     end
   end
 end

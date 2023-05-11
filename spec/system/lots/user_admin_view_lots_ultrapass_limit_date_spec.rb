@@ -115,7 +115,7 @@ describe 'Admin ve os lotes que passaram da data limite' do
         expect(page).not_to have_button "Cancelar lote"      
   end
   
-  it 'e após cancelar um lote, os items ficam disponível para um novo lote' do
+  it 'e após cancelar um lote, os items ficam disponível' do
       #Arrange
         user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
         user_regular = User.create!(name: "José", email: "josé@gmail.com.br", password: "josésilva123", cpf:"04209958034")
