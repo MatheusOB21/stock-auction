@@ -1,16 +1,31 @@
 <section id="lot-details">
   <div class="container-fluid">
-    <div><h1>Detalhes do lote<h1><div>
+    <div>
+      <h1>Detalhes do lote<h1>
+    <div>
+    
     <%= render 'table' %>
       
     <% if user_signed_in? %>
-      <% if @lot.pending? && current_user.is_admin %>
-        <div style="margin: 10px;">
-          <%= button_to "Aprovar lote", aprovated_lot_path(@lot.id), class: "btn btn-secondary" %>
-        </div>
-        <div style="margin: 10px;">
-          <%= link_to "Adicionar item", new_lot_lot_item_path(@lot), class: "btn btn-primary" %>
-        </div>
+      <% if current_user.is_admin %>
+        <% if @lot.pending? %>
+          <div style="margin: 10px;">
+            <%= button_to "Aprovar lote", aprovated_lot_path(@lot.id), class: "btn btn-secondary" %>
+          </div>
+          <div style="margin: 10px;">
+            <%= link_to "Adicionar item", new_lot_lot_item_path(@lot), class: "btn btn-primary" %>
+          </div>
+        <% end %>
+        
+        <% if @lot.finished_bids && @lot.aprovated? %>
+          <div style="margin: 10px;">
+            <%= button_to "Encerrar lote", closed_lot_path(@lot.id), class: "btn btn-secondary" %>
+          </div>
+          <div style="margin: 10px;">
+            <%= button_to "Cancelar lote", canceled_lot_path(@lot.id), class: "btn btn-secondary" %>
+          </div>
+        <% end %>          
+
       <% end %>
     <% end %>
     
@@ -26,7 +41,7 @@
           <% if @lot.user_bid_lots.empty? %> 
             <p>Seja o primeiro a dar um lance</p>
           <% else %>
-            <p>Ultimo lance: R$<%= @lot.last_bid %><p>
+            <p>Ultimo lance: R$<%= @lot.last_bid.bid_amount %><p>
           <% end %>
           </div>
             
@@ -49,6 +64,6 @@
     </div>
   </div>
 
-<%= render 'items' %>
+  <%= render 'items' %>
 
 </section>

@@ -1,16 +1,31 @@
 <section id="finished-details">
   <div class="container-fluid">
-  <div><h1>Detalhes do lote<h1><div>
-  <%= render 'table' %>
+    <div>
+      <h1>Detalhes do lote<h1>
+    <div>
+    <%= render 'table' %>
   </div>
 
+    <% if @lot.finished_bids && @lot.status == "aprovated" %>
+      <div style="margin: 10px;">
+        <%= button_to "Encerrar lote", closed_lot_path(@lot.id), class: "btn btn-secondary" %>
+      </div>
+    <% end %>  
+
+
+  <div class="container-fluid">
+    <div id = "bids">
       <% if @lot.finished_bids %>
         <% if @lot.user_bid_lots.any?%>
-         <h3>Lances encerrados para esse lote</h3>
-         <p>Lance vencendor: R$<%= @lot.last_bid %><p>
+          <h3>Lances encerrados para esse lote</h3>
+          <p>Lance vencendor: R$<%= @lot.last_bid %><p>
         <% else %>
-        <h3>Lote não teve lances computado<h3>
+          <h3>Lote não teve lances computado<h3>
         <% end %>
       <% end %>
+    </div>
+  <div>  
+
+  <%= render 'items' %>
 
 <section>  

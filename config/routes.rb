@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     
     get 'finished', on: :collection 
       get 'finished-details', on: :member
+      post 'closed', on: :member
+      post 'canceled', on: :member
     
     post 'aprovated', on: :member
     post 'bid', on: :member

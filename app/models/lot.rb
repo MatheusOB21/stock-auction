@@ -26,7 +26,7 @@ class Lot < ApplicationRecord
   end
 
   def last_bid
-    self.user_bid_lots.order(:bid_amount).last.bid_amount
+    self.user_bid_lots.order(:bid_amount).last
   end
 
   private

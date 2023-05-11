@@ -2,10 +2,12 @@ class UserBidLot < ApplicationRecord
   belongs_to :user
   belongs_to :lot
 
-  validate :val_minimal_of_lot
-  validate :val_minimal_of_bid
+  validate :val_minimal_of_lot, on: :create
+  validate :val_minimal_of_bid, on: :create
 
   validates :bid_amount, presence: true
+
+  enum :status, bid: 0, loser: 1, won: 2
 
   private
 

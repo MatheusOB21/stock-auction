@@ -13,7 +13,7 @@
       </thead>
       <tbody>
         <tr>
-          <th scope="row"><%= link_to lot.code, finished_details_lot_path(lot.id), class: "link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" %></th>
+          <th scope="row"><%= link_to lot.code, lot_path(lot.id), class: "link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" %></th>
           <td><%= I18n.localize(lot.start_date) %></td>
           <td><%= I18n.localize(lot.limit_date) %></td>
         </tr>

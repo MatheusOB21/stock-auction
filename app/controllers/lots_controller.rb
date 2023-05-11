@@ -1,6 +1,6 @@
 class LotsController < ApplicationController
-  before_action :authenticate_user!, only:[:new, :create, :pendents, :aprovated, :bid]
-  before_action :admin_page, only:[:new, :create, :pendents]
+  before_action :authenticate_user!, only:[:new, :create, :pendents, :aprovated, :bid, :finished, :finished_details]
+  before_action :admin_page, only:[:new, :create, :pendents, :finished, :finished_details]
 
   def new 
     @lot = Lot.new
@@ -24,7 +24,8 @@ class LotsController < ApplicationController
   def show
     lot_id = params[:id]
     @lot = Lot.find(lot_id)
-    if @lot.aprovated?
+
+    if @lot.aprovated? && !@lot.finished_bids
     elsif user_signed_in?
       if current_user.is_admin
       else
@@ -38,19 +39,28 @@ class LotsController < ApplicationController
   def pendents
     @lots_pendents = Lot.where(status: "pending")
   end
-
   
   def finished
     @lots_finished = Lot.where(["limit_date < ?", Date.today])
   end
 
-  def finished_details
-    lot_id = params[:id]
-    @lot = Lot.find(lot_id)
+  def closed
+    @lot = Lot.find(params[:id])
+    @lot.closed!
+    @lot.last_bid.won!
+    
+    @lot.user_bid_lots.where(status: 'bid').each do |lot|
+      lot.loser!
+    end
+    
+    redirect_to @lot, notice: "Lote encerrado com sucesso"
   end
 
-  
-  
+  def canceled
+    @lot = Lot.find(params[:id])
+    @lot.canceled!
+    redirect_to @lot, notice: "Lote cancelado com sucesso"
+  end
   
   def aprovated
     @lot = Lot.find(params[:id])
