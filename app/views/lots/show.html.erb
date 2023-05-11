@@ -11,10 +11,6 @@
         <div style="margin: 10px;">
           <%= link_to "Adicionar item", new_lot_lot_item_path(@lot), class: "btn btn-primary" %>
         </div>
-      <% elsif @lot.finished_bids && current_user.is_admin %> 
-        <div style="margin: 10px;">
-          <%= button_to "Encerrar lote", aprovated_lot_path(@lot.id), class: "btn btn-secondary" %>
-        </div>
       <% end %>
     <% end %>
     
@@ -50,54 +46,9 @@
 
         </div>
       <% end %>
-
-      <% if @lot.finished_bids %>
-        <% if @lot.user_bid_lots.any?%>
-         <h3>Lances encerrados para esse lote</h3>
-         <p>Lance vencendor: R$<%= @lot.last_bid %><p>
-        <% else %>
-        <h3>Lote não teve lances computado<h3>
-        <% end %>
-      <% end %>
-
     </div>
   </div>
 
-  <div id = "cards">
-    <h2>Items do lote: <%= "Esse lote ainda não possui itens." if @lot.items.empty? %></h2>
-    <div id="items">
-      <% @lot.items.each do |item| %>
-    <div id="item" style="margin: 5px;" class="shadow-sm p-3 mb-5 bg-body-tertiary rounded">  
-      <div class="card mb-3" style="max-width: 540px;">
-        <div class="row g-0">
-          <div class="col-md-4" style="margin: auto">
-            <% if item.image.attached? %>
-              <div><%= image_tag item.image , class: "img-fluid rounded-start"%> </div>
-            <%else%>
-              <div style="text-align: center;">Nenhuma imagem cadastrada</div>
-            <% end %>
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title"><%= item.name %></h5>
-              <p class="card-text"><%= item.description %></p>
-              <p class="card-text"><small class="text-body-secondary">Dimensões: <%= item.item_dimensions %></small></p>
-              <p class="card-text"><small class="text-body-secondary">Categoria: <%= item.product_category %></small></p>
-              <p class="card-text"><small class="text-body-secondary">Código: <%= item.code %></small></p>
-              <div>
-                  <% if user_signed_in? %>
-                    <%if @lot.pending? && current_user.is_admin %>
-                      <p class="card-text"><div style="margin: 10px;" class= "position-absolute top-0 end-0"><%= button_to "Remover item", lot_lot_item_path(item.lot, id: item.lot_item), method: :delete, class: "btn btn-danger" %></div></p>
-                    <% end %>
-                  <% end %>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <% end %>
-    </div>
-  </div> 
+<%= render 'items' %>
 
 </section>
