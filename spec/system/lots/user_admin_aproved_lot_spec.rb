@@ -17,6 +17,7 @@ describe 'Usuário aprova um lote' do
     end
     
   end
+  
   context 'sendo admin' do
     
     it 'e sendo que ele não criou, aprova com sucesso' do
@@ -97,5 +98,6 @@ describe 'Usuário aprova um lote' do
         expect(page).to have_content 'Não é possível aprovar lotes sem itens adicionados'
       end 
     end
+    
   end
 end
