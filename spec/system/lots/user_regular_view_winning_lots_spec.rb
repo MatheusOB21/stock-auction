@@ -1,6 +1,15 @@
 require 'rails_helper'
 
 describe 'Usuário regular vê os lotes vencidos' do
+  it 'mas precisa estar autenticado' do
+    #Arrange
+    
+    #Act
+      visit root_path
+    #Assert
+      expect(page).not_to have_link "Lote vencidos"
+  end
+  
   it 'a partir do link no menu' do
     #Arrange
       user_regular = User.create!(name: "Gabriel", email: "gabriel@gmail.com.br", password: "gabriel123", cpf:"04209958034")
@@ -10,6 +19,19 @@ describe 'Usuário regular vê os lotes vencidos' do
     #Assert
       expect(page).to have_link "Lotes vencidos"
   end
+  
+  it 'mas usuário admin não tem link no menu' do
+    #Arrange
+      user_admin = User.create!(name: "Luiz", email: "luiz@leilaodogalpao.com.br", password: "luiz123456", cpf:"50534524079")
+    #Act
+      login_as(user_admin)
+      visit root_path
+    #Assert
+      expect(page).not_to have_link "Lotes vencidos"
+  end
+  
+  
+  
   it 'com sucesso' do
     #Arrange
       user_admin = User.create!(name: "Anakin", email: "anakin@leilaodogalpao.com.br", password: "anakin_do_leilão", cpf:"50534524079")
@@ -30,8 +52,6 @@ describe 'Usuário regular vê os lotes vencidos' do
       expect(current_path).to eq winners_path 
       expect(page).to have_content "TRA456345" 
       expect(page).not_to have_button "Encerrar lote" 
-
   end
 end
 
-describe 'Usuário admin não ve o'
