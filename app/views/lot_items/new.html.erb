@@ -4,13 +4,13 @@
       <%= form_with(model:[@lot, @lot_item]) do |f| %>
       <div>
         <div>
-          <%= f.label :item_id, "Itens" %>
+          <%= f.label :item_id, "Itens" , class: "fs-2" %>
         </div>
         <div>
-          <%= f.collection_select :item_id, @items, :id, :name %>
+          <%= f.collection_select :item_id, @items, :id, :name, {}, { class: "w-25 form-select" } %>
         </div>
         <div>
-          <%= f.submit 'Adicionar' %>
+          <%= f.submit I18n.t(:submit), class:"btn btn-primary mt-2" %>
         </div>
       </div>
       <% end %>

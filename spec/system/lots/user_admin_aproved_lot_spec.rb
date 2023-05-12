@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe 'Usuário aprova um lote' do
   context 'mas não sendo admin' do
+    
     it 'não possui acesso aos detalhes do lote' do
       #Arrange
         user_regular = User.create!(name: "Hélio", email: "hélio@leilaodohelio.com.br", password: "hélio_do_leilão", cpf:"50417550006")
@@ -14,6 +15,7 @@ describe 'Usuário aprova um lote' do
         expect(current_path).to eq root_path
         expect(page).to have_content "Você não tem acesso a essa página"      
     end
+    
   end
   context 'sendo admin' do
     
@@ -60,21 +62,22 @@ describe 'Usuário aprova um lote' do
     end
     
     it 'e sendo ele que criou, não aprova' do
-    #Arrange
+      #Arrange
       user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
       lot = Lot.create!(code: "FLA456345", start_date: "28/05/2023", limit_date: "28/06/2023", minimal_val: 50, minimal_difference: 10, user: user_admin)
       item = Item.create!(name: 'Ninja 2000', description: 'Uma moto verde, veloz e em ótimo estado', weight: 2000, depth: 1000, height: 1500, width: 300, product_category: 'Motocicleta')
       
       LotItem.create!(lot: lot, item: item)
-    #Act
-      login_as(user_admin)
-      visit root_path
-      click_on 'Lotes pendentes'
-      click_on 'FLA456345'
-      click_on 'Aprovar lote'
-    #Assert
-      expect(current_path).to eq lot_path(lot.id)
-      expect(page).to have_content "Você não pode aprovar lotes criados pelo seu usuário"
+      
+      #Act
+        login_as(user_admin)
+        visit root_path
+        click_on 'Lotes pendentes'
+        click_on 'FLA456345'
+        click_on 'Aprovar lote'
+      #Assert
+        expect(current_path).to eq lot_path(lot.id)
+        expect(page).to have_content "Você não pode aprovar lotes criados pelo seu usuário"
     end
 
     it 'caso o lote ainda não tenha itens, não aprova' do

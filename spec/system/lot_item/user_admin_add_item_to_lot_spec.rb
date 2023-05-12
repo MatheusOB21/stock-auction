@@ -1,6 +1,7 @@
 require "rails_helper"
 
 describe 'Usuário admin adiciona item' do
+  
   it 'ao lote com sucesso' do
     #Arrange
       user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
@@ -15,7 +16,7 @@ describe 'Usuário admin adiciona item' do
       click_on 'FRA456345'
       click_on 'Adicionar item'
       select 'Ninja 2000', from: 'Itens'
-      click_on 'Adicionar'
+      click_on 'Enviar'
     #Assert
       expect(item.code).to eq "NINJA12345"
       expect(current_path).to eq lot_path(lot.id)
@@ -25,6 +26,7 @@ describe 'Usuário admin adiciona item' do
       expect(page).to have_content "Uma moto verde, veloz e em ótimo estado"    
       expect(page).to have_content "#{item.item_dimensions}"    
   end
+  
   it 'que não estão em outros lotes' do
     #Arrange
       user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
@@ -65,4 +67,5 @@ describe 'Usuário admin adiciona item' do
       expect(page).not_to have_button "Adicionar item"    
       expect(page).not_to have_button "Remover item"    
   end
+
 end
