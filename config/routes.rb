@@ -7,11 +7,12 @@ Rails.application.routes.draw do
   #Rotas
   resources :items, only:[:show,:new, :create]
 
+  resources :winners, controller: 'user_bid_lot', only:[:index]
+
   resources :lots, only:[:new, :create, :show, :pendents] do
     get 'pendents', on: :collection
     
     get 'finished', on: :collection 
-      get 'finished-details', on: :member
       post 'closed', on: :member
       post 'canceled', on: :member
     

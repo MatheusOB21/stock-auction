@@ -6,11 +6,7 @@
     <%= render 'table' %>
   </div>
 
-    <% if @lot.finished_bids && @lot.status == "aprovated" %>
-      <div style="margin: 10px;">
-        <%= button_to "Encerrar lote", closed_lot_path(@lot.id), class: "btn btn-secondary" %>
-      </div>
-    <% end %>  
+
 
 
   <div class="container-fluid">

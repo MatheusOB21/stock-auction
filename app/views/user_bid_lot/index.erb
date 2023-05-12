@@ -1,0 +1,27 @@
+<section id="lot-winners">
+  <div><h2>Lotes vencidos<h2><div>
+  <% if @lots_winners.any? %>
+  </div>
+  <% @lots_winners.each do |lot|%>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th scope="col"><%= Lot.human_attribute_name(:code) %></th>
+          <th scope="col"><%= Lot.human_attribute_name(:start_date) %></th>
+          <th scope="col"><%= Lot.human_attribute_name(:limit_date) %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row"><%= lot.code %></th>
+          <td><%= I18n.localize(lot.start_date) %></td>
+          <td><%= I18n.localize(lot.limit_date) %></td>
+        </tr>
+      </tbody>
+    </table>
+    <% end %>
+  </div>
+  <% else %>
+    <h3>Nenhum lote vencido</h3>
+  <% end %>
+</section>
