@@ -1,5 +1,6 @@
 <section>
   <div>
+    <h2> <%= I18n.t(:add_new_lot_item)%> </h2>
     <% if @items.present? %>
       <%= form_with(model:[@lot, @lot_item]) do |f| %>
       <div>

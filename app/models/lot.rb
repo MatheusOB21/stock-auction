@@ -9,7 +9,7 @@ class Lot < ApplicationRecord
 
   enum :status, pending: 1, aprovated: 3, closed: 5, canceled: 7
 
-  validates :code, :start_date, :limit_date, :minimal_difference, :minimal_val, presence: true
+  validates :code, :start_date, :minimal_difference, :minimal_val, presence: true
   validates :code, uniqueness: true
   validates :code, length: {is: 9}
 

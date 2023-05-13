@@ -1,6 +1,6 @@
-<section id="form-new-lot" class="d-flex justify-content-center">
+<section id="form-new-lot" class="d-flex justify-content-center mt-5">
   <div>
-    <h3>Cadastrar novo lote</h3>
+    <h3><%= I18n.t(:register_new_lot) %></h3>
     <div id= "form">
       <%= form_with(model: @lot ) do |f| %>
         
@@ -50,7 +50,7 @@
         </div>
 
         <div>
-          <%=f.submit I18n.t(:submit) %>
+          <%=f.submit I18n.t(:submit), class: "btn btn-primary mt-2" %>
         </div>
 
       <% end %>
@@ -60,7 +60,7 @@
     <% if @lot.errors.any? %>
       <ul>
       <% @lot.errors.full_messages.each do |msg|%>
-        <li class="badge text-bg-warning"><%= msg %></li>
+        <li><%= msg %></li>
       <% end %>
       </ul>
     <% end %>

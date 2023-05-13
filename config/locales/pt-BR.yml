@@ -12,4 +12,9 @@ pt-BR:
   singup: "Criar conta"
   login: "Login"
   submit: "Enviar"
-  register_new_item: Cadastrar novo item
+  register_new_item: "Cadastrar novo item"
+  register_new_lot: "Cadastrar novo lote"
+  add_new_lot_item: "Adicionar novo item ao lote"
+  admin: "Admin"
+  user: "Usuário"
+  
