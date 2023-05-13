@@ -59,4 +59,5 @@ describe 'Usuário admin remove item' do
       expect(page).to have_content "Item removido com sucesso"
       expect(LotItem.last).to be nil  
   end
+  
 end

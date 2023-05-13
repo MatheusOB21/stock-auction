@@ -19,6 +19,7 @@ describe 'Usuário admin vê os lotes pendentes' do
         expect(page).not_to have_content "24/07/2023"      
         expect(page).not_to have_content "15/09/2023"      
     end
+    
     it 'e vê detalhes do lote' do
       #Arrange
         user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
@@ -36,6 +37,7 @@ describe 'Usuário admin vê os lotes pendentes' do
         expect(page).to have_content "50"      
         expect(page).to have_content "10"      
     end
+
     it 'e não tem nenhum lote pendente' do
       #Arrange
         user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")

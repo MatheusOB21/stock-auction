@@ -18,12 +18,15 @@
         <% end %>
         
         <% if @lot.finished_bids && @lot.aprovated? %>
-          <div style="margin: 10px;">
-            <%= button_to "Encerrar lote", closed_lot_path(@lot.id), class: "btn btn-secondary" %>
-          </div>
-          <div style="margin: 10px;">
-            <%= button_to "Cancelar lote", canceled_lot_path(@lot.id), class: "btn btn-secondary" %>
-          </div>
+          <% if @lot.user_bid_lots.empty? %>
+            <div style="margin: 10px;">
+              <%= button_to "Cancelar lote", canceled_lot_path(@lot.id), class: "btn btn-secondary" %>
+            </div>
+          <%else%>
+            <div style="margin: 10px;">
+              <%= button_to "Encerrar lote", closed_lot_path(@lot.id), class: "btn btn-secondary" %>
+            </div>          
+          <% end %>          
         <% end %>          
 
       <% end %>

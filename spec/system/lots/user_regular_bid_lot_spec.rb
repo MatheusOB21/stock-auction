@@ -156,6 +156,7 @@ describe 'Usuário regular' do
   end
 
   context 'não pode da um lance' do
+
     it 'fora do intervalo de datas do lote' do
       #Arrange
         user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
@@ -172,5 +173,6 @@ describe 'Usuário regular' do
         expect(page).not_to have_link "GTX166077"
         expect(page).not_to have_link "RTX409077"
     end
+    
   end
 end
