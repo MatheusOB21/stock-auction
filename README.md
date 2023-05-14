@@ -56,25 +56,30 @@ rails db:create
 rails db:migrate
 ```
 
+Popule sua aplicação:
+``` terminal
+rails db:seed
+```
+
 Execute aplicação: 
 ``` terminal
 rails server
 ```
 
 ## Funcionalidades:
-Usuários Administradores - Pendente
+Usuários Administradores - Concluída
 
-Cadastro de Itens para Leilão - Pendente
+Cadastro de Itens para Leilão - Concluída
 
-Configuração de Lotes - Pendente
+Configuração de Lotes - Concluída
 
-Visualizar Lotes - Pendente
+Visualizar Lotes - Concluída
 
-Fazendo Lances - Pendente
+Fazendo Lances - Concluída
 
-Validando Resultados - Pendente
+Validando Resultados - Concluída
 
-Verificando Lotes Vencidos - Pendente
+Verificando Lotes Vencidos - Concluída
 
 Dúvidas sobre um lote - Pendente
 
