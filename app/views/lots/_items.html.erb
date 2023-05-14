@@ -1,5 +1,5 @@
-  <div id = "cards">
-    <h2>Items do lote: <%= "Esse lote ainda não possui itens." if @lot.items.empty? %></h2>
+  <div id = "cards" class="container-fluid">
+    <h2><%= @lot.items.empty? ? "Esse lote não possui itens." : "Items do lote: "%></h2>
     <div id="items">
       <% @lot.items.each do |item| %>
     <div id="item" style="margin: 5px;" class="shadow-sm p-3 mb-5 bg-body-tertiary rounded">  

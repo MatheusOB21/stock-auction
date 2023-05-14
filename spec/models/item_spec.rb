@@ -82,4 +82,17 @@ RSpec.describe Item, type: :model do
       end
     end
 
+    describe '#item_dimensions' do
+      it 'devolve as dimencões com centímetros' do
+        #Arrange
+        item = Item.new(name: 'Yamaha 350', description: 'Uma moto verde, veloz e em ótimo estado', weight: 2000, depth: 1000, height: 1500, width: 300, product_category: 'Motocicleta')
+        
+        #Act
+        result = item.item_dimensions
+        
+        #Assert
+        expect(result).to eq "300 x 1500 x 1000 cm"
+      end
+    end
+
 end

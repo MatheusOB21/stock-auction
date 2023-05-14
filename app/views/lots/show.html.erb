@@ -24,7 +24,6 @@
               <%= button_to "Cancelar lote", canceled_lot_path(@lot.id), class: "btn btn-secondary" %>
             </div>
           <%else%>
-          <div><p>Lance vencendor: R$<%= @lot.last_bid.bid_amount %><p><div>
             <div style="margin: 10px;">
               <%= button_to "Encerrar lote", closed_lot_path(@lot.id), class: "btn btn-secondary" %>
             </div>          

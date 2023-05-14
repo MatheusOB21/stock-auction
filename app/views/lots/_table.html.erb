@@ -21,6 +21,12 @@
         <th scope="row"><%= Lot.human_attribute_name(:minimal_difference) %>:</th>
         <td><%= @lot.minimal_difference.round %></td>
       </tr>
+      <% if @lot.finished_bids && @lot.user_bid_lots.any? %>
+      <tr>
+        <th scope="row">Lance vencendor:</th>
+        <td>R$<%= @lot.last_bid.bid_amount %></td>
+      </tr>
+      <% end %>
     </tbody>
   </table>
 </div>
