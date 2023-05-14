@@ -25,10 +25,20 @@
   Lot.create!(code: "RTX407000", start_date: 10.day.ago, limit_date: 10.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin)
 
 #items
-  Item.create!(name: 'Fazer 250', description: 'Uma moto veloz e em ótimo estado', weight: 2000, depth: 1000, height: 1500, width: 300, product_category: 'Motocicleta')
-  Item.create!(name: 'Playstation 5', description: 'Um video game de altimissa qualidade', weight: 1500, depth: 300, height: 2000, width: 100, product_category: 'Video-game')
-  Item.create!(name: 'Iphone X', description: 'Um ótimo celular para uso do dia a dia', weight: 1000, depth: 1000, height: 1500, width: 300, product_category: 'Celular')
-  Item.create!(name: 'Carro Celta', description: 'Um ótimo carro para dirigr', weight: 200, depth: 1000, height: 1000, width: 2000, product_category: 'Carro')
+  item1 = Item.create!(name: 'Fazer 250', description: 'Uma moto veloz e em ótimo estado', weight: 2000, depth: 1000, height: 1500, width: 300, product_category: 'Motocicleta')
+  item1.image.attach(io: File.open("#{Rails.root}/app/assets/images/moto.jpg"), filename: 'moto.jpg', content_type: 'image/jpg')
+  
+  item2 =Item.create!(name: 'Fazer 350', description: 'Uma moto veloz e em ótimo estado', weight: 2000, depth: 1000, height: 1500, width: 300, product_category: 'Motocicleta')
+
+  item3 = Item.create!(name: 'Playstation 5', description: 'Um video game de altimissa qualidade', weight: 1500, depth: 300, height: 2000, width: 100, product_category: 'Video-game')
+  item3.image.attach(io: File.open("#{Rails.root}/app/assets/images/playstation.jpg"), filename: 'playstation.jpg', content_type: 'image/jpg')
+
+  item4 = Item.create!(name: 'Iphone X', description: 'Um ótimo celular para uso do dia a dia', weight: 1000, depth: 1000, height: 1500, width: 300, product_category: 'Celular')
+
+  item5 = Item.create!(name: 'Carro Celta', description: 'Um ótimo carro para dirigir', weight: 200, depth: 1000, height: 1000, width: 2000, product_category: 'Carro')
+  item5.image.attach(io: File.open("#{Rails.root}/app/assets/images/carro.jpg"), filename: 'carro.jpg', content_type: 'image/jpg')
+  
+  item6 = Item.create!(name: 'Carro Palio', description: 'Um ótimo carro para dirigir', weight: 200, depth: 1000, height: 1000, width: 2000, product_category: 'Carro')
 
 #items to lot 1 e 6
   LotItem.create!(item: Item.find(1), lot: Lot.find(1))
