@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_11_171716) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_15_135812) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -83,6 +83,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_11_171716) do
     t.index ["items_id"], name: "index_product_categories_on_items_id"
   end
 
+  create_table "questions", force: :cascade do |t|
+    t.string "question"
+    t.integer "status", default: 0
+    t.integer "lot_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lot_id"], name: "index_questions_on_lot_id"
+  end
+
   create_table "user_aprovateds", force: :cascade do |t|
     t.integer "user_id", null: false
     t.date "date_aprovated"
@@ -124,6 +133,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_11_171716) do
   add_foreign_key "lot_items", "lots"
   add_foreign_key "lots", "users"
   add_foreign_key "product_categories", "items", column: "items_id"
+  add_foreign_key "questions", "lots"
   add_foreign_key "user_aprovateds", "lots"
   add_foreign_key "user_aprovateds", "users"
   add_foreign_key "user_bid_lots", "lots"

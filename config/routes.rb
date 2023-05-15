@@ -20,5 +20,8 @@ Rails.application.routes.draw do
     post 'bid', on: :member
 
     resources :lot_items, only:[:new, :create, :destroy]
+    
+    resources :questions, only:[:new, :create]
+
   end
 end

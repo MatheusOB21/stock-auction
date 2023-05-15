@@ -2,7 +2,7 @@ pt-BR:
   activerecord:
     models:
       lot:
-        one: 'Lotes'
+        one: 'Lote'
         other: 'Lotes'
     attributes:
       lot:

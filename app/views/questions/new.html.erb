@@ -1,0 +1,19 @@
+<section id="form-new-question" class="d-flex justify-content-center mt-5">
+  <div>
+    <h3><%= I18n.t(:do_new_question) %></h3>
+    <div id= "form">
+      <%= form_with(model:[@lot, @question]) do |f| %>
+        <div>
+          <div>
+            <%=f.label :question %>
+          </div>
+          <div>
+            <%=f.text_field :question %>
+          </div>
+          <div>
+            <%=f.submit I18n.t(:submit), class: "btn btn-primary mt-2" %>
+          </div>
+        </div>
+      <% end %>
+  </div>
+</section>    

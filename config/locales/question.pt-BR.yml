@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      question:
+        one: 'Pergunta'
+        other: 'Perguntas'
+    attributes:
+      question:
+        question: 'Pergunte algo'

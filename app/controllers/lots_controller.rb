@@ -1,6 +1,7 @@
 class LotsController < ApplicationController
   before_action :authenticate_user!, only:[:new, :create, :pendents, :aprovated, :bid, :finished, :finished_details]
   before_action :admin_page, only:[:new, :create, :pendents, :finished, :finished_details]
+  before_action :find_lot, only:[:bid, :aprovated, :canceled, :closed]
 
   def new 
     @lot = Lot.new
@@ -22,8 +23,7 @@ class LotsController < ApplicationController
   end
 
   def show
-    lot_id = params[:id]
-    @lot = Lot.find(lot_id)
+    @lot = Lot.find(params[:id])
 
     if @lot.aprovated? && !@lot.finished_bids
     elsif user_signed_in?
@@ -45,7 +45,6 @@ class LotsController < ApplicationController
   end
 
   def closed
-    @lot = Lot.find(params[:id])
     @lot.closed!
     @lot.last_bid.won!
     
@@ -57,7 +56,6 @@ class LotsController < ApplicationController
   end
 
   def canceled
-    @lot = Lot.find(params[:id])
     @lot.canceled!
     @lot_items = @lot.lot_items
     @lot_items.destroy_all
@@ -65,8 +63,6 @@ class LotsController < ApplicationController
   end
   
   def aprovated
-    @lot = Lot.find(params[:id])
-
     if current_user.id != @lot.user_id
       if @lot.lot_items.present?
         UserAprovated.create!(user: current_user, lot: @lot, date_aprovated: Date.today)
@@ -82,7 +78,6 @@ class LotsController < ApplicationController
   end
 
   def bid
-    @lot = Lot.find(params[:id])
     val = params[:val]
     @user_bid_lot = UserBidLot.new(user: current_user, lot: @lot, bid_amount: val)
 
@@ -97,6 +92,12 @@ class LotsController < ApplicationController
         flash.now[:notice] = 'Lance não computado!'  
         render 'show'
     end  
+  end
+
+  private 
+
+  def find_lot
+    @lot = Lot.find(params[:id])
   end
 
 end

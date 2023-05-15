@@ -7,6 +7,8 @@ class Lot < ApplicationRecord
 
   has_many :user_bid_lots
 
+  has_many :questions
+
   enum :status, pending: 1, aprovated: 3, closed: 5, canceled: 7
 
   validates :code, :start_date, :minimal_difference, :minimal_val, presence: true

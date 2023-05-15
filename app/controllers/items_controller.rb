@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only:[:new]
+  before_action :authenticate_user!, only:[:new, :create]
   before_action :admin_page, only:[:new, :create, :show]
   
   def new   

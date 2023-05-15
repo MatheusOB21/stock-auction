@@ -1,17 +1,15 @@
 class LotItemsController < ApplicationController
   before_action :authenticate_user!, only:[:new, :create, :destroy]
   before_action :admin_page, only:[:new, :create, :destroy]
+  before_action :find_item, only:[:new, :create]
   
   def new
-    @lot = Lot.find(params[:lot_id])
-
     @items = Item.where.missing(:lot_item)
 
     @lot_item = LotItem.new()
   end
 
   def create
-    @lot = Lot.find(params[:lot_id])
     lot_item_params = params.require(:lot_item).permit(:item_id)
     
     @lot_item = LotItem.new(lot_item_params)
@@ -27,5 +25,11 @@ class LotItemsController < ApplicationController
     @lot_item.destroy!
     
     redirect_to @lot, notice: "Item removido com sucesso"
+  end
+
+  private
+
+  def find_item 
+    @lot = Lot.find(params[:lot_id])
   end
 end
