@@ -19,8 +19,9 @@ describe 'Usuario regular autenticado faz uma pergunta' do
       click_on 'Faça uma pergunta sobre o lote!'
     #Assert
       expect(current_path).to eq new_lot_question_path(lot.id)
-      expect(page).to have_field 'Pergunte algo'
-      expect(page).to have_button 'Enviar'     
+      expect(page).to have_field 'Pergunta'
+      expect(page).to have_button 'Enviar'
+      expect(page).to have_link 'Voltar ao lote'     
   end
   
   it 'com sucesso' do
@@ -38,7 +39,7 @@ describe 'Usuario regular autenticado faz uma pergunta' do
       visit root_path
       click_on 'RTX306000'
       click_on 'Faça uma pergunta sobre o lote!'
-      fill_in 'Pergunte algo', with: 'Qual o estado dos itens presente no lote?'
+      fill_in 'Pergunta', with: 'Qual o estado dos itens presente no lote?'
       click_on 'Enviar'
     #Assert
       expect(current_path).to eq lot_path(lot.id)
@@ -60,11 +61,10 @@ describe 'Usuario regular autenticado faz uma pergunta' do
       visit root_path
       click_on 'RTX306000'
       click_on 'Faça uma pergunta sobre o lote!'
-      fill_in 'Pergunte algo', with: ''
+      fill_in 'Pergunta', with: ''
       click_on 'Enviar'
     #Assert
-      expect(current_path).to eq lot_path(lot.id)
-      expect(page).to have_content 'Perguntas sobre o lote'
-      expect(page).to have_content 'Qual o estado dos itens presente no lote?'    
+      expect(page).to have_content 'Pergunta não pode ficar em branco'   
+      expect(page).to have_content 'Sua pergunta não foi registrada!'   
   end
 end

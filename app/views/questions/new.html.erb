@@ -16,4 +16,21 @@
         </div>
       <% end %>
   </div>
+  
+  <div id = "errors-messages">
+    <% if @question.errors.any? %>
+      <ul>
+      <% @question.errors.full_messages.each do |msg|%>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    <% end %>
+  </div>
+
+
+  <div>
+    <div>
+      <%= link_to "Voltar ao lote", lot_path(@lot.id), class: "btn btn-secondary" %>
+    </div>
+  </div>
 </section>    

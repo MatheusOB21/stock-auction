@@ -12,7 +12,11 @@ class QuestionsController < ApplicationController
     @question = Question.new(question_params)
     @question.lot = @lot
 
-    @question.save!
-    redirect_to @lot
+    if @question.save
+      redirect_to @lot, notice: 'Sua pergunta foi registrada!'
+    else
+      flash.now[:notice] = 'Sua pergunta não foi registrada!'
+      render 'new'
+    end
   end
 end
