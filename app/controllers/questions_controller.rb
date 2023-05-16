@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_action :authenticate_user!, only:[:new]
+  before_action :authenticate_user!, only:[:new, :create]
 
   def new
     @lot = Lot.find(params[:lot_id])
@@ -8,6 +8,7 @@ class QuestionsController < ApplicationController
 
   def create
     @lot = Lot.find(params[:lot_id])
+    
     question_params = params.require(:question).permit(:question)
     @question = Question.new(question_params)
     @question.lot = @lot
@@ -18,5 +19,9 @@ class QuestionsController < ApplicationController
       flash.now[:notice] = 'Sua pergunta não foi registrada!'
       render 'new'
     end
+  end
+
+  def index
+    @questions = Question.where.missing(:answer)
   end
 end

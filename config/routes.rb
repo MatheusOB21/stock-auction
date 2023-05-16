@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     resources :lot_items, only:[:new, :create, :destroy]
     
     resources :questions, only:[:new, :create]
-
   end
+
+  get '/questions', to: 'questions#index'
 end
