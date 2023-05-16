@@ -24,4 +24,8 @@ class QuestionsController < ApplicationController
   def index
     @questions = Question.where.missing(:answer)
   end
+
+  def show
+    @question = Question.find(params[:id])
+  end
 end

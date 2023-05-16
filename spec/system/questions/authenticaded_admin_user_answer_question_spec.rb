@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe 'Usuario admin autenticado' do
+  
   it 'vê as perguntas sem respostas' do
     #Arrange
     user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
@@ -11,10 +12,10 @@ describe 'Usuario admin autenticado' do
     lot = Lot.create!(code: "RTX306000", start_date: 5.day.ago, limit_date: 15.day.from_now, minimal_val: 200, minimal_difference: 50, user: user_admin, status: 'aprovated')
     lot_item = LotItem.create!(lot: lot, item: item)
 
-    question = Question.create!(lot: lot, question: "Qual o estado dos itens?")
-    question = Question.create!(lot: lot, question: "Qual a procedência dos itens?")
-    question = Question.create!(lot: lot, question: "Qual o ano da moto?")
-    question = Question.create!(lot: lot, question: "Os items são originais?")
+    question1 = Question.create!(lot: lot, question: "Qual o estado dos itens?")
+    question2 = Question.create!(lot: lot, question: "Qual a procedência dos itens?")
+    question3 = Question.create!(lot: lot, question: "Qual o ano da moto?")
+    question4 = Question.create!(lot: lot, question: "Os items são originais?")
   
   #Act
     login_as(user_admin)
@@ -27,4 +28,54 @@ describe 'Usuario admin autenticado' do
     expect(page).to have_content "Qual o ano da moto?"    
     expect(page).to have_content "Os items são originais?"  
   end
+  
+  it 'vê que não tenhuma pergunta sem resposta' do
+    #Arrange
+      user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
+      user_regular = User.create!(name: "Katarina", email: "katarina@gmail.com.br", password: "katarina12345", cpf:"09036567017")
+        
+      item = Item.create!(name: 'Ninja 2000', description: 'Uma moto verde, veloz e em ótimo estado', weight: 2000, depth: 1000, height: 1500, width: 300, product_category: 'Motocicleta')
+
+      lot = Lot.create!(code: "RTX306000", start_date: 5.day.ago, limit_date: 15.day.from_now, minimal_val: 200, minimal_difference: 50, user: user_admin, status: 'aprovated')
+      lot_item = LotItem.create!(lot: lot, item: item)
+    #Act
+      login_as(user_admin)
+      visit root_path
+      click_on 'Perguntas sem respostas'
+    #Assert
+      expect(current_path).to eq questions_path
+      expect(page).to have_content "Nenhuma pergunta sem resposta"    
+  end
+
+  it 'responde uma pergunta' do
+    #Arrange
+    user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
+    user_regular = User.create!(name: "Katarina", email: "katarina@gmail.com.br", password: "katarina12345", cpf:"09036567017")
+      
+    item = Item.create!(name: 'Ninja 2000', description: 'Uma moto verde, veloz e em ótimo estado', weight: 2000, depth: 1000, height: 1500, width: 300, product_category: 'Motocicleta')
+
+    lot = Lot.create!(code: "RTX306000", start_date: 5.day.ago, limit_date: 15.day.from_now, minimal_val: 200, minimal_difference: 50, user: user_admin, status: 'aprovated')
+    lot_item = LotItem.create!(lot: lot, item: item)
+
+    question1 = Question.create!(lot: lot, question: "Como funciona as regras de devolução?")
+    question2 = Question.create!(lot: lot, question: "Tem garantia de fábrica?")
+    question3 = Question.create!(lot: lot, question: "Posso fazer lance apenas para um item?")
+    question4 = Question.create!(lot: lot, question: "Os items são originais?")
+  
+  #Act
+    login_as(user_admin)
+    visit root_path
+    click_on 'Perguntas sem respostas'
+    within("#1") do
+      click_on 'Responder'
+    end
+    fill_in 'Resposta', with: 'Após a retirada, não existem devoluções de itens.'
+    click_on 'Enviar'
+  #Assert
+    expect(current_path).to eq question_path(question1.id)
+    expect(page).not_to have_field "Responder"     
+    expect(page).to have_content "Resposta"    
+    expect(page).to have_content "Após a retirada, não existem devoluções de itens."    
+  end
+
 end

@@ -7,19 +7,20 @@
         <thead>
           <tr>
             <th scope="col"><%= Question.human_attribute_name(:question) %></th>
-            <th scope="col"><%= Question.human_attribute_name(:lot_id) %></th>
+            <th scope="col"><%= Question.human_attribute_name(:lot_code) %></th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <th scope="row"><%= question.question %></th>
-            <td><%= question.lot_id %></td>
+            <td><%= question.lot.code %></td>
+            <td id=<%="#{question.id}"%> ><%= link_to "Responder", new_question_answer_path(question.id), class: 'btn btn-primary'%></td>
           </tr>
         </tbody>
       </table>
     <% end %>
     </div>
   <% else %>
-    <h3>Nenhuma pergunta sem respostas</h3>
+    <h3>Nenhuma pergunta sem resposta</h3>
   <% end %>
 </section>

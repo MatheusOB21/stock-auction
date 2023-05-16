@@ -1,0 +1,17 @@
+<section id="new-answer">
+  <div>
+    <h2> <%= I18n.t(:you_answer)%> </h2>
+      <%= form_with(model:[@question, @answer]) do |f| %>
+      <div>
+        <div>
+          <%= f.label :answer, class: "fs-2" %>
+        </div>
+        <div>
+          <%= f.text_area :answer %>
+        </div>
+        <div>
+          <%= f.submit I18n.t(:submit), class:"btn btn-primary mt-2" %>
+        </div>
+      </div>
+    <% end %>
+</section>

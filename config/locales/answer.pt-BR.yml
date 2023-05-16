@@ -1,0 +1,10 @@
+pt-BR:
+  activerecord:
+    models:
+      answer:
+        one: 'Resposta'
+        other: 'Respostas'
+    attributes:
+      answer:
+        question_id: 'Pergunta'
+        answer: 'Resposta'

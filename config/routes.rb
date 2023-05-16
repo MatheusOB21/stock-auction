@@ -24,5 +24,7 @@ Rails.application.routes.draw do
     resources :questions, only:[:new, :create]
   end
 
-  get '/questions', to: 'questions#index'
+    resources :questions, only:[:index, :show] do
+      resources :answers, only:[:new, :create]
+    end
 end

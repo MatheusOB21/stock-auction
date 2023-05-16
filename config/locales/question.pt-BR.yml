@@ -7,3 +7,4 @@ pt-BR:
     attributes:
       question:
         question: 'Pergunta'
+        answer: 'Resposta'

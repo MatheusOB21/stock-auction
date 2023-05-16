@@ -16,6 +16,7 @@ pt-BR:
   register_new_lot: "Cadastrar novo lote"
   do_new_question: "Faça uma pergunta"
   add_new_lot_item: "Adicionar novo item ao lote"
+  you_answer: "Sua resposta"
   admin: "Admin"
   user: "Usuário"
   
