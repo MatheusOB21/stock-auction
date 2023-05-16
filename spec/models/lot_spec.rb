@@ -7,7 +7,7 @@ RSpec.describe Lot, type: :model do
         user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
         user_admin_2 = User.create!(name: "José", email: "jose@leilaodogalpao.com.br", password: "jose_do_leilão", cpf:"50417550006")
 
-        lot = Lot.new(code: "FRA456345", start_date: 5.day.ago, limit_date: 5.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin)
+        lot = Lot.new(code: "FRA456345", start_date: Date.today, limit_date: 10.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin)
       #Act
         lot.save!
       #Assert
@@ -19,7 +19,7 @@ RSpec.describe Lot, type: :model do
         user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
         user_admin_2 = User.create!(name: "José", email: "jose@leilaodogalpao.com.br", password: "jose_do_leilão", cpf:"50417550006")
 
-        lot = Lot.new(code: "FRA456345", start_date: 5.day.ago, limit_date: 5.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin)
+        lot = Lot.new(code: "FRA456345", start_date: Date.today, limit_date: 10.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin)
         lot.user_aprovated = UserAprovated.create!(user: user_admin_2, lot: lot, date_aprovated: Date.today)
       #Act
         lot.save!
@@ -34,11 +34,11 @@ RSpec.describe Lot, type: :model do
       #Arrange
         user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
         
-        lot1 = Lot.new(code: "FLAARTYZX", start_date: "28/05/2023", limit_date: "28/06/2023", minimal_val: 50, minimal_difference: 10, user: user_admin)
-        lot2 = Lot.new(code: "123RTYZX", start_date: "28/05/2023", limit_date: "28/06/2023", minimal_val: 50, minimal_difference: 10, user: user_admin)
-        lot3 = Lot.new(code: "123456789", start_date: "28/05/2023", limit_date: "28/06/2023", minimal_val: 50, minimal_difference: 10, user: user_admin)
+        lot1 = Lot.new(code: "FLAARTYZX", start_date: Date.today, limit_date: 10.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin)
+        lot2 = Lot.new(code: "123RTYZX", start_date: Date.today, limit_date: 10.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin)
+        lot3 = Lot.new(code: "123456789", start_date: Date.today, limit_date: 10.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin)
         
-        lot4 = Lot.new(code: "FLA123456", start_date: "28/05/2023", limit_date: "28/06/2023", minimal_val: 50, minimal_difference: 10, user: user_admin)
+        lot4 = Lot.new(code: "FLA123456", start_date: Date.today, limit_date: 10.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin)
       #Act
         result1 = lot1.valid?
         result2 = lot2.valid?
@@ -54,8 +54,8 @@ RSpec.describe Lot, type: :model do
       #Arrange
         user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
         
-        lot1 = Lot.new(code: "FLA123456789", start_date: "28/05/2023", limit_date: "28/06/2023", minimal_val: 50, minimal_difference: 10, user: user_admin)
-        lot2 = Lot.new(code: "FLA123456", start_date: "28/05/2023", limit_date: "28/06/2023", minimal_val: 50, minimal_difference: 10, user: user_admin)
+        lot1 = Lot.new(code: "FLA123456789", start_date: Date.today, limit_date: 10.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin)
+        lot2 = Lot.new(code: "FLA123456", start_date: Date.today, limit_date: 10.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin)
       #Act
         result1 = lot1.valid?
         result2 = lot2.valid?
@@ -67,10 +67,10 @@ RSpec.describe Lot, type: :model do
       #Arrange
         user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
         
-        lot1 = Lot.new(code: "FLA123456", start_date: "28/05/2023", limit_date: "28/06/2023", minimal_val: 50, minimal_difference: 10, user: user_admin)
+        lot1 = Lot.new(code: "FLA123456", start_date: Date.today, limit_date: 10.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin)
         
-        lot2 = Lot.new(code: "FLA123456", start_date: "29/05/2023", limit_date: "30/06/2023", minimal_val: 50, minimal_difference: 10, user: user_admin)
-        lot3 = Lot.new(code: "FLA456789", start_date: "30/05/2023", limit_date: "15/06/2023", minimal_val: 50, minimal_difference: 10, user: user_admin)
+        lot2 = Lot.new(code: "FLA123456", start_date: Date.today, limit_date: 10.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin)
+        lot3 = Lot.new(code: "FLA456789", start_date: Date.today, limit_date: 10.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin)
       #Act
         result1 = lot1.save!
 
@@ -87,8 +87,8 @@ RSpec.describe Lot, type: :model do
     it 'precisa ser maior que a data de início' do
       #Arrange
         user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
-        lot1 = Lot.new(code: "ZTE456345", start_date: "28/05/2023", limit_date: "28/06/2023", minimal_val: 50, minimal_difference: 10, user: user_admin)
-        lot2 = Lot.new(code: "FRA456345", start_date: "28/07/2023", limit_date: "28/06/2023", minimal_val: 50, minimal_difference: 10, user: user_admin)
+        lot1 = Lot.new(code: "ZTE456345", start_date: Date.today, limit_date: 10.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin)
+        lot2 = Lot.new(code: "FRA456345", start_date: 10.day.from_now, limit_date: 5.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin)
       #Act
         result1 = lot1.valid?
         result2 = lot2.valid?
@@ -104,8 +104,8 @@ RSpec.describe Lot, type: :model do
         user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
         user_regular = User.create!(name: "Katarina", email: "katarina@gmail.com.br", password: "katarina12345", cpf:"09036567017")
 
-        lot1 = Lot.create!(code: "FRA456345", start_date: 5.day.ago, limit_date: 5.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin, status: 'aprovated')
-        lot2 = Lot.create!(code: "ZTE456345", start_date: 5.day.ago, limit_date: 5.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin, status: 'pending')
+        lot1 = Lot.create!(code: "FRA456345", start_date: Date.today, limit_date: 5.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin, status: 'aprovated')
+        lot2 = Lot.create!(code: "ZTE456345", start_date: Date.today, limit_date: 5.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin, status: 'pending')
       #Act
         result1 = lot1.available_for_bid
         result2 = lot2.available_for_bid

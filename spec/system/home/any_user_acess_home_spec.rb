@@ -1,6 +1,17 @@
 require 'rails_helper'
 
 describe 'Usuario acessa a home page' do
+  
+  it 'a partir do link' do
+    #Arrange
+
+    #Act
+      visit root_path
+      click_on 'LEILÃO DE ESTOQUE'
+    #Assert
+      expect(current_path).to eq root_path
+  end
+  
   context 'sem autenticação' do
     it 'acessa a pagina inicial' do
       #Arrange
@@ -18,8 +29,8 @@ describe 'Usuario acessa a home page' do
       lot1 = Lot.create!(code: "FRA456345", start_date: "28/05/2023", limit_date: "28/06/2023", minimal_val: 50, minimal_difference: 10, user: user_admin, status: 'pending')
       
       #lot andamento
-      lot2 = Lot.create!(code: "ZTZ456789", start_date: 10.day.ago, limit_date: 5.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin, status: 'aprovated')
-      lot3 = Lot.create!(code: "RTX409055", start_date: 5.day.ago, limit_date: 10.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin, status: 'aprovated')
+      lot2 = Lot.create!(code: "ZTZ456789", start_date: Date.today, limit_date: 5.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin, status: 'aprovated')
+      lot3 = Lot.create!(code: "RTX409055", start_date: Date.today, limit_date: 10.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin, status: 'aprovated')
       
       #lot futuro
       lot4 = Lot.create!(code: "GTX166077", start_date: 5.day.from_now, limit_date: 15.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin, status: 'aprovated')
@@ -43,7 +54,7 @@ describe 'Usuario acessa a home page' do
       
       item = Item.create!(name: 'Ninja 2000', description: 'Uma moto verde, veloz e em ótimo estado', weight: 2000, depth: 1000, height: 1500, width: 300, product_category: 'Motocicleta')
 
-      lot1 = Lot.create!(code: "ZTZ456789", start_date: 10.day.ago, limit_date: 5.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin, status: 'aprovated')
+      lot1 = Lot.create!(code: "ZTZ456789", start_date: Date.today, limit_date: 10.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin, status: 'aprovated')
       lot2 = Lot.create!(code: "GTX166077", start_date: 5.day.from_now, limit_date: 15.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin, status: 'aprovated')
       
       lot_item = LotItem.create!(lot: lot2, item: item)
@@ -76,7 +87,7 @@ describe 'Usuario acessa a home page' do
       
       item = Item.create!(name: 'Ninja 2000', description: 'Uma moto verde, veloz e em ótimo estado', weight: 2000, depth: 1000, height: 1500, width: 300, product_category: 'Motocicleta')
 
-      lot = Lot.create!(code: "ZTZ456789", start_date: 10.day.ago, limit_date: 5.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin, status: 'pending')
+      lot = Lot.create!(code: "ZTZ456789", start_date: 1.day.from_now, limit_date: 10.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin, status: 'pending')
       
       lot_item = LotItem.create!(lot: lot, item: item)
       #Act
@@ -107,8 +118,8 @@ describe 'Usuario acessa a home page' do
       lot1 = Lot.create!(code: "FRA456345", start_date: "28/05/2023", limit_date: "28/06/2023", minimal_val: 50, minimal_difference: 10, user: user_admin, status: 'pending')
       
       #lot andamento
-      lot2 = Lot.create!(code: "ZTZ456789", start_date: 10.day.ago, limit_date: 5.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin, status: 'aprovated')
-      lot3 = Lot.create!(code: "RTX409055", start_date: 5.day.ago, limit_date: 10.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin, status: 'aprovated')
+      lot2 = Lot.create!(code: "ZTZ456789", start_date: Date.today, limit_date: 10.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin, status: 'aprovated')
+      lot3 = Lot.create!(code: "RTX409055", start_date: Date.today, limit_date: 15.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin, status: 'aprovated')
       
       #lot futuro
       lot4 = Lot.create!(code: "GTX166077", start_date: 5.day.from_now, limit_date: 15.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin, status: 'aprovated')
@@ -134,7 +145,7 @@ describe 'Usuario acessa a home page' do
       
       item = Item.create!(name: 'Ninja 2000', description: 'Uma moto verde, veloz e em ótimo estado', weight: 2000, depth: 1000, height: 1500, width: 300, product_category: 'Motocicleta')
 
-      lot1 = Lot.create!(code: "ZTZ456789", start_date: 10.day.ago, limit_date: 5.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin, status: 'aprovated')
+      lot1 = Lot.create!(code: "ZTZ456789", start_date: Date.today, limit_date: 15.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin, status: 'aprovated')
       lot2 = Lot.create!(code: "GTX166077", start_date: 5.day.from_now, limit_date: 15.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin, status: 'aprovated')
       
       lot_item = LotItem.create!(lot: lot2, item: item)
@@ -169,7 +180,7 @@ describe 'Usuario acessa a home page' do
 
       item = Item.create!(name: 'Ninja 2000', description: 'Uma moto verde, veloz e em ótimo estado', weight: 2000, depth: 1000, height: 1500, width: 300, product_category: 'Motocicleta')
 
-      lot = Lot.create!(code: "ZTZ456789", start_date: 10.day.ago, limit_date: 5.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin, status: 'pending')
+      lot = Lot.create!(code: "ZTZ456789", start_date: Date.today, limit_date: 15.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin, status: 'pending')
       
       lot_item = LotItem.create!(lot: lot, item: item)
       #Act

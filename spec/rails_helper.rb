@@ -32,6 +32,9 @@ end
 
 
 RSpec.configure do |config|
+  
+  #TimeHelpers
+  config.include ActiveSupport::Testing::TimeHelpers
 
   config.include Warden::Test::Helpers
   

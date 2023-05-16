@@ -16,6 +16,7 @@ class Lot < ApplicationRecord
   validates :code, length: {is: 9}
 
   validates :limit_date, comparison: { greater_than: :start_date }
+  #validates :start_date, comparison: { greater_than_or_equal_to: Date.current }
   
   validate :code_format
   
