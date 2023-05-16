@@ -68,14 +68,19 @@
     </div>
   </div>
 
-  <div class="container-fluid">
-    <div style="margin: 10px;">
+  <div class="container-fluid">      
+    
+    <div class="d-flex flex-row mb-3">
+    <h3 class="me-2 fw-bold">Perguntas sobre o lote</h3>
       <%= link_to "Faça uma pergunta sobre o lote!", new_lot_question_path(@lot.id), class: "btn btn-secondary" %>
-    </div>      
-    <h3>Perguntas sobre o lote</h3>
-    <% @lot.questions.each do |q| %>
-      <%= q.question %>
-    <% end %>
+    </div>
+    <div>
+    <h4>Dúvidas dos usuário:</h4>
+      <% @lot.questions.each do |q| %>
+        <p class="fs-5"><%= q.question %></p>
+      <% end %>
+    </div>
+
   </div>
 
   <%= render 'items' %>
