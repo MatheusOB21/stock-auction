@@ -71,15 +71,15 @@
   <% if @lot.aprovated? %>
     <div class="container-fluid">      
       
-      <div class="d-flex flex-row mb-3">
+      <div class="d-flex align-items-center flex-row mb-3">
       <h3 class="me-2 fw-bold">Perguntas sobre o lote</h3>
-        <%= link_to "Faça uma pergunta sobre o lote!", new_lot_question_path(@lot.id), class: "btn btn-secondary" %>
+        <%= link_to "Faça uma pergunta sobre o lote!", new_lot_question_path(@lot.id), class: "btn btn-info" %>
       </div>
       <div>
       <h4>Dúvidas dos usuário:</h4>
         <% if @lot.questions.present? %>
         <% @lot.questions.each do |q| %>
-            <p class="fs-5"><%= q.question %><%= q.answer.present? ? "Resposta: #{q.answer.answer}" : "Ainda não respondida" %></p>
+            <p class="fs-5"><%= q.question %> <%= q.answer.present? ? "Resposta: #{q.answer.answer}" : "Ainda não respondida" %></p>
         <% end %>
         <%else%>
         <p>Sem perguntas até o momento</p>
