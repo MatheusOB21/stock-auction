@@ -24,6 +24,7 @@ class LotsController < ApplicationController
 
   def show
     @lot = Lot.find(params[:id])
+    @lot_questions = @lot.questions.where("status = ?", 0)
 
     if @lot.aprovated? && !@lot.finished_bids
     elsif user_signed_in?

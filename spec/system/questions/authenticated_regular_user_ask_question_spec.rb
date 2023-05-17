@@ -10,7 +10,6 @@ describe 'Usuario regular faz uma pergunta' do
 
       lot = Lot.create!(code: "RTX306000", start_date: Date.today, limit_date: 15.day.from_now, minimal_val: 200, minimal_difference: 50, user: user_admin, status: 'aprovated')
       lot_item = LotItem.create!(lot: lot, item: item)
-    
     #Act
       visit root_path
       click_on 'RTX306000'
@@ -29,7 +28,6 @@ describe 'Usuario regular faz uma pergunta' do
 
       lot = Lot.create!(code: "RTX306000", start_date: Date.today, limit_date: 15.day.from_now, minimal_val: 200, minimal_difference: 50, user: user_admin, status: 'aprovated')
       lot_item = LotItem.create!(lot: lot, item: item)
-    
     #Act
       login_as(user_regular)
       visit root_path
@@ -51,7 +49,6 @@ describe 'Usuario regular faz uma pergunta' do
 
       lot = Lot.create!(code: "RTX306000", start_date: Date.today, limit_date: 15.day.from_now, minimal_val: 200, minimal_difference: 50, user: user_admin, status: 'aprovated')
       lot_item = LotItem.create!(lot: lot, item: item)
-    
     #Act
       login_as(user_regular)
       visit root_path
@@ -73,7 +70,6 @@ describe 'Usuario regular faz uma pergunta' do
 
       lot = Lot.create!(code: "RTX306000", start_date: Date.today, limit_date: 15.day.from_now, minimal_val: 200, minimal_difference: 50, user: user_admin, status: 'aprovated')
       lot_item = LotItem.create!(lot: lot, item: item)
-    
     #Act
       login_as(user_regular)
       visit root_path
@@ -97,7 +93,6 @@ describe 'Usuario regular faz uma pergunta' do
 
       lot = Lot.create!(code: "RTX306000", start_date: Date.today, limit_date: 15.day.from_now, minimal_val: 200, minimal_difference: 50, user: user_admin, status: 'aprovated')
       lot_item = LotItem.create!(lot: lot, item: item)
-    
     #Act
       login_as(user_regular)
       visit root_path
@@ -109,5 +104,5 @@ describe 'Usuario regular faz uma pergunta' do
       expect(page).to have_content 'Pergunta não pode ficar em branco'   
       expect(page).to have_content 'Sua pergunta não foi registrada!'   
   end
-  
+
 end
