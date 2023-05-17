@@ -70,27 +70,33 @@ Ao popular a aplicação, ficará disponivél para uso os seguinte usuários:
 
 Administradores:
 
-jose@leilaodogalpao.com.br
-jose123456789
+Email: jose@leilaodogalpao.com.br
 
-leandro@leilaodogalpao.com.br
-leandro123456789
+Senha: jose123456789
 
-rose@leilaodogalpao.com.br
-rose123456789
+Email: leandro@leilaodogalpao.com.br
+
+Senha: leandro123456789
+
+Email: rose@leilaodogalpao.com.br
+
+Senha: rose123456789
 
 Regulares:
 
-flavio@gmail.com.br
-flavio123456789
+Email: flavio@gmail.com.br
 
-juliana@gmail.com.br
-juliana123456789
+Senha: flavio123456789
 
-marcos@gmail.com.br
-marcos123456789
+Email: juliana@gmail.com.br
 
-E também ficará disponível lotes e itens já pré cadastrados para uso. Entre eles os seguintes:
+Senha: juliana123456789
+
+Email: marcos@gmail.com.br
+
+Senha: marcos123456789
+
+Também ficará disponível lotes e itens já pré cadastrados para uso. Entre eles os seguintes:
 
 -Lotes pendentes de aprovação
 -Lotes em andamento
