@@ -164,10 +164,8 @@ describe 'Usuário regular' do
         item = Item.create!(name: 'Ninja 2000', description: 'Uma moto verde, veloz e em ótimo estado', weight: 2000, depth: 1000, height: 1500, width: 300, product_category: 'Motocicleta')
         
         travel_to 30.day.ago do
-          data = Date.current
-          lot = Lot.new(code: "GTX166077", start_date: data, limit_date: 10.day.from_now, minimal_val: 60, minimal_difference: 10, user: user_admin, status: 'aprovated')
-          lot.save!
-          Lot.create!(code: "RTX409077", start_date: data, limit_date: 10.day.from_now, minimal_val: 200, minimal_difference: 100, user: user_admin, status: 'aprovated')
+          Lot.create!(code: "GTX166077", start_date: Date.current, limit_date: 10.day.from_now, minimal_val: 60, minimal_difference: 10, user: user_admin, status: 'aprovated')
+          Lot.create!(code: "RTX409077", start_date: Date.current, limit_date: 10.day.from_now, minimal_val: 200, minimal_difference: 100, user: user_admin, status: 'aprovated')
         end
 
         LotItem.create!(lot: Lot.find(1), item: item)
