@@ -79,7 +79,7 @@
       <h4>Dúvidas dos usuário:</h4>
         <% if @lot.questions.present? %>
         <% @lot.questions.each do |q| %>
-            <p class="fs-5"><%= q.question %><%= q.answer.present? ? "Resposta: #{q.answer.answer}" : "Ainda não respondido" %></p>
+            <p class="fs-5"><%= q.question %><%= q.answer.present? ? "Resposta: #{q.answer.answer}" : "Ainda não respondida" %></p>
         <% end %>
         <%else%>
         <p>Sem perguntas até o momento</p>
