@@ -52,7 +52,6 @@ bundle install
 
 Configure o Banco de Dados:
 ``` terminal
-rails db:create
 rails db:migrate
 ```
 
@@ -65,6 +64,39 @@ Execute aplicação:
 ``` terminal
 rails server
 ```
+## Aplicação
+
+Ao popular a aplicação, ficará disponivél para uso os seguinte usuários: 
+
+Administradores:
+
+jose@leilaodogalpao.com.br
+jose123456789
+
+leandro@leilaodogalpao.com.br
+leandro123456789
+
+rose@leilaodogalpao.com.br
+rose123456789
+
+Regulares:
+
+flavio@gmail.com.br
+flavio123456789
+
+juliana@gmail.com.br
+juliana123456789
+
+marcos@gmail.com.br
+marcos123456789
+
+E também ficará disponível lotes e itens já pré cadastrados para uso. Entre eles os seguintes:
+
+-Lotes pendentes de aprovação
+-Lotes em andamento
+-Lotes já finalizados
+-Pergunta já feitas pela comunidade
+
 
 ## Funcionalidades:
 Usuários Administradores - Concluída
@@ -81,7 +113,7 @@ Validando Resultados - Concluída
 
 Verificando Lotes Vencidos - Concluída
 
-Dúvidas sobre um lote - Pendente
+Dúvidas sobre um lote - Concluída
 
 Bloqueio de CPFs - Pendente
 
