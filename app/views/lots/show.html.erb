@@ -35,8 +35,8 @@
     
   </div>  
 
-  <div class="container-fluid">
-    <div id="bids">
+  <div id="bids" >
+    <div class="container-fluid" >
       <% if @lot.available_for_bid %>
         <div>
           <h3 class="fw-bold">Lances</h3>
@@ -68,26 +68,28 @@
     </div>
   </div>
 
-  <% if @lot.aprovated? && !@lot.finished_bids %>
-    <div class="container-fluid">      
-      
-      <div class="d-flex align-items-center flex-row mb-3">
-      <h3 class="me-2 fw-bold">Perguntas sobre o lote</h3>
-        <%= link_to "Faça uma pergunta sobre o lote!", new_lot_question_path(@lot.id), class: "btn btn-info" %>
-      </div>
-      <div>
-      <h4>Dúvidas dos usuário:</h4>
-        <% if @lot_questions.present? %>
-        <% @lot_questions.each do |q| %>
-            <p class="fs-5"><%= q.question %> <%= q.answer.present? ? "Resposta: #{q.answer.answer}" : "Ainda não respondida" %></p>
-        <% end %>
-        <%else%>
-        <p>Sem perguntas até o momento</p>
-        <% end %>
-      </div>
+  <div id="questions" style="max-width: 60%">
+    <% if @lot.aprovated? && !@lot.finished_bids %>
+      <div class="container-fluid">      
+        
+        <div class="d-flex align-items-center flex-row mb-3">
+        <h3 class="me-2 fw-bold">Perguntas sobre o lote</h3>
+          <%= link_to "Faça uma pergunta sobre o lote!", new_lot_question_path(@lot.id), class: "btn btn-info" %>
+        </div>
+        <div>
+        <h4>Dúvidas dos usuário:</h4>
+          <% if @lot_questions.present? %>
+          <% @lot_questions.each do |q| %>
+              <p class="fs-5"><%= q.question %> <%= q.answer.present? ? "Resposta: #{q.answer.answer}" : "Ainda não respondida" %></p>
+          <% end %>
+          <%else%>
+          <p>Sem perguntas até o momento</p>
+          <% end %>
+        </div>
 
-    </div>
-  <% end %>
+      </div>
+    <% end %>
+  </div>
 
   <%= render 'items' %>
 

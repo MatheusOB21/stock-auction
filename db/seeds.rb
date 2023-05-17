@@ -84,5 +84,5 @@ Question.create!(lot: Lot.find(3), question: "Existe algum certificado de garant
 
 #usuario admin responde algumas perguntas
 Answer.create!(question: Question.find(1), user: user_admin, answer: "Pode ser pago por dinheiro ou cartão")
-Answer.create!(question: Question.find(1), user: user_admin, answer: "Todos os itens são válidos!")
-Answer.create!(question: Question.find(1), user: user_admin, answer: "Bem simples, pode ir em um de nossos galpões mais próximo, ou podemos enviar pelos correios.")
+Answer.create!(question: Question.find(2), user: user_admin, answer: "Todos os itens são válidos!")
+Answer.create!(question: Question.find(3), user: user_admin, answer: "Bem simples, pode ir em um de nossos galpões mais próximo, ou podemos enviar pelos correios.")
