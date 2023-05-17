@@ -9,6 +9,14 @@ Administradores: Que realizam o cadastro de produtos que estão disponíveis par
 
 Usuários regulares: Podem criar uma conta na aplicação, buscar por produtos, ver detalhes de produtos e fazer um lance caso ainda seja possível.
 
+## Links externos do projeto: 
+
+Utilizado o site Miro para criação de um fluxograma de dados:
+ https://miro.com/app/board/uXjVMM-4BoM=/?share_link_id=338248357384
+
+Utilizado o site Trello para organização das tarefas e ideias que surgiram durante o projeto:
+ https://trello.com/invite/b/3ttLgPSY/ATTIb2be55cf15129a3b66bfc219817a16e223059A20/tarefas-do-projeto-de-leilao
+
 
 
 ## Requisitos necessários
@@ -68,7 +76,7 @@ rails server
 
 Ao popular a aplicação, ficará disponivél para uso os seguinte usuários: 
 
-Administradores:
+### Administradores:
 
 Email: jose@leilaodogalpao.com.br
 
@@ -82,7 +90,7 @@ Email: rose@leilaodogalpao.com.br
 
 Senha: rose123456789
 
-Regulares:
+### Regulares:
 
 Email: flavio@gmail.com.br
 
@@ -96,33 +104,34 @@ Email: marcos@gmail.com.br
 
 Senha: marcos123456789
 
+
 Também ficará disponível lotes e itens já pré cadastrados para uso. Entre eles os seguintes:
 
--Lotes pendentes de aprovação
--Lotes em andamento
--Lotes já finalizados
--Pergunta já feitas pela comunidade
+- Lotes pendentes de aprovação
+- Lotes em andamento
+- Lotes já finalizados
+- Pergunta já feitas pela comunidade
 
 
 ## Funcionalidades:
-Usuários Administradores - Concluída
+- Usuários Administradores - Concluída
 
-Cadastro de Itens para Leilão - Concluída
+- Cadastro de Itens para Leilão - Concluída
 
-Configuração de Lotes - Concluída
+- Configuração de Lotes - Concluída
 
-Visualizar Lotes - Concluída
+- Visualizar Lotes - Concluída
 
-Fazendo Lances - Concluída
+- Fazendo Lances - Concluída
 
-Validando Resultados - Concluída
+- Validando Resultados - Concluída
 
-Verificando Lotes Vencidos - Concluída
+- Verificando Lotes Vencidos - Concluída
 
-Dúvidas sobre um lote - Concluída
+- Dúvidas sobre um lote - Concluída
 
-Bloqueio de CPFs - Pendente
+- Bloqueio de CPFs - Pendente
 
-Lotes Favoritos - Pendente
+- Lotes Favoritos - Pendente
 
-Busca de Produtos - Pendente
+- Busca de Produtos - Pendente
