@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   root to: "home#index"
   
   #Rotas
-  resources :items, only:[:show,:new, :create]
+  resources :items, only:[:index, :show,:new, :create]
 
   resources :winners, controller: 'user_bid_lot', only:[:index]
 
