@@ -10,6 +10,10 @@ class User < ApplicationRecord
 
   has_many :user_bid_lots
 
+  has_many :questions
+
+  has_many :answers
+
   #Validaçoes
   validates :cpf, presence: true
   validates :cpf, uniqueness: true

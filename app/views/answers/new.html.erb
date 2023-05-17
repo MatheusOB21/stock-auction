@@ -1,5 +1,6 @@
 <section id="new-answer">
   <div>
+    <h2> <%= @question.question %> </h2>
     <h2> <%= I18n.t(:you_answer)%> </h2>
       <%= form_with(model:[@question, @answer]) do |f| %>
       <div>

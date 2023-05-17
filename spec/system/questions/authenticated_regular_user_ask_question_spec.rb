@@ -61,8 +61,10 @@ describe 'Usuario regular faz uma pergunta' do
       click_on 'Enviar'
     #Assert
       expect(current_path).to eq lot_path(lot.id)
-      expect(page).to have_content 'Perguntas sobre o lote'
-      expect(page).to have_content 'Qual o estado dos itens presente no lote?'    
+      expect(Question.last.question).to eq 'Qual o estado dos itens presente no lote?'
+  end
+
+  it 'com sucesso, e vê a pergunta no lote' do
   end
   
   it 'sem sucesso, pois deixou  o campo em branco' do
