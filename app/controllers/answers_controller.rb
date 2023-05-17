@@ -17,6 +17,9 @@ class AnswersController < ApplicationController
 
     if @answer.save
       redirect_to @question, notice: 'Resposta computada com sucesso!'
+    else
+      flash.now[:notice] = 'Resposta não computada!'
+      render 'new'
     end
     
   end 

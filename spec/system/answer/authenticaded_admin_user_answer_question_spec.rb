@@ -57,10 +57,7 @@ describe 'Usuario autenticado' do
         lot = Lot.create!(code: "RTX306000", start_date: Date.today, limit_date: 15.day.from_now, minimal_val: 200, minimal_difference: 50, user: user_admin, status: 'aprovated')
         lot_item = LotItem.create!(lot: lot, item: item)
     
-        question1 = Question.create!(lot: lot, question: "Como funciona as regras de devolução?")
-        question2 = Question.create!(lot: lot, question: "Tem garantia de fábrica?")
-        question3 = Question.create!(lot: lot, question: "Posso fazer lance apenas para um item?")
-        question4 = Question.create!(lot: lot, question: "Os items são originais?")
+        question = Question.create!(lot: lot, question: "Como funciona as regras de devolução?")
       
       #Act
         login_as(user_admin)
@@ -72,35 +69,60 @@ describe 'Usuario autenticado' do
         fill_in 'Resposta', with: 'Após a retirada, não existem devoluções de itens.'
         click_on 'Enviar'
       #Assert
-        expect(current_path).to eq question_path(question1.id)
+        expect(current_path).to eq question_path(question.id)
         expect(page).not_to have_field "Responder"     
         expect(page).to have_content "Resposta computada com sucesso!"    
         expect(page).to have_content "Resposta"    
         expect(page).to have_content "Após a retirada, não existem devoluções de itens."    
     end
+    
+    it 'responde uma pergunta sem sucesso, pois deixa o campo em branco' do
+      #Arrange
+        user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
+          
+        item = Item.create!(name: 'Ninja 2000', description: 'Uma moto verde, veloz e em ótimo estado', weight: 2000, depth: 1000, height: 1500, width: 300, product_category: 'Motocicleta')
+    
+        lot = Lot.create!(code: "RTX306000", start_date: Date.today, limit_date: 15.day.from_now, minimal_val: 200, minimal_difference: 50, user: user_admin, status: 'aprovated')
+        lot_item = LotItem.create!(lot: lot, item: item)
+    
+        question = Question.create!(lot: lot, question: "Como funciona as regras de devolução?")
+      
+      #Act
+        login_as(user_admin)
+        visit root_path
+        click_on 'Perguntas sem respostas'
+        within("#1") do
+          click_on 'Responder'
+        end
+        fill_in 'Resposta', with: ''
+        click_on 'Enviar'
+      #Assert
+        expect(page).to have_content "Resposta não computada!"    
+        expect(page).to have_content "Resposta não pode ficar em branco"    
+    end
 
     it 'responde uma pergunta, a qual vicula ao seu usuário' do
-    #Arrange
-      user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
-        
-      item = Item.create!(name: 'Ninja 2000', description: 'Uma moto verde, veloz e em ótimo estado', weight: 2000, depth: 1000, height: 1500, width: 300, product_category: 'Motocicleta')
-  
-      lot = Lot.create!(code: "RTX306000", start_date: Date.today, limit_date: 15.day.from_now, minimal_val: 200, minimal_difference: 50, user: user_admin, status: 'aprovated')
-      lot_item = LotItem.create!(lot: lot, item: item)
-  
-      question = Question.create!(lot: lot, question: "Como funciona o pagamento?")
+      #Arrange
+        user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
+          
+        item = Item.create!(name: 'Ninja 2000', description: 'Uma moto verde, veloz e em ótimo estado', weight: 2000, depth: 1000, height: 1500, width: 300, product_category: 'Motocicleta')
     
-    #Act
-      login_as(user_admin)
-      visit root_path
-      click_on 'Perguntas sem respostas'
-      within("#1") do
-        click_on 'Responder'
-      end
-      fill_in 'Resposta', with: 'Pagamento é feito via cartão, PIX ou em espécie'
-      click_on 'Enviar'
-    #Assert
-      expect(Answer.last.user).to eq user_admin       
+        lot = Lot.create!(code: "RTX306000", start_date: Date.today, limit_date: 15.day.from_now, minimal_val: 200, minimal_difference: 50, user: user_admin, status: 'aprovated')
+        lot_item = LotItem.create!(lot: lot, item: item)
+    
+        question = Question.create!(lot: lot, question: "Como funciona o pagamento?")
+      
+      #Act
+        login_as(user_admin)
+        visit root_path
+        click_on 'Perguntas sem respostas'
+        within("#1") do
+          click_on 'Responder'
+        end
+        fill_in 'Resposta', with: 'Pagamento é feito via cartão, PIX ou em espécie'
+        click_on 'Enviar'
+      #Assert
+        expect(Answer.last.user).to eq user_admin       
     end
 
   end

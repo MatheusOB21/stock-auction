@@ -15,4 +15,16 @@
         </div>
       </div>
     <% end %>
+  </div>  
+
+  <div id = "errors-messages">
+    <% if @answer.errors.any? %>
+      <ul class="list-group mt-2">
+      <% @answer.errors.full_messages.each do |msg|%>
+        <li class="badge text-bg-warning"><%= msg %></li>
+      <% end %>
+      </ul>
+    <% end %>
+  </div>
+
 </section>

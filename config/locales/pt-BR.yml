@@ -19,4 +19,7 @@ pt-BR:
   you_answer: "Sua resposta"
   admin: "Admin"
   user: "Usuário"
+  status: "Status"
+  show: "Visivel"
+  hidden: "Oculto"
   

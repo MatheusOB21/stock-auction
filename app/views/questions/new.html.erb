@@ -19,9 +19,9 @@
   
   <div id = "errors-messages">
     <% if @question.errors.any? %>
-      <ul>
+      <ul class="list-group mt-2">
       <% @question.errors.full_messages.each do |msg|%>
-        <li><%= msg %></li>
+        <li class="badge text-bg-warning"><%= msg %></li>
       <% end %>
       </ul>
     <% end %>
