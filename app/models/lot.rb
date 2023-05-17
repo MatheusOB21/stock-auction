@@ -38,7 +38,7 @@ class Lot < ApplicationRecord
   def start_date_grater_than_today
     if self.start_date.present? && self.start_date >= Date.today
     else
-      errors.add(:start_date, "precisa ser maior que a data de hoje")
+      errors.add(:start_date, "precisa ser maior que #{Date.today}")
     end
   end
 

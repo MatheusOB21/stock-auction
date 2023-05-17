@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!, only:[:new, :create]
-  before_action :question_params, only:[:show]
+  before_action :question_params, only:[:show, :hidden]
 
   def new
     @lot = Lot.find(params[:lot_id])
@@ -9,7 +9,7 @@ class QuestionsController < ApplicationController
     if current_user.is_admin
       redirect_to @lot, notice: "Usuário admin não pode fazer perguntas!"
     end
-    
+
   end
 
   def create
@@ -32,6 +32,11 @@ class QuestionsController < ApplicationController
   end
 
   def show
+  end
+
+  def hidden
+    @question.hidden!
+    redirect_to questions_path, notice: "Pergunta ocultada com sucesso!"
   end
 
   private

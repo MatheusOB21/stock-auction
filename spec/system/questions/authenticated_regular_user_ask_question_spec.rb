@@ -109,4 +109,5 @@ describe 'Usuario regular faz uma pergunta' do
       expect(page).to have_content 'Pergunta não pode ficar em branco'   
       expect(page).to have_content 'Sua pergunta não foi registrada!'   
   end
+  
 end

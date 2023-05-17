@@ -3,7 +3,7 @@
   <% if @questions.any? %>
     </div>
     <% @questions.each do |question|%>
-      <table class="table table-bordered table-striped">
+      <table class="table table-bordered table-striped" id=<%="#{question.id}"%> >
         <thead>
           <tr>
             <th scope="col"><%= Question.human_attribute_name(:question) %></th>
@@ -14,7 +14,8 @@
           <tr>
             <th scope="row"><%= question.question %></th>
             <td><%= question.lot.code %></td>
-            <td id=<%="#{question.id}"%> ><%= link_to "Responder", new_question_answer_path(question.id), class: 'btn btn-primary'%></td>
+            <td><%= link_to "Responder", new_question_answer_path(question.id), class: 'btn btn-primary'%></td>
+            <td><%= button_to "Ocultar", hidden_question_path(question.id), class: 'btn btn-primary'%></td>
           </tr>
         </tbody>
       </table>

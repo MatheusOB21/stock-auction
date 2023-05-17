@@ -10,21 +10,23 @@ Rails.application.routes.draw do
   resources :winners, controller: 'user_bid_lot', only:[:index]
 
   resources :lots, only:[:new, :create, :show, :pendents] do
-    get 'pendents', on: :collection
     
     get 'finished', on: :collection 
-      post 'closed', on: :member
-      post 'canceled', on: :member
+    get 'pendents', on: :collection 
     
+    post 'closed', on: :member
+    post 'canceled', on: :member
     post 'aprovated', on: :member
     post 'bid', on: :member
 
     resources :lot_items, only:[:new, :create, :destroy]
-    
     resources :questions, only:[:new, :create]
   end
 
-    resources :questions, only:[:index, :show] do
-      resources :answers, only:[:new, :create]
-    end
+  resources :questions, only:[:index, :show] do
+      
+    post 'hidden', on: :member
+
+    resources :answers, only:[:new, :create]
+  end
 end

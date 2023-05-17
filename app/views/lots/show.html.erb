@@ -68,7 +68,7 @@
     </div>
   </div>
 
-  <% if @lot.aprovated? %>
+  <% if @lot.aprovated? && !@lot.finished_bids %>
     <div class="container-fluid">      
       
       <div class="d-flex align-items-center flex-row mb-3">
