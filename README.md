@@ -17,6 +17,8 @@ Utilizado o site Miro para criação de um fluxograma de dados:
 Utilizado o site Trello para organização das tarefas e ideias que surgiram durante o projeto:
  https://trello.com/invite/b/3ttLgPSY/ATTIb2be55cf15129a3b66bfc219817a16e223059A20/tarefas-do-projeto-de-leilao
 
+## Modelagem do banco de dados: 
+![Modelagem do banco de dados](app/assets/images/modelagem.png)
 
 
 ## Requisitos necessários
