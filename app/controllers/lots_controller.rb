@@ -27,8 +27,16 @@ class LotsController < ApplicationController
     @lot_questions = @lot.questions.where("status = ?", 0)
 
     if @lot.aprovated? && !@lot.finished_bids
+      #pode acessar
     elsif user_signed_in?
-      if current_user.is_admin
+      if current_user.is_admin 
+        #pode acessar
+      elsif @lot.finished_bids
+        if current_user == @lot.last_bid.user
+          #pode acessar
+        else
+          redirect_to root_path, notice: "Você não tem acesso a essa página"
+        end
       else
       redirect_to root_path, notice: "Você não tem acesso a essa página"
       end

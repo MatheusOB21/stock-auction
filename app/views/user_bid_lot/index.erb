@@ -13,7 +13,7 @@
       </thead>
       <tbody>
         <tr>
-          <th scope="row"><%= lot.code %></th>
+          <th scope="row"><%= link_to lot.code, lot_path(lot) %></th>
           <td><%= I18n.localize(lot.start_date) %></td>
           <td><%= I18n.localize(lot.limit_date) %></td>
         </tr>

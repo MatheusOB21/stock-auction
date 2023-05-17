@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Usuário aprova um lote' do
+describe 'Usuário tenta aprovar um lote,' do
   context 'mas não sendo admin' do
     
     it 'não possui acesso aos detalhes do lote' do

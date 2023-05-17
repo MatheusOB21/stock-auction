@@ -8,7 +8,7 @@
             <%=f.label :question %>
           </div>
           <div>
-            <%=f.text_area :question %>
+            <%=f.text_area :question, class: "w-25 form-control",  style: "height: 100px" %>
           </div>
           <div>
             <%=f.submit I18n.t(:submit), class: "btn btn-primary mt-2" %>

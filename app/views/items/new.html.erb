@@ -1,7 +1,7 @@
 <section id="form-new-item" class="d-flex justify-content-center">
   <div>
     <h3><%= I18n.t(:register_new_item)%></h3>
-    <div id= "form">
+    <div class="p-2" id= "form">
       <%= form_with(model: @item ) do |f| %>
         
         <div>
@@ -77,7 +77,7 @@
         </div>
 
         <div>
-          <%=f.submit I18n.t(:submit) %>
+          <%=f.submit I18n.t(:submit), class: "btn btn-primary mt-2" %>
         </div>
 
       <% end %>
@@ -87,10 +87,11 @@
       <% if @item.errors.any? %>
       <ul class="list-group">
         <% @item.errors.full_messages.each do |msg|%>
-        <li > <%= msg %> </li>
+        <li class="badge text-bg-warning mt-2"> <%= msg %> </li>
         <% end %>
       </ul>  
       <% end %>
     </div>
+
   </div>
 </section>

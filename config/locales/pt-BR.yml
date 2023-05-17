@@ -22,4 +22,8 @@ pt-BR:
   status: "Status"
   show: "Visivel"
   hidden: "Oculto"
+  question: "pergunta"
+  answer: "resposta"
+  nothing: "Nenhuma"
+  without: "sem"
   
