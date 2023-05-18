@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     post 'aprovated', on: :member
     post 'bid', on: :member
 
-    resources :favorites, only:[:create]
+    resources :favorites, only:[:create, :destroy]
 
     resources :lot_items, only:[:new, :create, :destroy]
     resources :questions, only:[:new, :create]
