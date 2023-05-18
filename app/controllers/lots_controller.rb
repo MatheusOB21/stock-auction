@@ -31,8 +31,8 @@ class LotsController < ApplicationController
     elsif user_signed_in?
       if current_user.is_admin 
         #pode acessar
-      elsif @lot.finished_bids
-        if current_user == @lot.last_bid.user
+      elsif @lot.finished_bids && @lot.last_bid.present?
+        if current_user == @lot.last_bid.user && @lot.closed?
           #pode acessar
         else
           redirect_to root_path, notice: "Você não tem acesso a essa página"

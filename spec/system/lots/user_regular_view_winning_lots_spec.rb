@@ -54,7 +54,6 @@ describe 'Usuário vê os lotes vencidos' do
   end
   
   
-  
   it 'com sucesso' do
     #Arrange
       user_admin = User.create!(name: "Anakin", email: "anakin@leilaodogalpao.com.br", password: "anakin_do_leilão", cpf:"50534524079")

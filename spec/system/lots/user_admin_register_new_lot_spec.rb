@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe 'Usário cadastra um novo lote:' do
   context 'Usuário regular' do
+    
     it 'não possui link para cadastrar' do
       #Arrange
         user = User.create!(name: "Hélio", email: "hélio@leilaodohelio.com.br", password: "hélio_do_leilão", cpf:"50417550006")
@@ -11,6 +12,7 @@ describe 'Usário cadastra um novo lote:' do
       #Assert
         expect(page).not_to have_content "Cadastrar lote"
     end
+    
     it 'não tem permisão para cadastrar' do
       #Arrange
         user = User.create!(name: "Hélio", email: "hélio@leilaodohelio.com.br", password: "hélio_do_leilão", cpf:"50417550006")
@@ -21,6 +23,7 @@ describe 'Usário cadastra um novo lote:' do
         expect(current_path).to eq root_path
         expect(page).to have_content "Você não tem acesso a essa página"
     end
+    
   end
   context 'Usuário admin' do
     

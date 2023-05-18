@@ -1,10 +1,19 @@
 <section id="lot-details">
 
   <div class="container-fluid">
+    
+    <div class="position-relative">
+      <div class="position-absolute top-0 end-0 mt-2">
+        <%= button_to 'Favoritar', aprovated_lot_path(@lot.id), class: "btn btn-info" %>
+      </div>
+    </div>
+
     <div>
       <h1>Detalhes do lote<h1>
     <div>
     
+
+
     <%= render 'table' %>
       
     <% if user_signed_in? %>
