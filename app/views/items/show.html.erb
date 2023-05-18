@@ -1,4 +1,4 @@
-<section id="item-details">
+<section class="container-fluid mt-2" id="item-details">
   <div>
     <div>
       <h2><%= Item.human_attribute_name(:code)%>: <%= @item.code %></h2>
@@ -28,7 +28,10 @@
     <%else%>
     <span>Nenhuma imagem cadastrada</span>
     <% end %>
-
-    <%= link_to 'Voltar', items_path, class: 'btn btn-primary' %>
   </div>
+
+  <div style="max-width: 100px">
+    <%= link_to 'Voltar', items_path, class: 'btn btn-primary mt-2' %>
+  </div>
+
 </section>

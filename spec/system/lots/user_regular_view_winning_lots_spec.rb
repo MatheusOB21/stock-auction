@@ -1,6 +1,7 @@
 require 'rails_helper'
 
-describe 'Usuário regular vê os lotes vencidos' do
+describe 'Usuário vê os lotes vencidos' do
+  
   it 'mas precisa estar autenticado' do
     #Arrange
     
@@ -10,7 +11,7 @@ describe 'Usuário regular vê os lotes vencidos' do
       expect(page).not_to have_link "Lote vencidos"
   end
 
-  it 'e não tem acesso' do
+  it 'e não estando autenticado, não tem acesso' do
     #Arrange
 
     #Act
@@ -39,6 +40,17 @@ describe 'Usuário regular vê os lotes vencidos' do
       visit root_path
     #Assert
       expect(page).not_to have_link "Lotes vencidos"
+  end
+ 
+  it 'mas usuário admin não tem lotes vencidos' do
+    #Arrange
+      user_admin = User.create!(name: "Luiz", email: "luiz@leilaodogalpao.com.br", password: "luiz123456", cpf:"50534524079")
+    #Act
+      login_as(user_admin)
+      visit winners_path
+    #Assert
+      expect(current_path).to eq root_path
+      expect(page).to have_content "Usuários administradores não podem vencer lotes!"
   end
   
   
