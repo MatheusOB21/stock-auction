@@ -1,6 +1,33 @@
 require 'rails_helper'
 
 describe 'Usuário admin edita item' do
+
+  context 'e sendo' do
+
+    it 'usuario sem autenticação não edita' do
+      #Arrange
+        item = Item.create!(name: 'Yamaha 200', description: 'Uma moto verde, veloz e em ótimo estado', weight: 2000, depth: 1000, height: 1500, width: 300, product_category: 'Motocicleta')
+      #Act
+        visit edit_item_path(item)
+      #Assert
+        expect(current_path).not_to eq edit_item_path(Item.last)
+        expect(current_path).to eq new_user_session_path       
+    end
+
+    it 'usuario regular autenticado não edita' do
+      #Arrange
+        user_regular = User.create!(name: "Gabriel", email: "gabriel@gmail.com.br", password: "gabriel123", cpf:"04209958034")
+        item = Item.create!(name: 'Yamaha 200', description: 'Uma moto verde, veloz e em ótimo estado', weight: 2000, depth: 1000, height: 1500, width: 300, product_category: 'Motocicleta')
+      #Act
+        login_as(user_regular)
+        visit edit_item_path(item)
+      #Assert
+        expect(current_path).not_to eq edit_item_path(Item.last)
+        expect(current_path).to eq root_path
+        expect(page).to have_content 'Você não tem acesso a essa página' 
+    end
+
+  end
   
   it 'a partir dos detalhes de item' do
     #Arrange

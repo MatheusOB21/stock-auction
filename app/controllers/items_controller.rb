@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only:[:index, :new, :create]
-  before_action :admin_page, only:[:index, :new, :create, :show]
+  before_action :authenticate_user!, only:[:index, :new, :create, :edit, :update]
+  before_action :admin_page, only:[:index,:show, :new, :create, :edit, :update]
   
   def index
     @items_available = Item.where.missing(:lot_item)
