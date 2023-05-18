@@ -1,5 +1,19 @@
 <section id="form-edit-item" class="d-flex justify-content-center mt-2">
+  <div>
+  
+    <h3><%= I18n.t(:edit_item)%> <%= @item.code %> </h3>
+    
+    <%= render 'form' %>
 
-<%= render 'form' %>
+    <div id="item-errors-message">
+      <% if @item.errors.any? %>
+      <ul class="list-group">
+        <% @item.errors.full_messages.each do |msg|%>
+        <li class="badge text-bg-warning mt-2"> <%= msg %> </li>
+        <% end %>
+      </ul>  
+      <% end %>
+    </div>
 
+  <div>
 </section>
