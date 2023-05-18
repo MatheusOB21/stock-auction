@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 describe 'Usuario vê todos os itens disponíveis' do
+  
   context 'sendo admin,' do
+
     it 'a partir do menu' do
       #Arrange
       user_admin = User.create!(name: 'Maria', email: 'maria@leilaodogalpao.com.br', password: 'maria1234', cpf:'94225136000')
@@ -13,6 +15,7 @@ describe 'Usuario vê todos os itens disponíveis' do
       #Assert
       expect(page).to have_content 'Itens disponíveis'
     end
+
     it 'com sucesso' do
       #Arrange
       user_admin = User.create!(name: 'Maria', email: 'maria@leilaodogalpao.com.br', password: 'maria1234', cpf:'94225136000')
@@ -35,6 +38,25 @@ describe 'Usuario vê todos os itens disponíveis' do
       expect(page).to have_content '400 x 150 x 100 cm'
       expect(page).to have_content 'BMW'
       expect(page).to have_content '300 x 1500 x 1000 cm'
+    end
+    
+  end
+
+  context 'não sendo admin,' do
+
+    it 'não tem acesso' do
+      
+      #Arrange
+      user_regular = User.create!(name: 'Maria', email: 'maria@gmail.com.br', password: 'maria123456789', cpf:'94225136000')
+      
+      #Act
+      login_as(user_regular)
+      visit items_path
+      
+      #Assert
+      expect(current_path).to eq root_path
+      expect(page).to have_content "Você não tem acesso a essa página"
+
     end
   end
 end
