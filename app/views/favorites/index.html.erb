@@ -14,7 +14,7 @@
       <tbody>
       <% @favorites.each do |favorite|%>
         <tr>
-          <th scope="row"><%= link_to favorite.lot.code%></th>
+          <th scope="row"><%= link_to favorite.lot.code, lot_path(favorite.lot.id)%></th>
           <td><%= favorite.lot.start_date %></td>
           <td><%= favorite.lot.limit_date %></td>
           <td><%= favorite.lot.finished_bids ? "Lote encerrado" : "Lote em andamento" %></td>
@@ -24,6 +24,6 @@
     </table>
   </div>
   <% else %>
-    <h3>Nenhum lote vfavorito</h3>
+    <h3>Nenhum lote favorito</h3>
   <% end %>
 </section>
