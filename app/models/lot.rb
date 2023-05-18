@@ -9,6 +9,8 @@ class Lot < ApplicationRecord
 
   has_many :questions
 
+  has_many :favorites
+
   enum :status, pending: 1, aprovated: 3, closed: 5, canceled: 7
 
   validates :code, :start_date, :limit_date, :minimal_difference, :minimal_val, presence: true

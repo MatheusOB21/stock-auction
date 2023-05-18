@@ -14,6 +14,8 @@ class User < ApplicationRecord
 
   has_many :answers
 
+  has_many :favorites
+
   #Validaçoes
   validates :cpf, presence: true
   validates :cpf, uniqueness: true
