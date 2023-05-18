@@ -103,6 +103,28 @@ describe 'Usuário regular' do
         expect(page).to have_content 'Valor do lance precisa ser maior que R$300.0'    
     end
     
+    it 'sem sucesso, pois já passou da data' do
+      #Arrange
+        user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
+        user_regular1 = User.create!(name: "Katarina", email: "katarina@gmail.com.br", password: "katarina12345", cpf:"09036567017")
+        user_regular2 = User.create!(name: "Michael", email: "michael@gmail.com.br", password: "michael12345", cpf:"64975225069")
+          
+        item = Item.create!(name: 'Ninja 2000', description: 'Uma moto verde, veloz e em ótimo estado', weight: 2000, depth: 1000, height: 1500, width: 300, product_category: 'Motocicleta')
+
+        travel_to 10.day.ago do
+          Lot.create!(code: "RTX306000", start_date: Date.today, limit_date: 9.day.from_now, minimal_val: 200, minimal_difference: 50, user: user_admin, status: 'aprovated')
+        end
+        lot = Lot.last
+        lot_item = LotItem.create!(lot: lot, item: item)
+        
+        UserBidLot.create!(lot: lot, user: user_regular1, bid_amount: 250)
+      #Act
+        login_as(user_regular2)
+        visit root_path
+      #Assert
+        expect(page).not_to have_link 'RTX306000'  
+    end
+    
     it 'sendo o primeiro do lote, com sucesso' do
       #Arrange
         user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
