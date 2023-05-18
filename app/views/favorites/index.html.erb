@@ -8,6 +8,7 @@
           <th scope="col"><%= Lot.human_attribute_name(:code) %></th>
           <th scope="col"><%= Lot.human_attribute_name(:start_date) %></th>
           <th scope="col"><%= Lot.human_attribute_name(:limit_date) %></th>
+          <th scope="col"><%= I18n.t(:status) %></th>
         </tr>
       </thead>
       <tbody>
@@ -16,6 +17,7 @@
           <th scope="row"><%= link_to favorite.lot.code%></th>
           <td><%= favorite.lot.start_date %></td>
           <td><%= favorite.lot.limit_date %></td>
+          <td><%= favorite.lot.finished_bids ? "Lote encerrado" : "Lote em andamento" %></td>
         </tr>
       <% end %>  
       </tbody>
