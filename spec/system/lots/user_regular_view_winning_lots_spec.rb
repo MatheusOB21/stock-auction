@@ -9,6 +9,17 @@ describe 'Usuário regular vê os lotes vencidos' do
     #Assert
       expect(page).not_to have_link "Lote vencidos"
   end
+
+  it 'e não tem acesso' do
+    #Arrange
+
+    #Act
+      visit winners_path
+
+    #Assert
+      expect(current_path).not_to eq winners_path
+      expect(current_path).to eq new_user_session_path
+  end
   
   it 'a partir do link no menu' do
     #Arrange

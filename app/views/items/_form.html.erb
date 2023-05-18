@@ -1,0 +1,82 @@
+    <div class="p-2" id= "form">
+      
+      <%= form_with(model: @item ) do |f| %>
+        
+        <div>
+          <div>
+            <%=f.label :name %>
+          </div>
+          <div>
+            <%=f.text_field :name %>
+          </div>
+        </div>
+        
+        <div>
+          <div >
+            <%=f.label :description %>
+          </div> 
+          <div >
+            <%=f.text_field :description %>
+          </div>
+        </div> 
+        
+        <div>
+          <div>
+              <%=f.label :weight %>
+          </div>    
+          <div>
+              <%=f.number_field :weight %>
+          </div>
+        </div>
+        
+        <div>
+          <div>
+            <%=f.label :depth %>
+          </div>  
+          <div>
+            <%=f.number_field :depth%>
+          </div>
+        </div>
+
+        <div>
+          <div>
+            <%=f.label :height %>
+          </div>
+          <div> 
+            <%=f.number_field :height %>
+          </div>
+        </div>
+        
+        <div>
+          <div>
+            <%=f.label :width %>
+          </div>
+          <div>
+            <%=f.number_field :width %>
+          </div> 
+        </div>
+        
+        <div>
+          <div>
+            <%=f.label :product_category %>
+          </div>
+          <div>
+            <%=f.text_field :product_category%>
+          </div>
+        </div>
+        
+        <div>
+          <div>
+            <%=f.label :image %>
+          </div>
+          <div>
+            <%=f.file_field :image %>
+          </div>
+        </div>
+
+        <div>
+          <%=f.submit I18n.t(:submit), class: "btn btn-primary mt-2" %>
+        </div>
+
+      <% end %>
+    </div>

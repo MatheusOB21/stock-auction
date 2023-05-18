@@ -2,7 +2,6 @@
   <div><h2>Lotes vencidos<h2><div>
   <% if @lots_winners.any? %>
   </div>
-  <% @lots_winners.each do |lot|%>
     <table class="table table-bordered table-striped">
       <thead>
         <tr>
@@ -12,14 +11,15 @@
         </tr>
       </thead>
       <tbody>
+      <% @lots_winners.each do |lot|%>
         <tr>
           <th scope="row"><%= link_to lot.code, lot_path(lot) %></th>
           <td><%= I18n.localize(lot.start_date) %></td>
           <td><%= I18n.localize(lot.limit_date) %></td>
         </tr>
+      <% end %>  
       </tbody>
     </table>
-    <% end %>
   </div>
   <% else %>
     <h3>Nenhum lote vencido</h3>

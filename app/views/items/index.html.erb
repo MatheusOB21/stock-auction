@@ -10,15 +10,16 @@
           <th scope="col"><%= Item.human_attribute_name(:item_dimensions) %></th>
         </tr>
       </thead>
-       <% @items_available.each do |item|%>
         <tbody>
-          <tr>
-            <th><%= item.code %></th>
-            <td><%= item.name %></td>
-            <td><%= item.item_dimensions %></td>
-          </tr>
+          <% @items_available.each do |item|%>
+            <tr id=<%="#{item.id}"%>>
+              <th><%= item.code %></th>
+              <td><%= item.name %></td>
+              <td><%= item.item_dimensions %></td>
+              <td><%= link_to 'Editar', edit_item_path(item), class: "btn btn-primary" %></td>
+            </tr>
+          <% end %>
         </tbody>
-      <% end %>
     </table>
   </div>
   <% else %>

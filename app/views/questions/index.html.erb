@@ -9,24 +9,24 @@
             <th scope="col"><%= Question.human_attribute_name(:lot_code) %></th>
           </tr>
         </thead>
-        <% @questions.each do |question|%>
-          <tbody id=<%="#{question.id}"%>>
-            <tr>
-              <th scope="row"><%= question.question %></th>
-              <td><%= question.lot.code %></td>
-              <td>
-              <div class="d-flex align-items-center flex-row">
-                <%= link_to "Responder", new_question_answer_path(question.id), class: 'btn btn-primary'%>
-                <% if question.show? %> 
-                  <%= button_to "Ocultar", hidden_question_path(question.id), class: 'btn btn-primary m-1'%>
-                <% else %>
-                  <span class="ms-1"><%= I18n.t(:status)%>: <%= I18n.t(:hidden) %><span>
-                <% end %>
-              </div> 
-              </td>
-            </tr>
+          <tbody>
+            <% @questions.each do |question|%>
+              <tr id=<%="#{question.id}"%>>
+                <th scope="row"><%= question.question %></th>
+                <td><%= question.lot.code %></td>
+                <td>
+                <div class="d-flex align-items-center flex-row">
+                  <%= link_to "Responder", new_question_answer_path(question.id), class: 'btn btn-primary'%>
+                  <% if question.show? %> 
+                    <%= button_to "Ocultar", hidden_question_path(question.id), class: 'btn btn-primary m-1'%>
+                  <% else %>
+                    <span class="ms-1"><%= I18n.t(:status)%>: <%= I18n.t(:hidden) %><span>
+                  <% end %>
+                </div> 
+                </td>
+              </tr>
+            <% end %>  
           </tbody>
-        <% end %>
       </table>
     </div>
   <% else %>

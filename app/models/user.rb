@@ -22,11 +22,7 @@ class User < ApplicationRecord
   validate :cpf_is_valid
 
   def is_admin
-    if self.email =~ /\w+@leilaodogalpao.com.br/
-      true
-    else
-      false
-    end
+    self.email =~ /\w+@leilaodogalpao.com.br/ ? true : false
   end
 
   private
