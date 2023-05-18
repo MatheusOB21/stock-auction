@@ -3,9 +3,15 @@
   <div class="container-fluid">
     
     <div class="position-relative">
+    <% if user_signed_in? && !current_user.have_in_favorites?(@lot.id)%>
       <div class="position-absolute top-0 end-0 mt-2">
         <%= button_to 'Favoritar', lot_favorites_path(@lot.id), class: "btn btn-info" %>
       </div>
+    <% else %> 
+      <div class="position-absolute top-0 end-0 mt-2">
+        <%= button_to 'Desfavoritar', lot_favorites_path(@lot.id), class: "btn btn-info" %>
+      </div> 
+    <% end %>  
     </div>
 
     <div>

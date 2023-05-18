@@ -27,6 +27,10 @@ class User < ApplicationRecord
     self.email =~ /\w+@leilaodogalpao.com.br/ ? true : false
   end
 
+  def have_in_favorites?(lot_id)
+    self.favorites.where(lot_id: lot_id).present?
+  end
+
   private
   def cpf_is_valid
     if self.cpf_check

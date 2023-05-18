@@ -11,6 +11,7 @@ describe 'Usuário favorita um lote' do
       lot = Lot.create!(code: "ZTZ456789", start_date: Date.today, limit_date: 10.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin, status: 'aprovated')
       lot_item = LotItem.create!(lot: lot, item: item)
     #Act
+      login_as(user)
       visit root_path
       click_on 'ZTZ456789'
     #Assert
