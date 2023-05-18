@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Usuario vê todos os itens disponíveis' do
+describe 'Usuario vê os itens disponíveis' do
   
   context 'sendo admin,' do
 
@@ -42,15 +42,29 @@ describe 'Usuario vê todos os itens disponíveis' do
     
   end
 
-  context 'não sendo admin,' do
+  context 'mas não sendo admin,' do
 
-    it 'não tem acesso' do
+    it 'autenticado não tem acesso' do
       
       #Arrange
       user_regular = User.create!(name: 'Maria', email: 'maria@gmail.com.br', password: 'maria123456789', cpf:'94225136000')
       
       #Act
       login_as(user_regular)
+      visit items_path
+      
+      #Assert
+      expect(current_path).to eq root_path
+      expect(page).to have_content "Você não tem acesso a essa página"
+
+    end
+    
+    it 'sem autenticação não tem acesso' do
+      
+      #Arrange
+      user_regular = User.create!(name: 'Maria', email: 'maria@gmail.com.br', password: 'maria123456789', cpf:'94225136000')
+      
+      #Act
       visit items_path
       
       #Assert
