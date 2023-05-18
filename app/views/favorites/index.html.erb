@@ -1,0 +1,27 @@
+<section id="lot-favorites">
+  <div><h2>Lotes favoritos<h2><div>
+  <% if @favorites.any? %>
+  </div>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th scope="col"><%= Lot.human_attribute_name(:code) %></th>
+          <th scope="col"><%= Lot.human_attribute_name(:start_date) %></th>
+          <th scope="col"><%= Lot.human_attribute_name(:limit_date) %></th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @favorites.each do |favorite|%>
+        <tr>
+          <th scope="row"><%= link_to favorite.lot.code%></th>
+          <td><%= favorite.lot.start_date %></td>
+          <td><%= favorite.lot.limit_date %></td>
+        </tr>
+      <% end %>  
+      </tbody>
+    </table>
+  </div>
+  <% else %>
+    <h3>Nenhum lote vfavorito</h3>
+  <% end %>
+</section>

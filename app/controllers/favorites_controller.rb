@@ -1,4 +1,9 @@
 class FavoritesController < ApplicationController
+  before_action :authenticate_user!, only:[:index, :create, :destroy]
+  
+  def index
+    @favorites = current_user.favorites
+  end
   
   def create
     @lot = Lot.find(params[:lot_id])

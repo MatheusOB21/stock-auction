@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :items, only:[:index, :show,:new, :create, :edit, :update]
 
   resources :winners, controller: 'user_bid_lot', only:[:index]
+  resources :favorites, only:[:index]
 
   resources :lots, only:[:new, :create, :show, :pendents] do
     
