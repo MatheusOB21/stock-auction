@@ -1,7 +1,11 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only:[:new, :create]
-  before_action :admin_page, only:[:new, :create, :show]
+  before_action :authenticate_user!, only:[:index, :new, :create]
+  before_action :admin_page, only:[:index, :new, :create, :show]
   
+  def index
+    @items_available = Item.where.missing(:lot_item)
+  end
+
   def new   
     @item = Item.new
   end

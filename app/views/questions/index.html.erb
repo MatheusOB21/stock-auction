@@ -2,32 +2,32 @@
   <div><h2>Perguntas sem respostas<h2><div>
   <% if @questions.any? %>
     </div>
-    <% @questions.each do |question|%>
-      <table class="table table-bordered table-striped" id=<%="#{question.id}"%> >
+      <table class="table table-bordered table-striped" >
         <thead>
           <tr>
             <th scope="col"><%= Question.human_attribute_name(:question) %></th>
             <th scope="col"><%= Question.human_attribute_name(:lot_code) %></th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <th scope="row"><%= question.question %></th>
-            <td><%= question.lot.code %></td>
-            <td>
-            <div class="d-flex align-items-center flex-row">
-              <%= link_to "Responder", new_question_answer_path(question.id), class: 'btn btn-primary'%>
-              <% if question.show? %> 
-                <%= button_to "Ocultar", hidden_question_path(question.id), class: 'btn btn-primary m-1'%>
-              <% else %>
-                <span class="ms-1"><%= I18n.t(:status)%>: <%= I18n.t(:hidden) %><span>
-              <% end %>
-            </div> 
-            </td>
-          </tr>
-        </tbody>
+        <% @questions.each do |question|%>
+          <tbody id=<%="#{question.id}"%>>
+            <tr>
+              <th scope="row"><%= question.question %></th>
+              <td><%= question.lot.code %></td>
+              <td>
+              <div class="d-flex align-items-center flex-row">
+                <%= link_to "Responder", new_question_answer_path(question.id), class: 'btn btn-primary'%>
+                <% if question.show? %> 
+                  <%= button_to "Ocultar", hidden_question_path(question.id), class: 'btn btn-primary m-1'%>
+                <% else %>
+                  <span class="ms-1"><%= I18n.t(:status)%>: <%= I18n.t(:hidden) %><span>
+                <% end %>
+              </div> 
+              </td>
+            </tr>
+          </tbody>
+        <% end %>
       </table>
-    <% end %>
     </div>
   <% else %>
     <h3> <%=I18n.t(:nothing)%> <%=I18n.t(:question)%> <%=I18n.t(:without)%> <%=I18n.t(:answer)%> </h3>

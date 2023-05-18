@@ -1,0 +1,27 @@
+<section id="items-available">
+  <div><h2>Itens disponíveis<h2><div>
+  <% if @items_available.any? %>
+  </div>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th scope="col"><%= Item.human_attribute_name(:code) %></th>
+          <th scope="col"><%= Item.human_attribute_name(:name) %></th>
+          <th scope="col"><%= Item.human_attribute_name(:item_dimensions) %></th>
+        </tr>
+      </thead>
+       <% @items_available.each do |item|%>
+        <tbody>
+          <tr>
+            <th><%= item.code %></th>
+            <td><%= item.name %></td>
+            <td><%= item.item_dimensions %></td>
+          </tr>
+        </tbody>
+      <% end %>
+    </table>
+  </div>
+  <% else %>
+    <h3>Nenhum item atualmente disponível para adicionar em lote</h3>
+  <% end %>
+</section>

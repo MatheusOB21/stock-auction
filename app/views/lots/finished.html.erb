@@ -2,7 +2,6 @@
   <div><h2>Lotes finalizados<h2><div>
   <% if @lots_finished.any? %>
   </div>
-  <% @lots_finished.each do |lot|%>
     <table class="table table-bordered table-striped">
       <thead>
         <tr>
@@ -11,15 +10,16 @@
           <th scope="col"><%= Lot.human_attribute_name(:limit_date) %></th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <th scope="row"><%= link_to lot.code, lot_path(lot.id), class: "link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" %></th>
-          <td><%= I18n.localize(lot.start_date) %></td>
-          <td><%= I18n.localize(lot.limit_date) %></td>
-        </tr>
-      </tbody>
+      <% @lots_finished.each do |lot|%>
+        <tbody>
+          <tr>
+            <th scope="row"><%= link_to lot.code, lot_path(lot.id), class: "link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" %></th>
+            <td><%= I18n.localize(lot.start_date) %></td>
+            <td><%= I18n.localize(lot.limit_date) %></td>
+          </tr>
+        </tbody>
+      <% end %>
     </table>
-    <% end %>
   </div>
   <% else %>
     <h3>Nenhum lote foi finalizado ainda</h3>
