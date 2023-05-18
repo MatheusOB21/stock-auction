@@ -28,6 +28,7 @@ class ItemsController < ApplicationController
   def update
     @item = Item.find(params[:id])
     item_params = params.require(:item).permit(:name, :description, :weight, :depth, :height, :width, :product_category, :image)
+    
     if @item.update(item_params)
       redirect_to @item, notice: "Item editado com sucesso"
     else

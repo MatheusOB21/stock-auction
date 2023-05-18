@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe 'Usuario cadastra um item:' do
-    context 'Sendo usuário regular' do
+describe 'Usuario cadastra um item' do
+    context 'e sendo usuário regular' do
       it 'não deve aparecer opção' do
         #Arrange
           user = User.create!(name: 'Maria', email: 'maria@hotmail.com',  password: 'maria1234', cpf:'94225136000')
@@ -23,7 +23,7 @@ describe 'Usuario cadastra um item:' do
       end
     end
     
-    context 'Sendo usuário administrador' do
+    context 'e sendo usuário administrador' do
       it 'deve aparecer opção e o formulário' do
         #Arrange
         user = User.create!(name: 'Maria', email: 'maria@leilaodogalpao.com.br', password: 'maria1234', cpf:'94225136000')
@@ -72,6 +72,34 @@ describe 'Usuario cadastra um item:' do
           expect(page).to have_content 'Categoria do Produto: Celular'
           expect(page).to have_content 'Imagem'
           expect(page).to have_css('img')
+      end
+      
+      it 'cadastra novo item e volta para itens' do
+        #Arrange
+          user = User.create!(name: 'Maria', email: 'maria@leilaodogalpao.com.br', password: 'maria1234', cpf:'94225136000')
+          allow(SecureRandom).to receive(:alphanumeric).with(10).and_return("IPHNE13MAX")
+        #Act
+          login_as(user)
+          visit root_path
+          click_on 'Cadastrar item'
+          fill_in 'Nome', with: 'Smartphone Apple 13 Pro Max'
+          fill_in 'Descrição', with: 'Celular top de linha da Apple'  
+          fill_in 'Peso', with: '50'
+          fill_in 'Largura', with: '10'  
+          fill_in 'Altura' , with: '30'
+          fill_in 'Profundidade' , with: '10'
+          fill_in 'Categoria do Produto' , with: 'Celular'
+          attach_file 'Image', Rails.root.join('spec/fixtures/test.png')  
+          click_on 'Enviar'
+          click_on 'Voltar'
+        #Assert
+          expect(current_path).to eq items_path
+          expect(page).to have_content 'Código'
+          expect(page).to have_content 'IPHNE13MAX'
+          expect(page).to have_content 'Nome'
+          expect(page).to have_content 'Smartphone Apple 13 Pro Max'
+          expect(page).to have_content 'Dimensões'
+          expect(page).to have_content '10 x 30 x 10 cm'
       end
 
       it 'não consegue cadastrar, pois deixou campo em branco' do
