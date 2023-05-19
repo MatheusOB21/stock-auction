@@ -111,7 +111,7 @@ describe 'Usuário regular' do
           
         item = Item.create!(name: 'Ninja 2000', description: 'Uma moto verde, veloz e em ótimo estado', weight: 2000, depth: 1000, height: 1500, width: 300, product_category: 'Motocicleta')
 
-        travel_to 10.day.ago do
+        travel_to 20.day.ago do
           Lot.create!(code: "RTX306000", start_date: Date.today, limit_date: 9.day.from_now, minimal_val: 200, minimal_difference: 50, user: user_admin, status: 'aprovated')
         end
         lot = Lot.last

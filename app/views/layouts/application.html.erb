@@ -30,6 +30,13 @@
         </ul>
       </div>
 
+      <div>
+        <%= form_with(url: search_path, :html =>{class: "align-self-center", style:"display: flex"}, method: :get) do |f| %>
+          <%= f.text_field  :query, class:'form-control mr-sm-2' %>
+          <%= f.submit 'Buscar', class: 'btn btn-outline-primary  ms-2 me-2 my-2 my-sm-0' %>
+        <% end %>
+      </div>
+
         <span class = "float-right" id="nav-logout" style="align-items: center;">
           <% if user_signed_in? %>
               <% if current_user.is_admin %>

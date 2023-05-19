@@ -12,7 +12,7 @@ describe 'Usuário consegue' do
     #Assert
       expect(page).to have_field 'E-mail'
       expect(page).to have_field 'Senha'
-      within('form') do
+      within('#form-login') do
         expect(page).to have_button 'Login'
       end
   end
@@ -26,7 +26,7 @@ describe 'Usuário consegue' do
       end
       fill_in 'E-mail', with: 'asta@usuario.com'
       fill_in 'Senha', with: 'senha12345'
-      within('form') do
+      within('#form-login') do
         click_on 'Login'
       end
     #Assert
@@ -44,7 +44,7 @@ describe 'Usuário consegue' do
       end
       fill_in 'E-mail', with: 'asta@usuario.com'
       fill_in 'Senha', with: 'senha12345789'
-      within('form') do
+      within('#form-login') do
         click_on 'Login'
       end
     #Assert

@@ -11,7 +11,7 @@ describe 'Usuário realiza log out' do
       end
       fill_in 'E-mail', with: 'asta@usuario.com'
       fill_in 'Senha', with: 'senha12345'
-      within('form') do
+      within('#form-login') do
         click_on 'Login'
       end
       click_on "Sair"

@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   resources :winners, controller: 'user_bid_lot', only:[:index]
   resources :favorites, only:[:index]
 
+  get '/search', to: 'home#show'
+
   resources :lots, only:[:new, :create, :show, :pendents] do
     
     get 'finished', on: :collection 
