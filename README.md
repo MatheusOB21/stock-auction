@@ -134,6 +134,6 @@ Também ficará disponível lotes e itens já pré cadastrados para uso. Entre e
 
 - Bloqueio de CPFs - Pendente
 
-- Lotes Favoritos - Pendente
+- Lotes Favoritos - Concluída
 
-- Busca de Produtos - Pendente
+- Busca de Produtos - Em andamento(atualmente apenas busca por parte do código do lote)
