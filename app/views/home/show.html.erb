@@ -1,5 +1,6 @@
 <section>
   <%if @lots.present? %>
+  <h2>Resultados para: <%= "#{@code}"%></h2>
   <table class="table table-bordered table-striped">
     <thead>
       <tr>
@@ -13,8 +14,8 @@
     <% @lots.each do |lot|%>
       <tr>
         <th scope="row"><%= link_to lot.code, lot_path(lot.id)%></th>
-        <td><%= lot.start_date %></td>
-        <td><%= lot.limit_date %></td>
+        <td><%= I18n.l(lot.start_date) %></td>
+        <td><%= I18n.l(lot.limit_date) %></td>
         <td><%= lot.finished_bids ? "Lote encerrado" : "Lote em andamento" %></td>
       </tr>
     <% end %>  
