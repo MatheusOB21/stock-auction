@@ -15,9 +15,13 @@
       <% @favorites.each do |favorite|%>
         <tr>
           <th scope="row"><%= link_to favorite.lot.code, lot_path(favorite.lot.id)%></th>
-          <td><%= favorite.lot.start_date %></td>
-          <td><%= favorite.lot.limit_date %></td>
+          <td><%= I18n.l(favorite.lot.start_date) %></td>
+          <td><%= I18n.l(favorite.lot.limit_date) %></td>
+        <%if favorite.lot.future %>
+          <td>Lote futuro</td>
+        <% else %>  
           <td><%= favorite.lot.finished_bids ? "Lote encerrado" : "Lote em andamento" %></td>
+        <% end %>  
         </tr>
       <% end %>  
       </tbody>

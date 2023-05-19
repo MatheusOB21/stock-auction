@@ -30,6 +30,10 @@ class Lot < ApplicationRecord
   def finished_bids
     self.limit_date < Date.today ? true : false
   end
+  
+  def future
+    self.start_date > Date.today ? true : false
+  end
 
   def last_bid
     self.user_bid_lots.order(:bid_amount).last
