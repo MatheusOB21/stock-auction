@@ -16,7 +16,11 @@
         <th scope="row"><%= link_to lot.code, lot_path(lot.id)%></th>
         <td><%= I18n.l(lot.start_date) %></td>
         <td><%= I18n.l(lot.limit_date) %></td>
-        <td><%= lot.finished_bids ? "Lote encerrado" : "Lote em andamento" %></td>
+        <%if lot.future %>
+          <td>Lote futuro</td>
+        <% else %>  
+          <td><%= lot.finished_bids ? "Lote encerrado" : "Lote em andamento" %></td>
+        <% end %> 
       </tr>
     <% end %>  
     </tbody>

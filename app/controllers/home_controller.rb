@@ -6,6 +6,6 @@ class HomeController < ApplicationController
 
     def show
       @code = params["query"]
-      @lots = Lot.where(["code LIKE ? and start_date <= ? and limit_date >= ? and status = ?" , "%#{@code.upcase}%", Date.today, Date.today, 3])   
+      @lots = Lot.where(["code LIKE ? and status = ?" , "%#{@code.upcase}%", 3])   
     end
 end
