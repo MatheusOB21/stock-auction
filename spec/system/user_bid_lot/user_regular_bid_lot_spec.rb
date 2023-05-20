@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 describe 'Usuário regular' do
+  
   context 'da um lance' do
+    
     it 'a partir da tela de detalhes do lote' do
       #Arrange
         user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
