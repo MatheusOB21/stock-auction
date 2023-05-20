@@ -11,8 +11,8 @@
       </tr>
     </thead>
     <tbody>
-    <% @lots.each do |lot|%>
-      <tr>
+    <% @lots.uniq.each do |lot|%>
+      <tr id="<%= lot.id %>">
         <th scope="row"><%= link_to lot.code, lot_path(lot.id)%></th>
         <td><%= I18n.l(lot.start_date) %></td>
         <td><%= I18n.l(lot.limit_date) %></td>
