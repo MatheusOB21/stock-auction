@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   resources :questions, only:[:index, :show] do
       
     post 'hidden', on: :member
+    post 'show_on', on: :member
 
     resources :answers, only:[:new, :create]
   end

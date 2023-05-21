@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!, only:[:new, :create]
-  before_action :question_params, only:[:show, :hidden]
+  before_action :question_params, only:[:show, :hidden, :show_on]
 
   def new
     @lot = Lot.find(params[:lot_id])
@@ -37,6 +37,11 @@ class QuestionsController < ApplicationController
   def hidden
     @question.hidden!
     redirect_to questions_path, notice: "Pergunta ocultada com sucesso!"
+  end
+  
+  def show_on
+    @question.show!
+    redirect_to questions_path, notice: "Pergunta visível com sucesso!"
   end
 
   private

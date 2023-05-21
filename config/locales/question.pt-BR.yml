@@ -8,3 +8,4 @@ pt-BR:
       question:
         question: 'Pergunta'
         answer: 'Resposta'
+        lot_code: 'Código do lote'

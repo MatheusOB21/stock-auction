@@ -16,10 +16,12 @@
                 <td><%= question.lot.code %></td>
                 <td>
                 <div class="d-flex align-items-center flex-row">
-                  <%= link_to "Responder", new_question_answer_path(question.id), class: 'btn btn-primary'%>
                   <% if question.show? %> 
+                    <%= link_to "Responder", new_question_answer_path(question.id), class: 'btn btn-primary'%>
                     <%= button_to "Ocultar", hidden_question_path(question.id), class: 'btn btn-primary m-1'%>
+                    <span class="ms-1"><%= I18n.t(:status)%>: <%= I18n.t(:show) %><span>
                   <% else %>
+                    <%= button_to "Mostrar", show_on_question_path(question.id), class: 'btn btn-primary m-1'%>
                     <span class="ms-1"><%= I18n.t(:status)%>: <%= I18n.t(:hidden) %><span>
                   <% end %>
                 </div> 
