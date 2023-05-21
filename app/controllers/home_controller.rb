@@ -8,7 +8,7 @@ class HomeController < ApplicationController
       @code = params["query"].upcase
       @code = @code.delete(" ")
       
-      @lots = Lot.where(["code LIKE ? and status = ?" , "%#{@code}%", 3]).to_a
+      @lots = Lot.where(["code LIKE ? and  status = ?" , "%#{@code}%", 3]).to_a
       
       @items = Item.where(["name LIKE ?" , "%#{@code}%"])  
       @items.each do |item|

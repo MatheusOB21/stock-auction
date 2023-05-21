@@ -13,7 +13,7 @@ describe 'Usuário faz uma pesquisa de um lote' do
       expect(page).to have_button 'Buscar'   
   end
   
-  it 'com sucesso' do
+  it 'com sucesso, ao informar um nome de lote' do
     #Arrange
       user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
       Lot.create!(code: "FRA456345", start_date: Date.today, limit_date: 20.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin, status: 'aprovated')
