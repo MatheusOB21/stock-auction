@@ -41,6 +41,10 @@
           <% if user_signed_in? %>
               <% if current_user.is_admin %>
                 
+                <div> 
+                  <%= link_to "Usuários", users_path, class: 'btn btn-primary me-2' %> 
+                </div>
+                
                 <div class="dropdown" style="margin-right: 5px;">
                   <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                       Perguntas

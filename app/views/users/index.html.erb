@@ -1,0 +1,27 @@
+<section id="users-regular">
+  <div><h2>Usuários regulares cadastrado no sistema<h2><div>
+  <% if @users_regular.any? %>
+  </div>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th scope="col"><%= User.human_attribute_name(:name) %></th>
+          <th scope="col"><%= User.human_attribute_name(:email) %></th>
+          <th scope="col"><%= User.human_attribute_name(:cpf) %></th>
+        </tr>
+      </thead>
+      <tbody>
+          <% @users_regular.each do |user|%>
+            <tr>
+              <th scope="row"><%= user.name %></th>
+              <td><%= user.email %></td>
+              <td><%= user.cpf %></td>
+            </tr>
+          <% end %>  
+      </tbody>
+    </table>
+  </div>
+  <% else %>
+    <h3>Nenhum usuário regular cadastrado no sistema</h3>
+  <% end %>
+</section>
