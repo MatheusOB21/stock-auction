@@ -1,5 +1,9 @@
 class HomeController < ApplicationController
     def index
+      if user_signed_in? && current_user.block?
+        flash.now[:alert] = "Sua conta foi suspensa pela administração"
+      end 
+
       @lots_in_progress = Lot.where(["start_date <= ? and limit_date >= ? and status = ?" , Date.today, Date.today, 3])
       @lots_future = Lot.where(["start_date > ? and status = ?" ,Date.today, 3])
     end
