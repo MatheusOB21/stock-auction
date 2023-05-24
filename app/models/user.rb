@@ -16,6 +16,7 @@ class User < ApplicationRecord
 
   has_many :favorites
 
+
   #Validaçoes
   validates :cpf, presence: true
   validates :cpf, uniqueness: true
@@ -32,6 +33,7 @@ class User < ApplicationRecord
   end
 
   private
+
   def cpf_is_valid
     if self.cpf_check
     else

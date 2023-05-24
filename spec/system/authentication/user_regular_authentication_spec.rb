@@ -16,7 +16,7 @@ describe 'Usuário regular ao criar a conta' do
     click_on 'Criar conta'
     #Assert
     expect(current_path).not_to eq root_path
-    expect(page).to have_content 'Cpf já está em uso'
+    expect(page).to have_content 'CPF já está em uso'
   end
   it 'não pode usar o mesmo email de um usuário admin' do
     #Arrange

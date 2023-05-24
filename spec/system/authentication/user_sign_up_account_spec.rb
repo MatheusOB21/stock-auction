@@ -55,7 +55,7 @@ describe 'Usuário registra conta' do
       click_on 'Criar conta'
       #Assert
       expect(current_path).not_to eq root_path
-      expect(page).to have_content 'Cpf é inválido'
+      expect(page).to have_content 'CPF é inválido'
       expect(User.all.empty?).to eq true
     end
     
@@ -78,7 +78,7 @@ describe 'Usuário registra conta' do
       click_on 'Criar conta'
       #Assert
       expect(current_path).not_to eq root_path
-      expect(page).to have_content 'Cpf é inválido'
+      expect(page).to have_content 'CPF é inválido'
       expect(User.all.empty?).to eq true
     end
     

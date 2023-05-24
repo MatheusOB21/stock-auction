@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   root to: "home#index"
   
   #Rotas
-  resources :users, only: [:index]
+  resources :users, only: [:index] do
+    post 'block', on: :member
+  end
 
   resources :items, only:[:index, :show,:new, :create, :edit, :update]
 
