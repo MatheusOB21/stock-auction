@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Usuário admin vizualia todos os usuários regulares' do
+describe 'Usuário admin visualiza todos os usuários regulares' do
   it 'a partir de um link no menu' do
     user_admin = User.create!(name: "Paulo", email: "paulo@leilaodogalpao.com.br", cpf: '41505837065', password: 'paulo123456789')
 
