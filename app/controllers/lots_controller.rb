@@ -91,7 +91,9 @@ class LotsController < ApplicationController
     @user_bid_lot = UserBidLot.new(user: current_user, lot: @lot, bid_amount: val)
 
     if @user_bid_lot.valid? && @lot.available_for_bid
-      if current_user.is_admin
+      if current_user.block?
+        redirect_to @lot, notice: 'Sua conta está suspensa, não pode dar lance!' 
+      elsif current_user.is_admin
         redirect_to @lot, notice: 'Administradores não podem dar lance!'
       else
         @user_bid_lot.save!
