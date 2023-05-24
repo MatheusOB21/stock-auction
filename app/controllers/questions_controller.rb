@@ -6,7 +6,9 @@ class QuestionsController < ApplicationController
     @lot = Lot.find(params[:lot_id])
     @question = Question.new()
 
-    if current_user.is_admin
+    if current_user.block?
+      redirect_to @lot, notice: 'Sua conta está suspensa, não pode dar fazer pergunta!'
+    elsif current_user.is_admin
       redirect_to @lot, notice: "Usuário admin não pode fazer perguntas!"
     end
 

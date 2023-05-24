@@ -60,5 +60,26 @@ describe 'Um CPF que está na lista de bloqueio' do
       expect(current_path).to eq lot_path(lot.id)
       expect(page).to have_content 'Sua conta está suspensa, não pode dar lance!'
   end
+  
+  it 'caso ja seja usuário, não consegue dar fazer uma pergunta' do
+    #Arrange
+      user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
+      user_regular = User.create!(name: "Katarina", email: "katarina@gmail.com.br", password: "katarina12345", cpf:"09036567017")
+        
+      item = Item.create!(name: 'Ninja 2000', description: 'Uma moto verde, veloz e em ótimo estado', weight: 2000, depth: 1000, height: 1500, width: 300, product_category: 'Motocicleta')
+
+      lot = Lot.create!(code: "RTX306000", start_date: Date.today, limit_date: 15.day.from_now, minimal_val: 200, minimal_difference: 50, user: user_admin, status: 'aprovated')
+      lot_item = LotItem.create!(lot: lot, item: item)
+
+      Blacklist.create!(cpf: user_regular.cpf)    
+    #Act
+      login_as(user_regular)
+      visit root_path
+      click_on 'RTX306000'
+      click_on 'Faça uma pergunta sobre o lote!'
+    #Assert
+      expect(current_path).to eq lot_path(lot.id)
+      expect(page).to have_content 'Sua conta está suspensa, não pode dar fazer pergunta!'    
+  end
 
 end
