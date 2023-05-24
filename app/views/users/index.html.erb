@@ -1,35 +1,35 @@
 <section id="users-regular">
-  <div><h2>Usuários regulares cadastrado no sistema<h2><div>
-  
-  <%= link_to "Bloqueio de CPF", new_blacklist_path, class: "btn btn-primary" %>
-
-  <% if @users_regular.any? %>
+  <div>
+    <% if @users_regular.any? %>
+    <div class="d-flex">
+      <h2>Usuários regulares cadastrado no sistema <h2>
+      <%= link_to "Bloqueio de CPF", new_blacklist_path, class: "btn btn-primary ms-2" %> 
+    </div>
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th scope="col"><%= User.human_attribute_name(:name) %></th>
+            <th scope="col"><%= User.human_attribute_name(:email) %></th>
+            <th scope="col"><%= User.human_attribute_name(:cpf) %></th>
+          </tr>
+        </thead>
+        <tbody>
+            <% @users_regular.each do |user|%>
+              <tr id=<%= "#{user.id}"%> >
+                <th scope="row"><%= user.name %></th>
+                <td><%= user.email %></td>
+                <td><%= user.cpf %></td>
+                <% if user.block? %>
+                  <td><%= button_to "Desbloquear", blacklist_path(@blacklists.find_by(cpf: user.cpf)), method: :delete, class: 'btn btn-danger' %></td>
+                <% else %>
+                  <td><%= button_to "Bloquear", block_user_path(user.id), class: 'btn btn-danger' %></td>
+                <% end %>
+              </tr>
+            <% end %>  
+        </tbody>
+      </table>
+    <% else %>
+      <h3>Nenhum usuário regular cadastrado no sistema</h3>
+    <% end %>
   </div>
-    <table class="table table-bordered table-striped">
-      <thead>
-        <tr>
-          <th scope="col"><%= User.human_attribute_name(:name) %></th>
-          <th scope="col"><%= User.human_attribute_name(:email) %></th>
-          <th scope="col"><%= User.human_attribute_name(:cpf) %></th>
-        </tr>
-      </thead>
-      <tbody>
-          <% @users_regular.each do |user|%>
-            <tr id=<%= "#{user.id}"%> >
-              <th scope="row"><%= user.name %></th>
-              <td><%= user.email %></td>
-              <td><%= user.cpf %></td>
-              <% if user.block? %>
-                <td><%= button_to "Desbloquear", blacklist_path(@blacklists.find_by(cpf: user.cpf)), method: :delete, class: 'btn btn-danger' %></td>
-              <% else %>
-                <td><%= button_to "Bloquear", block_user_path(user.id), class: 'btn btn-danger' %></td>
-              <% end %>
-            </tr>
-          <% end %>  
-      </tbody>
-    </table>
-  </div>
-  <% else %>
-    <h3>Nenhum usuário regular cadastrado no sistema</h3>
-  <% end %>
 </section>

@@ -10,6 +10,8 @@ class BlacklistsController < ApplicationController
     @blacklist = Blacklist.new(blacklist_params)
     if @blacklist.save
       redirect_to users_path, notice: "Usuário bloqueado com sucesso!"
+    else
+      render 'new'
     end  
   end
 

@@ -1,18 +1,36 @@
-<section id="new-blacklist" class="d-flex justify-content-center mt-5">
-  <div class="shadow p-3 mb-5 bg-body-tertiary rounded"> 
-    <h2> Novo CPF para bloqueio </h2>
-      <%= form_with( model:@blacklist ) do |f| %>
-      <div>
+<section class="position-relative mt-5" id="new-blacklist">
+  <div class="position-absolute top-0 start-50 translate-middle-x">
+    
+    <div class="shadow p-3 mb-2 bg-body-tertiary rounded"> 
+      <h2> Novo CPF para bloqueio </h2>
+        <%= form_with( model:@blacklist ) do |f| %>
         <div>
-          <%= f.label :cpf, class: "fs-2 mb-2" %>
+          <div>
+            <%= f.label :cpf, class: "fs-2 mb-2" %>
+          </div>
+          <div>
+            <%= f.text_field :cpf, class: "form-control" %>
+          </div>
+          <div>
+            <%= f.submit I18n.t(:submit), class:"btn btn-primary mt-2" %>
+          </div>
         </div>
-        <div>
-          <%= f.text_field :cpf, class: "form-control" %>
-        </div>
-        <div>
-          <%= f.submit I18n.t(:submit), class:"btn btn-primary mt-2" %>
-        </div>
-      </div>
-    <% end %>
-  </div>  
+      <% end %>
+    </div>  
+    
+    <div id = "errors-messages">
+      <% if @blacklist.errors.any? %>
+        <ul class="list-group mt-2">
+        <% @blacklist.errors.full_messages.each do |msg|%>
+          <li class="badge text-bg-warning mt-2"><%= msg %></li>
+        <% end %>
+        </ul>
+      <% end %>
+    </div>
+
+  </div>
+  
+
+
 </section>
+
