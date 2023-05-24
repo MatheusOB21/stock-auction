@@ -23,6 +23,7 @@ class User < ApplicationRecord
   validates :cpf, length:{ is: 11 }
   
   validate :cpf_is_valid
+  validate :cpf_is_block
 
   def is_admin
     self.email =~ /\w+@leilaodogalpao.com.br/ ? true : false
@@ -32,7 +33,17 @@ class User < ApplicationRecord
     self.favorites.where(lot_id: lot_id).present?
   end
 
+  def block?
+    Blacklist.all.find_by(cpf: self.cpf) ? true : false
+  end
+
   private
+
+  def cpf_is_block
+    if self.block?
+      self.errors.add(:cpf, 'bloqueado pela administração. Não pode criar conta!')
+    end
+  end
 
   def cpf_is_valid
     if self.cpf_check

@@ -16,10 +16,10 @@
               <th scope="row"><%= user.name %></th>
               <td><%= user.email %></td>
               <td><%= user.cpf %></td>
-              <% if Blacklist.all.find_by(cpf: user.cpf) %>
-                <td><%= button_to "Desbloquear", block_user_path(user.id), class: 'btn btn-danger' %></td>
+              <% if user.block? %>
+                <td><%= button_to "Desbloquear", user_blacklist_path(user.id, Blacklist.all.find_by(cpf: user.cpf)), method: :delete, class: 'btn btn-danger' %></td>
               <% else %>
-                <td><%= button_to "Bloquear", block_user_path(user.id), class: 'btn btn-danger' %></td>
+                <td><%= button_to "Bloquear", user_blacklists_path(user.id), class: 'btn btn-danger' %></td>
               <% end %>
             </tr>
           <% end %>  
