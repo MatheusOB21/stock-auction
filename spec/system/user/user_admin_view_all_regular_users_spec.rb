@@ -67,4 +67,14 @@ describe 'Usuário admin visualiza todos os usuários regulares' do
     expect(page).not_to have_button 'Desbloquear'
   end
 
+  it 'e não sendo admin, não tem acesso' do
+    user = User.create!(name: "Laura", email: "laura@gmail.com", cpf: '90347825060', password: 'laura123456789')
+
+    login_as(user)
+    visit users_path
+
+    expect(current_path).not_to eq users_path
+    expect(page).to have_content 'Você não tem acesso a essa página'
+  end
+
 end
