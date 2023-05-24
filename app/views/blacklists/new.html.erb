@@ -1,0 +1,18 @@
+<section id="new-blacklist" class="d-flex justify-content-center mt-5">
+  <div class="shadow p-3 mb-5 bg-body-tertiary rounded"> 
+    <h2> Novo CPF para bloqueio </h2>
+      <%= form_with( model:@blacklist ) do |f| %>
+      <div>
+        <div>
+          <%= f.label :cpf, class: "fs-2 mb-2" %>
+        </div>
+        <div>
+          <%= f.text_field :cpf, class: "form-control" %>
+        </div>
+        <div>
+          <%= f.submit I18n.t(:submit), class:"btn btn-primary mt-2" %>
+        </div>
+      </div>
+    <% end %>
+  </div>  
+</section>

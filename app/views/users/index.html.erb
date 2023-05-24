@@ -1,5 +1,8 @@
 <section id="users-regular">
   <div><h2>Usuários regulares cadastrado no sistema<h2><div>
+  
+  <%= link_to "Bloqueio de CPF", new_blacklist_path, class: "btn btn-primary" %>
+
   <% if @users_regular.any? %>
   </div>
     <table class="table table-bordered table-striped">
@@ -17,9 +20,9 @@
               <td><%= user.email %></td>
               <td><%= user.cpf %></td>
               <% if user.block? %>
-                <td><%= button_to "Desbloquear", user_blacklist_path(user.id, Blacklist.all.find_by(cpf: user.cpf)), method: :delete, class: 'btn btn-danger' %></td>
+                <td><%= button_to "Desbloquear", blacklist_path(@blacklists.find_by(cpf: user.cpf)), method: :delete, class: 'btn btn-danger' %></td>
               <% else %>
-                <td><%= button_to "Bloquear", user_blacklists_path(user.id), class: 'btn btn-danger' %></td>
+                <td><%= button_to "Bloquear", block_user_path(user.id), class: 'btn btn-danger' %></td>
               <% end %>
             </tr>
           <% end %>  

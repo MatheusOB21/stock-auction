@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      blacklist:
+        one: 'Lista negra'
+        other: 'Lista negras'
+    attributes:
+      blacklist:
+        cpf: 'CPF'

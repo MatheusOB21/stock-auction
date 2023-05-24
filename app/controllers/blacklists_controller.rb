@@ -1,14 +1,26 @@
 class BlacklistsController < ApplicationController
+
+  def new
+    @blacklist = Blacklist.new
+  end
   
   def create
-    @user = User.find(params[:user_id])
+    blacklist_params = params.require(:blacklist).permit(:cpf)
+    
+    @blacklist = Blacklist.new(blacklist_params)
+    if @blacklist.save
+      redirect_to users_path, notice: "Usuário bloqueado com sucesso!"
+    end  
+  end
+
+  def block
+    @user = User.find(params[:id])
     
     Blacklist.create!(cpf: @user.cpf)
     redirect_to users_path, notice: "Usuário bloqueado com sucesso!"
   end
 
   def destroy
-    @user = User.find(params[:user_id])
     @cpf_blacklist = Blacklist.find(params[:id])
     
     @cpf_blacklist.destroy!

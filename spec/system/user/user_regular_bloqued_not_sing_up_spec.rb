@@ -38,5 +38,4 @@ describe 'Um CPF que está na lista de bloqueio' do
     
   end
 
-  
 end

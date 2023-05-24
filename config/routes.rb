@@ -7,8 +7,10 @@ Rails.application.routes.draw do
   
   #Rotas
   resources :users, only: [:index] do
-    resources :blacklists, only: [:create, :destroy]
+    post 'block', on: :member, to: 'blacklists#block'
   end
+
+  resources :blacklists, only: [:new, :create, :destroy]
 
   resources :items, only:[:index, :show,:new, :create, :edit, :update]
 
