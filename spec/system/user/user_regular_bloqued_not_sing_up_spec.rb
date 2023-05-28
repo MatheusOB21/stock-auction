@@ -61,7 +61,7 @@ describe 'Um CPF que está na lista de bloqueio' do
       expect(page).to have_content 'Sua conta está suspensa, não pode dar lance!'
   end
   
-  it 'caso ja seja usuário, não consegue dar fazer uma pergunta' do
+  it 'caso ja seja usuário, não consegue fazer uma pergunta' do
     #Arrange
       user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
       user_regular = User.create!(name: "Katarina", email: "katarina@gmail.com.br", password: "katarina12345", cpf:"09036567017")
