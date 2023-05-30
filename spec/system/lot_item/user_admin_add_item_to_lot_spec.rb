@@ -1,7 +1,6 @@
 require "rails_helper"
 
 describe 'Usuário admin adiciona item' do
-  
   it 'ao lote com sucesso' do
       user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
       lot = Lot.create!(code: "FRA456345", start_date: Date.today, limit_date: 10.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin)
@@ -24,7 +23,6 @@ describe 'Usuário admin adiciona item' do
       expect(page).to have_content "Uma moto verde, veloz e em ótimo estado"    
       expect(page).to have_content "#{item.item_dimensions}"    
   end
-  
   it 'que não estão em outros lotes' do
       user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
       lot1 = Lot.create!(code: "FRA456345", start_date: Date.today, limit_date: 10.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin)
@@ -45,7 +43,6 @@ describe 'Usuário admin adiciona item' do
       expect(page).not_to have_content "Ninja 2000"    
       expect(page).not_to have_content "Ninja 1500"    
   end
-  
   it 'apenas a lotes pendentes' do
       user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
       user_admin_2 = User.create!(name: "Mario", email: "mario@leilaodogalpao.com.br", password: "mario_do_leilão", cpf:"74574823003")
@@ -62,5 +59,4 @@ describe 'Usuário admin adiciona item' do
       expect(page).not_to have_button "Adicionar item"    
       expect(page).not_to have_button "Remover item"    
   end
-
 end

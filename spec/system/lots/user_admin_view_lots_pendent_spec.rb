@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Usuário admin vê os lotes pendentes' do
+describe 'Usuário administrador vê os lotes pendentes' do
     it 'com sucesso' do
         user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
         lot1 = Lot.create!(code: "FRA456345", start_date: Date.today, limit_date: 15.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin)
@@ -18,7 +18,6 @@ describe 'Usuário admin vê os lotes pendentes' do
         expect(page).not_to have_content "#{I18n.l(lot2.start_date)}"      
         expect(page).not_to have_content "#{I18n.l(lot2.limit_date)}"      
     end
-    
     it 'e vê detalhes do lote' do
         user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
         lot = Lot.create!(code: "FRA456345", start_date: Date.today, limit_date: 10.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin)
@@ -35,15 +34,13 @@ describe 'Usuário admin vê os lotes pendentes' do
         expect(page).to have_content "50"      
         expect(page).to have_content "10"      
     end
-
     it 'e não tem nenhum lote pendente' do
-      #Arrange
         user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
-      #Act
+
         login_as(user_admin)
         visit root_path
         click_on "Lotes pendentes"
-      #Assert
+
         expect(page).to have_content "Nenhum lote pendente de aprovação"      
     end
 end

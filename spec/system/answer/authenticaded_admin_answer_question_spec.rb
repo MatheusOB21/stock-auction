@@ -59,7 +59,7 @@ describe 'Um usuário' do
         expect(page).to have_content "Resposta"    
         expect(page).to have_content "Após a retirada, não existem devoluções de itens."    
     end
-    it 'não consegue responde pergunta, pois deixa o campo em branco' do
+    it 'não consegue responder uma pergunta, pois deixa o campo em branco' do
         user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
         item = Item.create!(name: 'Ninja 2000', description: 'Uma moto verde, veloz e em ótimo estado', weight: 2000, depth: 1000, height: 1500, width: 300, product_category: 'Motocicleta')
         lot = Lot.create!(code: "RTX306000", start_date: Date.today, limit_date: 15.day.from_now, minimal_val: 200, minimal_difference: 50, user: user_admin, status: 'aprovated')
@@ -78,7 +78,7 @@ describe 'Um usuário' do
         expect(page).to have_content "Resposta não computada!"    
         expect(page).to have_content "Resposta não pode ficar em branco"    
     end
-    it 'responde uma pergunta, a qual é viculada ao seu usuário' do
+    it 'responde uma pergunta, a qual é vinculada ao seu usuário' do
         user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
         item = Item.create!(name: 'Ninja 2000', description: 'Uma moto verde, veloz e em ótimo estado', weight: 2000, depth: 1000, height: 1500, width: 300, product_category: 'Motocicleta')
         lot = Lot.create!(code: "RTX306000", start_date: Date.today, limit_date: 15.day.from_now, minimal_val: 200, minimal_difference: 50, user: user_admin, status: 'aprovated')
@@ -96,8 +96,8 @@ describe 'Um usuário' do
 
         expect(Answer.last.user).to eq user_admin       
     end
-
   end
+  
   context 'autenticado e regular' do
     it 'não tem acesso a página' do
       #Arrange
@@ -114,7 +114,6 @@ describe 'Um usuário' do
         expect(current_path).to eq root_path
         expect(page).not_to have_field "Você não tem acesso a essa página"           
     end
-
   end
 
 end

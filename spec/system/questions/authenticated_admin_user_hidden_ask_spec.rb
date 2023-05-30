@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe 'Usuário admin oculta uma pergunta' do
-  
   it 'com sucesso' do
     #Arrange
       user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
@@ -29,8 +28,7 @@ describe 'Usuário admin oculta uma pergunta' do
       expect(page).to have_button 'Mostrar'
       expect(Question.last.status).to eq "hidden"
   end
-
-  it 'e ela não deve aparecer para os usuário sem autenticação verem' do
+  it 'e ela não deve aparecer para os usuários sem autenticação verem' do
     #Arrange
       user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
       user_regular = User.create!(name: "Katarina", email: "katarina@gmail.com.br", password: "katarina12345", cpf:"09036567017")
@@ -49,7 +47,6 @@ describe 'Usuário admin oculta uma pergunta' do
       expect(page).not_to have_content "Sempre fui roubado em leilões! Tudo é uma fraude?"
       expect(page).to have_content "Sem perguntas até o momento"
   end
-  
   it 'e ela não deve aparecer para os usuário regulares verem' do
     #Arrange
       user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
@@ -70,9 +67,7 @@ describe 'Usuário admin oculta uma pergunta' do
       expect(page).not_to have_content "Sempre fui roubado em leilões! Tudo é uma fraude?"
       expect(page).to have_content "Sem perguntas até o momento"
   end
-
-  it 'com sucesso, e depois deixa visto' do
-    #Arrange
+  it 'com sucesso, e depois deixa visivel' do
       user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
       user_regular = User.create!(name: "Katarina", email: "katarina@gmail.com.br", password: "katarina12345", cpf:"09036567017")
 
@@ -83,7 +78,6 @@ describe 'Usuário admin oculta uma pergunta' do
 
       Question.create!(lot: lot, question: "Essas merdas desses itens funcionam?")
     
-    #Act
       login_as(user_admin)
       visit root_path
       click_on 'Perguntas sem respostas'
@@ -92,12 +86,10 @@ describe 'Usuário admin oculta uma pergunta' do
         click_on 'Mostrar'
       end
 
-    #Assert
       expect(page).to have_content 'Pergunta visível com sucesso!'
       expect(page).to have_content 'Status: Visivel'
       expect(page).not_to have_button 'Mostrar'
       expect(page).to have_button 'Ocultar'
       expect(Question.last.status).to eq "show"
   end
-
 end

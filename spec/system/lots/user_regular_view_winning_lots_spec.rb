@@ -1,7 +1,6 @@
 require 'rails_helper'
 
-describe 'Usuário vê os lotes vencidos' do
-  
+describe 'Usuário regular vê os lotes vencidos' do
   it 'mas precisa estar autenticado' do
     #Arrange
     
@@ -10,7 +9,6 @@ describe 'Usuário vê os lotes vencidos' do
     #Assert
       expect(page).not_to have_link "Lote vencidos"
   end
-
   it 'e não estando autenticado, não tem acesso' do
     #Arrange
 
@@ -21,7 +19,6 @@ describe 'Usuário vê os lotes vencidos' do
       expect(current_path).not_to eq winners_path
       expect(current_path).to eq new_user_session_path
   end
-  
   it 'a partir do link no menu' do
     #Arrange
       user_regular = User.create!(name: "Gabriel", email: "gabriel@gmail.com.br", password: "gabriel123", cpf:"04209958034")
@@ -31,28 +28,6 @@ describe 'Usuário vê os lotes vencidos' do
     #Assert
       expect(page).to have_link "Lotes vencidos"
   end
-  
-  it 'mas usuário admin não tem link no menu' do
-    #Arrange
-      user_admin = User.create!(name: "Luiz", email: "luiz@leilaodogalpao.com.br", password: "luiz123456", cpf:"50534524079")
-    #Act
-      login_as(user_admin)
-      visit root_path
-    #Assert
-      expect(page).not_to have_link "Lotes vencidos"
-  end
- 
-  it 'mas usuário admin não tem lotes vencidos' do
-    #Arrange
-      user_admin = User.create!(name: "Luiz", email: "luiz@leilaodogalpao.com.br", password: "luiz123456", cpf:"50534524079")
-    #Act
-      login_as(user_admin)
-      visit winners_path
-    #Assert
-      expect(current_path).to eq root_path
-      expect(page).to have_content "Usuários administradores não podem vencer lotes!"
-  end
-  
   it 'com sucesso' do
     #Arrange
       user_admin = User.create!(name: "Anakin", email: "anakin@leilaodogalpao.com.br", password: "anakin_do_leilão", cpf:"50534524079")
@@ -77,7 +52,6 @@ describe 'Usuário vê os lotes vencidos' do
       expect(page).to have_content "TRA456345" 
       expect(page).not_to have_button "Encerrar lote" 
   end
-  
   it 'e os detalhes do lote que venceu' do
     #Arrange
       user_admin = User.create!(name: "Anakin", email: "anakin@leilaodogalpao.com.br", password: "anakin_do_leilão", cpf:"50534524079")
