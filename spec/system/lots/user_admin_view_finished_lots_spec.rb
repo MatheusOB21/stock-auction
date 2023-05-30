@@ -76,24 +76,21 @@ describe 'Admin ve os lotes que passaram da data limite,' do
     end
     
     it 'e tem apenas opção para encerrar' do
-      #Arrange
         user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
         user_admin2 = User.create!(name: "Juliana", email: "juliana@leilaodogalpao.com.br", password: "juliana_do_leilão", cpf:"36507983012")
         user_regular = User.create!(name: "José", email: "josé@gmail.com.br", password: "josésilva123", cpf:"04209958034")
-        
         travel_to 30.day.ago do
           Lot.create!(code: "TRA456345", start_date: Date.current, limit_date: 10.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin, status: 3)
         end
-
         item = Item.create!(name: 'Ninja 2000', description: 'Uma moto verde, veloz e em ótimo estado', weight: 2000, depth: 1000, height: 1500, width: 300, product_category: 'Motocicleta')
         lot_item = LotItem.create!(lot: Lot.last, item: item)
         user_bid_lot = UserBidLot.create!(lot: Lot.last, user: user_regular, bid_amount: 100)
-      #Act
+
         login_as(user_admin2)
         visit root_path
         click_on "Lotes finalizados"
         click_on "TRA456345"
-      #Assert
+
         expect(current_path).to eq lot_path(Lot.last.id)
         expect(page).to have_button "Encerrar lote"
         expect(page).not_to have_button "Cancelar"
@@ -133,8 +130,8 @@ describe 'Admin ve os lotes que passaram da data limite,' do
 
       #Arrange
         user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
-        Lot.create!(code: "FRA456345", start_date: "28/05/2023", limit_date: "28/06/2023", minimal_val: 50, minimal_difference: 10, user: user_admin)
-        Lot.create!(code: "ZFA123456", start_date: "24/07/2023", limit_date: "15/09/2023", minimal_val: 50, minimal_difference: 10, user: user_admin)
+        Lot.create!(code: "FRA456345", start_date: Date.today, limit_date: 15.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin)
+        Lot.create!(code: "ZFA123456", start_date: Date.today, limit_date: 15.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin)
         
         travel_to 20.day.ago do
           Lot.create!(code: "TRA456345", start_date: Date.today, limit_date: 15.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin, status: 'aprovated')

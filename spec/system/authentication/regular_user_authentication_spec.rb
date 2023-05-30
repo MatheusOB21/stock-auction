@@ -1,10 +1,9 @@
 require 'rails_helper'
 
-describe 'Usuário regular ao criar a conta' do
+describe 'Usuário regular ao criar uma conta' do
   it 'não pode usar o mesmo CPF de um usuário admin' do
-    #Arrange
-      User.create!(name: "Lívia", email: "lívia@leilaodogalpao.com.br", password: "lívia1234", cpf: "14272954091")
-    #Act
+    User.create!(name: "Lívia", email: "lívia@leilaodogalpao.com.br", password: "lívia1234", cpf: "14272954091")
+
     visit root_path
     click_on 'Login'
     click_on 'Criar conta'
@@ -14,14 +13,13 @@ describe 'Usuário regular ao criar a conta' do
     fill_in 'Senha', with: 'admin@1234'
     fill_in 'Confirme sua senha', with: 'admin@1234'
     click_on 'Criar conta'
-    #Assert
+
     expect(current_path).not_to eq root_path
     expect(page).to have_content 'CPF já está em uso'
   end
   it 'não pode usar o mesmo email de um usuário admin' do
-    #Arrange
-      User.create!(name: "Lívia", email: "admin@leilaodogalpao.com.br", password: "lívia1234", cpf: "14272954091")
-    #Act
+    User.create!(name: "Lívia", email: "admin@leilaodogalpao.com.br", password: "lívia1234", cpf: "14272954091")
+
     visit root_path
     click_on 'Login'
     click_on 'Criar conta'
@@ -31,7 +29,7 @@ describe 'Usuário regular ao criar a conta' do
     fill_in 'Senha', with: 'admin@1234'
     fill_in 'Confirme sua senha', with: 'admin@1234'
     click_on 'Criar conta'
-    #Assert
+
     expect(current_path).not_to eq root_path
     expect(page).to have_content 'E-mail já está em uso'
   end

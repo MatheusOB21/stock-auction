@@ -25,6 +25,9 @@
 !/tmp/pids/
 !/tmp/pids/.keep
 
+# Ignore coverage 
+/coverage
+
 
 /public/assets
 

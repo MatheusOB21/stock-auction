@@ -53,7 +53,6 @@ describe 'Usuário vê os lotes vencidos' do
       expect(page).to have_content "Usuários administradores não podem vencer lotes!"
   end
   
-  
   it 'com sucesso' do
     #Arrange
       user_admin = User.create!(name: "Anakin", email: "anakin@leilaodogalpao.com.br", password: "anakin_do_leilão", cpf:"50534524079")
