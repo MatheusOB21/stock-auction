@@ -27,13 +27,10 @@ class LotsController < ApplicationController
     @lot_questions = @lot.questions.where("status = ?", 0)
 
     if @lot.aprovated? && !@lot.finished_bids
-      #pode acessar
     elsif user_signed_in?
       if current_user.is_admin 
-        #pode acessar
       elsif @lot.finished_bids && @lot.last_bid.present?
         if current_user == @lot.last_bid.user && @lot.closed?
-          #pode acessar
         else
           redirect_to root_path, notice: "Você não tem acesso a essa página"
         end
@@ -57,8 +54,8 @@ class LotsController < ApplicationController
     @lot.closed!
     @lot.last_bid.won!
     
-    @lot.user_bid_lots.where(status: 'bid').each do |lot|
-      lot.loser!
+    @lot.user_bid_lots.where(status: 'bid').each do |user_bid_lot|
+      user_bid_lot.loser!
     end
     
     redirect_to @lot, notice: "Lote encerrado com sucesso"
@@ -72,18 +69,18 @@ class LotsController < ApplicationController
   end
   
   def aprovated
-    if current_user.id != @lot.user_id
-      if @lot.lot_items.present?
-        UserAprovated.create!(user: current_user, lot: @lot, date_aprovated: Date.today)
+    if @lot.lot_items.present?
+      @user_approves = UserAprovated.new(user: current_user, lot: @lot, date_aprovated: Date.today)
+      if @user_approves.save
         @lot.aprovated!
         redirect_to @lot, notice: "Lote aprovado com sucesso"
       else
-        redirect_to @lot, notice: "Não é possível aprovar lotes sem itens adicionados"
+        flash.now[:notice] = 'Não foi possível aprovar o lote!'  
+        render 'show'
       end
     else
-      redirect_to @lot, notice: "Você não pode aprovar lotes criados pelo seu usuário"
+      redirect_to @lot, notice: "Não é possível aprovar lotes sem itens adicionados"
     end
-    
   end
 
   def bid
@@ -93,8 +90,6 @@ class LotsController < ApplicationController
     if @user_bid_lot.valid? && @lot.available_for_bid
       if current_user.block?
         redirect_to @lot, notice: 'Sua conta está suspensa, não pode dar lance!' 
-      elsif current_user.is_admin
-        redirect_to @lot, notice: 'Administradores não podem dar lance!'
       else
         @user_bid_lot.save!
         redirect_to @lot, notice: 'Lance computado!'

@@ -7,3 +7,4 @@ pt-BR:
     attributes:
       user_bid_lot:
         bid_amount: 'Valor do lance'
+        user: 'Usuário'

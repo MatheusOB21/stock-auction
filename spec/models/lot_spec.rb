@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Lot, type: :model do
-  describe 'Lote tem os dados do' do
+  describe 'Lote tem os dados' do
     it 'do usuário que o criou' do
         user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
         user_admin_2 = User.create!(name: "José", email: "jose@leilaodogalpao.com.br", password: "jose_do_leilão", cpf:"50417550006")
@@ -85,8 +85,8 @@ RSpec.describe Lot, type: :model do
     end
   end
 
-  describe '#availabe ' do
-    it 'Retorna se o lote é disponivel para dar lance' do
+  describe '#availabe' do
+    it 'Retorna true se o lote é disponivel para dar lance' do
         user_admin = User.create!(name: "Flávio", email: "flavio@leilaodogalpao.com.br", password: "flavio_do_leilão", cpf:"50534524079")
         user_regular = User.create!(name: "Katarina", email: "katarina@gmail.com.br", password: "katarina12345", cpf:"09036567017")
         lot1 = Lot.create!(code: "FRA456345", start_date: Date.today, limit_date: 5.day.from_now, minimal_val: 50, minimal_difference: 10, user: user_admin, status: 'aprovated')

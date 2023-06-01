@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      user_aprovated:
+        one: 'Usuário aprova'
+        other: 'Usuários aprovam'
+    attributes:
+      user_aprovated:
+        user: 'Usuário'

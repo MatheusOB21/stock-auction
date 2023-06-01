@@ -3,6 +3,7 @@ class Blacklist < ApplicationRecord
   validates :cpf, length:{ is: 11 }
 
   validate :cpf_is_valid
+  
   private
 
   def cpf_is_valid
